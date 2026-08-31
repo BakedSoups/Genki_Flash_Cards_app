@@ -441,13 +441,24 @@ function checkAnswer() {
 
 function advanceCard(correct, card) {
   if (!correct) {
-    // Show one different card before retrying a missed word.
-    if (studyMode === "introduction") {
-      cards.splice(Math.min(index + 2, cards.length), 0, { type: "quiz", card: { ...card } });
+    // With hints, show one different card before retrying a missed word.
+    // Without hints, put the missed word at a random point in the remaining deck.
+    if (hintsEnabled) {
+      if (studyMode === "introduction") {
+        cards.splice(Math.min(index + 2, cards.length), 0, { type: "quiz", card: { ...card } });
+        index += 1;
+      } else {
+        cards.shift();
+        cards.splice(Math.min(1, cards.length), 0, card);
+        index = 0;
+      }
+    } else if (studyMode === "introduction") {
+      const retryAt = index + 1 + Math.floor(Math.random() * (cards.length - index));
+      cards.splice(retryAt, 0, { type: "quiz", card: { ...card } });
       index += 1;
     } else {
       cards.shift();
-      cards.splice(Math.min(1, cards.length), 0, card);
+      cards.splice(Math.floor(Math.random() * (cards.length + 1)), 0, card);
       index = 0;
     }
     advancing = false;
