@@ -1,0 +1,541 @@
+const homeScreen = document.querySelector("#home-screen");
+const studyScreen = document.querySelector("#study-screen");
+const scoreScreen = document.querySelector("#score-screen");
+const homeButton = document.querySelector("#home-button");
+const lessonSelect = document.querySelector("#lesson");
+const modeSelect = document.querySelector("#mode");
+const modeHelp = document.querySelector("#mode-help");
+const directionSelect = document.querySelector("#direction");
+const wordSetSelect = document.querySelector("#word-set");
+const loopsSelect = document.querySelector("#loops");
+const shuffleSelect = document.querySelector("#shuffle");
+const hintsSelect = document.querySelector("#hints");
+const startButton = document.querySelector("#start-button");
+const restartButton = document.querySelector("#restart-button");
+const answerForm = document.querySelector("#answer-form");
+const answerInput = document.querySelector("#answer");
+const hintButton = document.querySelector("#hint-button");
+const checkButton = document.querySelector("#check");
+const questionLabel = document.querySelector("#question-label");
+const promptLabel = document.querySelector("#prompt-label");
+const promptWord = document.querySelector("#prompt-word");
+const result = document.querySelector("#result");
+const resultStatus = document.querySelector("#result-status");
+const correction = document.querySelector("#correction");
+const progress = document.querySelector("#progress");
+const message = document.querySelector("#message");
+const scorePercent = document.querySelector("#score-percent");
+const scoreDetails = document.querySelector("#score-details");
+const wordChart = document.querySelector("#word-chart");
+const historyTitle = document.querySelector("#history-title");
+const historySummary = document.querySelector("#history-summary");
+const missedWords = document.querySelector("#missed-words");
+const runHistory = document.querySelector("#run-history");
+const SELECTED_LESSON_KEY = "kotoba-cards:selected-lesson";
+
+let sourceCards = [];
+let cards = [];
+let index = 0;
+let targetLoops = 1;
+let studyMode = "removal";
+let direction = "english-romaji";
+let correctAnswers = 0;
+let hintedAnswers = 0;
+let attempts = 0;
+let wordStats = {};
+let advancing = false;
+let waitingForContinue = false;
+let pendingCorrect = false;
+let advanceTimer = null;
+let history = [];
+let historySaved = false;
+let hintsEnabled = false;
+let hintsMode = "off";
+let hintLevel = 0;
+let hintUsedForCurrent = false;
+let fullHintUsedForCurrent = false;
+
+function savedLessonSelection() {
+  try {
+    return window.localStorage.getItem(SELECTED_LESSON_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function saveLessonSelection(lesson) {
+  try {
+    window.localStorage.setItem(SELECTED_LESSON_KEY, lesson);
+  } catch {
+    // The app still works when browser storage is disabled.
+  }
+}
+
+function showScreen(screen) {
+  homeScreen.hidden = screen !== "home";
+  studyScreen.hidden = screen !== "study";
+  scoreScreen.hidden = screen !== "score";
+  homeButton.hidden = screen === "home";
+}
+
+function normalize(value) {
+  return value.trim().toLocaleLowerCase().replace(/[\s.,!?;:'"()-]+/g, "");
+}
+
+function directionFields(card) {
+  if (direction === "kana-english") {
+    return { prompt: card.kana, answer: card.meaning, label: "English practice", instruction: "What does this mean in English?" };
+  }
+  if (direction === "kana-romaji") {
+    return { prompt: card.kana, answer: card.romaji, label: "Romaji practice", instruction: "Write this in romaji" };
+  }
+  return { prompt: card.meaning, answer: card.romaji, label: "Romaji practice", instruction: "What is the romaji for" };
+}
+
+function shuffleCards(cardList) {
+  for (let i = cardList.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cardList[i], cardList[j]] = [cardList[j], cardList[i]];
+  }
+  return cardList;
+}
+
+function crucialWordsForLesson(lesson) {
+  const misses = {};
+  history.filter(run => run.lesson === lesson && run.mode !== "introduction").forEach(run => (run.words || []).forEach(word => {
+    const missed = Math.max(0, Number(word.attempts) - Number(word.correct));
+    misses[word.romaji] = (misses[word.romaji] || 0) + missed;
+  }));
+  return Object.entries(misses)
+    .filter(([, missed]) => missed > 0)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([romaji]) => romaji);
+}
+
+function renderCard() {
+  const item = cards[index];
+  if (!item) return finishLesson();
+  const isIntroduction = studyMode === "introduction" && item.type === "intro";
+  hintsEnabled = !isIntroduction && (hintsMode === "on" || hintsMode === "half");
+  const card = studyMode === "introduction" ? item.card : item;
+  const fields = directionFields(card);
+  if (studyMode === "introduction") {
+    progress.textContent = `${index + 1} of ${cards.length} · ${isIntroduction ? "new word" : "review"}`;
+  } else if (studyMode === "fixed") {
+    progress.textContent = `${cards.length} cards remaining`;
+  } else {
+    const mastered = sourceCards.length - cards.length;
+    progress.textContent = `${cards.length} remaining · ${mastered} removed`;
+  }
+  questionLabel.textContent = fields.label;
+  promptLabel.textContent = fields.instruction;
+  promptWord.textContent = fields.prompt;
+  const answerLanguage = direction === "kana-english" ? "English" : "Romaji";
+  answerInput.placeholder = `${answerLanguage} answer…`;
+  answerInput.setAttribute("aria-label", `${answerLanguage} answer`);
+  resultStatus.textContent = "";
+  correction.textContent = "";
+  result.className = "result";
+  answerInput.value = "";
+  answerInput.hidden = isIntroduction;
+  answerInput.disabled = isIntroduction;
+  hintButton.hidden = isIntroduction || !hintsEnabled;
+  hintButton.disabled = false;
+  hintLevel = 0;
+  hintUsedForCurrent = false;
+  fullHintUsedForCurrent = false;
+  checkButton.disabled = false;
+  checkButton.textContent = isIntroduction ? "Continue" : "Check answer";
+  waitingForContinue = isIntroduction;
+
+  if (isIntroduction) {
+    questionLabel.textContent = "New word";
+    promptLabel.textContent = card.meaning;
+    promptWord.textContent = card.romaji;
+    resultStatus.textContent = card.kana || "";
+    result.className = "result introduction";
+    correction.textContent = "Study this word. You will review it shortly.";
+    checkButton.focus();
+  } else {
+    answerInput.focus();
+  }
+}
+
+function introductionSequence(cardList) {
+  const sequence = [];
+  cardList.forEach((card, cardIndex) => {
+    sequence.push({ type: "intro", card: { ...card } });
+    if (cardIndex > 0) sequence.push({ type: "quiz", card: { ...cardList[cardIndex - 1] } });
+  });
+  if (cardList.length) sequence.push({ type: "quiz", card: { ...cardList.at(-1) } });
+  return sequence;
+}
+
+function hintFor(answer) {
+  return answer.replace(/[\p{L}\p{N}]+/gu, word => `${word[0]}${"•".repeat(Math.max(0, [...word].length - 1))}`);
+}
+
+function partialHintFor(answer) {
+  return answer.replace(/[\p{L}\p{N}]+/gu, word => {
+    const characters = [...word];
+    const revealed = Math.min(characters.length, Math.max(2, Math.ceil(characters.length / 3)));
+    return `${characters.slice(0, revealed).join("")}${"•".repeat(characters.length - revealed)}`;
+  });
+}
+
+function answerLength(answer) {
+  return [...answer].filter(character => /[\p{L}\p{N}]/u.test(character)).length;
+}
+
+function showHint() {
+  if (!hintsEnabled || waitingForContinue || !cards[index]) return;
+  const item = cards[index];
+  const card = studyMode === "introduction" ? item.card : item;
+  const answer = directionFields(card).answer;
+  hintLevel = Math.min(3, hintLevel + 1);
+  hintUsedForCurrent = true;
+  if (hintLevel === 1) {
+    const units = answerLength(answer);
+    correction.textContent = `Hint 1: ${hintFor(answer)} · ${units} ${units === 1 ? "character" : "characters"}`;
+  } else if (hintLevel === 2) {
+    correction.textContent = `Hint 2: ${partialHintFor(answer)}`;
+  } else if (direction === "english-romaji" && card.kana) {
+    correction.textContent = `Full hint: ${card.kana}`;
+  } else {
+    correction.textContent = `Full hint: ${answer}`;
+  }
+  fullHintUsedForCurrent = hintLevel === 3;
+  result.className = "result hint-visible";
+  hintButton.disabled = fullHintUsedForCurrent;
+  answerInput.focus();
+}
+
+function finishLesson() {
+  const accuracy = attempts ? Math.round((correctAnswers / attempts) * 100) : 0;
+  scorePercent.textContent = `${accuracy}%`;
+  const assisted = hintedAnswers ? ` · ${hintedAnswers} correct with hints` : "";
+  scoreDetails.textContent = `${correctAnswers} unassisted correct out of ${attempts} guesses${assisted} · ${targetLoops} ${targetLoops === 1 ? "loop" : "loops"} completed`;
+  wordChart.replaceChildren(...Object.values(wordStats).map(stat => {
+    const rate = stat.attempts ? Math.round((stat.correct / stat.attempts) * 100) : 0;
+    const row = document.createElement("div");
+    row.className = "chart-row";
+
+    const label = document.createElement("span");
+    label.className = "chart-label";
+    label.textContent = stat.romaji;
+    label.title = `${stat.romaji} — ${stat.meaning}`;
+
+    const track = document.createElement("div");
+    track.className = "chart-track";
+    const bar = document.createElement("div");
+    bar.className = "chart-bar";
+    bar.style.width = `${rate}%`;
+    track.append(bar);
+
+    const value = document.createElement("span");
+    value.className = "chart-value";
+    value.textContent = `${rate}%`;
+    row.append(label, track, value);
+    return row;
+  }));
+  showScreen("score");
+  if (studyMode !== "introduction" && !historySaved) saveRunHistory();
+}
+
+async function saveRunHistory() {
+  historySaved = true;
+  try {
+    const response = await fetch("/api/history", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        lesson: lessonSelect.value,
+        mode: studyMode,
+        direction,
+        word_set: wordSetSelect.value,
+        loops: targetLoops,
+        correct: correctAnswers,
+        attempts,
+        words: Object.values(wordStats),
+      }),
+    });
+    if (!response.ok) throw new Error("Could not save study history");
+    history.push(await response.json());
+    renderHistory();
+  } catch (error) {
+    message.textContent = error.message;
+  }
+}
+
+function renderHistory() {
+  const lesson = lessonSelect.value;
+  const lessonName = lessonSelect.selectedOptions[0]?.textContent || "Lesson";
+  const runs = history.filter(run => run.lesson === lesson && run.mode !== "introduction").reverse();
+  historyTitle.textContent = `${lessonName} history`;
+  historySummary.textContent = runs.length
+    ? `${runs.length} completed ${runs.length === 1 ? "run" : "runs"}`
+    : "No completed runs yet.";
+
+  const misses = {};
+  runs.forEach(run => (run.words || []).forEach(word => {
+    const missed = Math.max(0, Number(word.attempts) - Number(word.correct));
+    if (!misses[word.romaji]) misses[word.romaji] = { romaji: word.romaji, meaning: word.meaning, missed: 0 };
+    misses[word.romaji].missed += missed;
+  }));
+  const ranked = Object.values(misses).filter(word => word.missed > 0).sort((a, b) => b.missed - a.missed).slice(0, 8);
+  missedWords.replaceChildren(...(ranked.length ? ranked.map(word => {
+    const item = document.createElement("span");
+    item.className = "missed-word";
+    item.textContent = `${word.romaji} · ${word.missed} missed`;
+    item.title = word.meaning;
+    return item;
+  }) : [emptyMessage("No missed words yet.")]));
+
+  runHistory.replaceChildren(...(runs.length ? runs.slice(0, 10).map(run => {
+    const accuracy = run.attempts ? Math.round((run.correct / run.attempts) * 100) : 0;
+    const row = document.createElement("div");
+    row.className = "run-row";
+    const details = document.createElement("div");
+    const date = new Date(run.timestamp);
+    details.textContent = date.toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
+    const meta = document.createElement("div");
+    meta.className = "run-meta";
+    const setName = run.word_set === "crucial" ? "crucial words" : "all words";
+    meta.textContent = `${run.correct}/${run.attempts} · ${setName} · ${run.direction} · ${run.loops} ${run.loops === 1 ? "loop" : "loops"}`;
+    details.append(meta);
+    const score = document.createElement("span");
+    score.className = "run-score";
+    score.textContent = `${accuracy}%`;
+    row.append(details, score);
+    return row;
+  }) : [emptyMessage("Completed runs will appear here.")]));
+}
+
+function emptyMessage(text) {
+  const item = document.createElement("span");
+  item.className = "empty-history";
+  item.textContent = text;
+  return item;
+}
+
+async function loadHistory() {
+  try {
+    const response = await fetch("/api/history");
+    if (!response.ok) throw new Error("Could not load study history");
+    history = await response.json();
+    renderHistory();
+  } catch (error) {
+    message.textContent = error.message;
+  }
+}
+
+async function startLesson() {
+  try {
+    message.textContent = "";
+    startButton.disabled = true;
+    const response = await fetch(`/api/lessons/${encodeURIComponent(lessonSelect.value)}`);
+    if (!response.ok) throw new Error((await response.json()).error || "Could not load lesson");
+    sourceCards = await response.json();
+    if (wordSetSelect.value === "crucial") {
+      const crucialWords = new Set(crucialWordsForLesson(lessonSelect.value));
+      sourceCards = sourceCards.filter(card => crucialWords.has(card.romaji));
+      if (!sourceCards.length) {
+        throw new Error("No missed words yet. Complete a regular run first to build crucial-word practice.");
+      }
+    }
+    targetLoops = Number(loopsSelect.value);
+    studyMode = modeSelect.value;
+    direction = directionSelect.value;
+    hintsMode = hintsSelect.value;
+    hintsEnabled = false;
+    if (studyMode === "introduction") targetLoops = 1;
+    if (direction.startsWith("kana") && sourceCards.some(card => !card.kana)) {
+      throw new Error("This lesson is missing kana in the third CSV column.");
+    }
+    let orderedCards = sourceCards.map(card => ({ ...card }));
+    if (hintsMode === "half") {
+      if (shuffleSelect.value === "yes") shuffleCards(orderedCards);
+      orderedCards = orderedCards.slice(0, Math.max(1, Math.floor(orderedCards.length / 2)));
+      sourceCards = orderedCards.map(card => ({ ...card }));
+    }
+    if (shuffleSelect.value === "yes") shuffleCards(orderedCards);
+    wordStats = Object.fromEntries(orderedCards.map(card => [card.romaji, {
+      romaji: card.romaji,
+      meaning: card.meaning,
+      attempts: 0,
+      correct: 0,
+      hinted: 0,
+    }]));
+    cards = studyMode === "introduction"
+      ? introductionSequence(orderedCards)
+      : studyMode === "fixed"
+        ? Array.from({ length: targetLoops }, () => orderedCards.map(card => ({ ...card }))).flat()
+        : orderedCards.map(card => ({ ...card, correctCount: 0 }));
+    index = 0;
+    attempts = 0;
+    correctAnswers = 0;
+    hintedAnswers = 0;
+    advancing = false;
+    waitingForContinue = false;
+    historySaved = false;
+    showScreen("study");
+    renderCard();
+  } catch (error) {
+    message.textContent = error.message;
+  } finally {
+    startButton.disabled = false;
+  }
+}
+
+function checkAnswer() {
+  const item = cards[index];
+  const card = studyMode === "introduction" ? item?.card : item;
+  if (waitingForContinue) {
+    advanceCard(pendingCorrect, card);
+    return;
+  }
+  if (!card || !answerInput.value.trim() || advancing) return;
+
+  const fields = directionFields(card);
+  const correct = normalize(answerInput.value) === normalize(fields.answer);
+  attempts += 1;
+  wordStats[card.romaji].attempts += 1;
+  if (correct) {
+    if (hintUsedForCurrent) {
+      hintedAnswers += 1;
+      wordStats[card.romaji].hinted += 1;
+    } else {
+      correctAnswers += 1;
+      wordStats[card.romaji].correct += 1;
+      if (studyMode === "removal") card.correctCount += 1;
+    }
+  }
+
+  advancing = true;
+  result.className = `result ${correct ? "correct" : "incorrect"}`;
+  resultStatus.textContent = correct
+    ? hintUsedForCurrent ? "Correct with hint" : "Correct!"
+    : "Not quite";
+  correction.replaceChildren();
+  const answerLine = document.createElement("span");
+  answerLine.textContent = direction === "english-romaji"
+    ? `Romaji: ${fields.answer}`
+    : `Answer: ${fields.answer}`;
+  correction.append(answerLine);
+  if (direction === "english-romaji") {
+    const kanaLine = document.createElement("strong");
+    kanaLine.className = "revealed-kana";
+    kanaLine.textContent = `Hiragana: ${card.kana}`;
+    correction.append(kanaLine);
+  }
+  answerInput.disabled = true;
+  hintButton.hidden = true;
+
+  pendingCorrect = correct;
+  waitingForContinue = true;
+  checkButton.textContent = "Continue";
+  checkButton.disabled = false;
+  checkButton.focus();
+}
+
+function advanceCard(correct, card) {
+  if (!correct) {
+    // Show one different card before retrying a missed word.
+    if (studyMode === "introduction") {
+      cards.splice(Math.min(index + 2, cards.length), 0, { type: "quiz", card: { ...card } });
+      index += 1;
+    } else {
+      cards.shift();
+      cards.splice(Math.min(1, cards.length), 0, card);
+      index = 0;
+    }
+    advancing = false;
+    waitingForContinue = false;
+    advanceTimer = null;
+    renderCard();
+    return;
+  }
+  if (studyMode === "introduction") {
+    if (hintUsedForCurrent) {
+      cards.splice(Math.min(index + 3, cards.length), 0, { type: "quiz", card: { ...card } });
+    }
+    index += 1;
+  } else {
+    // Removal and fixed modes use the deck as a queue. A hinted word is
+    // scheduled behind the next two cards so it can be recalled soon.
+    cards.shift();
+    if (hintUsedForCurrent) {
+      cards.splice(Math.min(2, cards.length), 0, card);
+    } else if (studyMode === "removal" && !(correct && card.correctCount >= targetLoops)) {
+      cards.push(card);
+    }
+    index = 0;
+  }
+  advancing = false;
+  waitingForContinue = false;
+  advanceTimer = null;
+  renderCard();
+}
+
+function goHome() {
+  if (advanceTimer) window.clearTimeout(advanceTimer);
+  advanceTimer = null;
+  advancing = false;
+  waitingForContinue = false;
+  cards = [];
+  message.textContent = "";
+  showScreen("home");
+}
+
+async function loadLessons() {
+  try {
+    const response = await fetch("/api/lessons");
+    const lessons = await response.json();
+    if (!lessons.length) throw new Error("No lesson CSV files were found.");
+    lessonSelect.replaceChildren(...lessons.map(lesson => {
+      const option = document.createElement("option");
+      option.value = lesson.file;
+      option.textContent = lesson.name;
+      return option;
+    }));
+    const savedLesson = savedLessonSelection();
+    if (savedLesson && lessons.some(lesson => lesson.file === savedLesson)) {
+      lessonSelect.value = savedLesson;
+    }
+    await loadHistory();
+  } catch (error) {
+    message.textContent = error.message;
+    startButton.disabled = true;
+  }
+}
+
+answerForm.addEventListener("submit", event => {
+  event.preventDefault();
+  checkAnswer();
+});
+startButton.addEventListener("click", startLesson);
+restartButton.addEventListener("click", startLesson);
+homeButton.addEventListener("click", goHome);
+lessonSelect.addEventListener("change", () => {
+  saveLessonSelection(lessonSelect.value);
+  renderHistory();
+});
+modeSelect.addEventListener("change", () => {
+  loopsSelect.disabled = modeSelect.value === "introduction";
+  modeHelp.textContent = modeSelect.value === "introduction"
+    ? "See each new word first, then review the previous word after the next introduction."
+    : modeSelect.value === "fixed"
+      ? "Every word appears once per loop, then leaves whether your answer is right or wrong."
+      : "A word leaves the deck after you answer it correctly this many times.";
+});
+hintButton.addEventListener("click", showHint);
+document.addEventListener("keydown", event => {
+  if (event.ctrlKey && !event.altKey && !event.shiftKey && event.key.toLocaleLowerCase() === "h"
+      && !studyScreen.hidden && hintsEnabled && !hintButton.hidden) {
+    event.preventDefault();
+    showHint();
+  }
+});
+
+loadLessons();

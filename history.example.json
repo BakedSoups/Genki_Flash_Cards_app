@@ -1,0 +1,20 @@
+[
+  {
+    "timestamp": "2026-01-01T12:00:00+00:00",
+    "lesson": "lesson7.csv",
+    "mode": "removal",
+    "direction": "english-romaji",
+    "word_set": "all",
+    "loops": 1,
+    "correct": 1,
+    "attempts": 1,
+    "words": [
+      {
+        "romaji": "kazoku",
+        "meaning": "family",
+        "attempts": 1,
+        "correct": 1
+      }
+    ]
+  }
+]

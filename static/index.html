@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kotoba Cards</title>
+    <link rel="stylesheet" href="/static/style.css?v=4">
+  </head>
+  <body>
+    <main>
+      <header>
+        <button id="home-button" class="home-button" aria-label="Home" title="Home" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+        </button>
+      </header>
+
+      <section id="home-screen" class="home-screen">
+        <div class="setup-card">
+          <label for="lesson">Lesson</label>
+          <select id="lesson" aria-label="Choose a lesson"></select>
+
+          <label for="mode">Study mode</label>
+          <select id="mode" aria-label="Choose a study mode">
+            <option value="removal">Flashcards with removal</option>
+            <option value="fixed">Fixed loops (remove either way)</option>
+            <option value="introduction">Introduction cards (new, then previous)</option>
+          </select>
+
+          <label for="direction">Question direction</label>
+          <select id="direction" aria-label="Choose a question direction">
+            <option value="kana-english">Hiragana → English</option>
+            <option value="kana-romaji">Hiragana → Romaji</option>
+            <option value="english-romaji" selected>English → Romaji</option>
+          </select>
+
+          <label for="word-set">Word set</label>
+          <select id="word-set" aria-label="Choose which words to practice">
+            <option value="all">All words</option>
+            <option value="crucial">Crucial words (most missed)</option>
+          </select>
+
+          <label for="loops">Correct loops</label>
+          <select id="loops" aria-label="Choose correct loops">
+            <option value="1">1 loop</option>
+            <option value="2">2 loops</option>
+            <option value="3">3 loops</option>
+            <option value="5">5 loops</option>
+          </select>
+
+          <label for="shuffle">Shuffle</label>
+          <select id="shuffle" aria-label="Choose whether to shuffle">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+
+          <label for="hints">Hints</label>
+          <select id="hints" aria-label="Choose whether hints are available">
+            <option value="off">Off</option>
+            <option value="on">On</option>
+            <option value="half">On — half the lesson</option>
+          </select>
+          <p id="mode-help" class="setup-help">A word leaves the deck after you answer it correctly this many times.</p>
+          <button id="start-button">Start lesson</button>
+        </div>
+        <div class="history-card">
+          <span class="side-label">Study history</span>
+          <h2 id="history-title">Lesson history</h2>
+          <div id="history-summary" class="history-summary"></div>
+          <h3>Most missed words</h3>
+          <div id="missed-words" class="missed-words"></div>
+          <h3>Recent runs</h3>
+          <div id="run-history" class="run-history"></div>
+        </div>
+      </section>
+
+      <section id="study-screen" class="study-area" aria-live="polite" hidden>
+        <p id="progress"></p>
+        <div class="card">
+          <span class="side-label" id="question-label">Romaji practice</span>
+          <div class="prompt">
+            <span id="prompt-label">What is the romaji for</span>
+            <strong id="prompt-word">—</strong>
+          </div>
+          <form id="answer-form" autocomplete="off">
+            <input id="answer" type="text" aria-label="Romaji answer" placeholder="Your answer…" autocapitalize="none" spellcheck="false">
+            <button id="hint-button" type="button" hidden>Hint (Ctrl+H)</button>
+            <button id="check" type="submit">Check answer</button>
+          </form>
+          <div id="result" class="result" aria-live="polite">
+            <strong id="result-status"></strong>
+            <span id="correction"></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="score-screen" class="score-screen" hidden>
+        <div class="setup-card score-card">
+          <span class="side-label">Lesson complete</span>
+          <strong id="score-percent">100%</strong>
+          <p id="score-details"></p>
+          <div id="word-chart" class="word-chart" aria-label="Success rate by word"></div>
+          <button id="restart-button">Study again</button>
+        </div>
+      </section>
+
+      <p id="message" class="message" role="alert"></p>
+    </main>
+    <script src="/static/app.js?v=12"></script>
+  </body>
+</html>
