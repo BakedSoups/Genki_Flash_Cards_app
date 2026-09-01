@@ -13,7 +13,9 @@
         "romaji": "kazoku",
         "meaning": "family",
         "attempts": 1,
-        "correct": 1
+        "correct": 1,
+        "right": 1,
+        "wrong": 0
       }
     ]
   }

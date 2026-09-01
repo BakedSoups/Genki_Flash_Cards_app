@@ -76,7 +76,7 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 #score-details { color: #666; }
 .score-card button { width: min(100%, 300px); }
 .word-chart { width: 100%; margin: 18px 0 26px; display: grid; gap: 11px; text-align: left; }
-.chart-row { display: grid; grid-template-columns: minmax(80px, 1fr) 3fr 45px; align-items: center; gap: 10px; font-size: .85rem; }
+.chart-row { display: grid; grid-template-columns: minmax(80px, 1fr) 3fr minmax(90px, auto); align-items: center; gap: 10px; font-size: .85rem; }
 .chart-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
 .chart-track { height: 12px; overflow: hidden; border-radius: 99px; background: #e5e5e2; }
 .chart-bar { height: 100%; border-radius: inherit; background: #555; }

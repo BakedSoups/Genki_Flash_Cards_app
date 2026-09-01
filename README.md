@@ -8,7 +8,7 @@ A lightweight Japanese flashcard web app powered by Python.
 - Choose removal, fixed-loop, or introduction mode.
 - Practice every word or focus on your most-missed words.
 - Set 1–5 loops, shuffle cards, and enable progressive hints.
-- Review accuracy, missed words, and recent runs in study history.
+- Review each word's right/wrong ratio, accuracy, and recent runs in study history.
 
 Press `Enter` to check an answer or continue. Press `Ctrl+H` for a hint when
 hints are enabled.
@@ -48,3 +48,6 @@ your first session. For sample data, run:
 ```bash
 cp history.example.json history.json
 ```
+
+Older history remains compatible. All guesses in an older word record are
+treated as right, with zero wrong guesses, until new results are recorded.

@@ -103,7 +103,9 @@ function shuffleCards(cardList) {
 function crucialWordsForLesson(lesson) {
   const misses = {};
   history.filter(run => run.lesson === lesson && run.mode !== "introduction").forEach(run => (run.words || []).forEach(word => {
-    const missed = Math.max(0, Number(word.attempts) - Number(word.correct));
+    const missed = Object.hasOwn(word, "wrong")
+      ? Math.max(0, Number(word.wrong) || 0)
+      : Math.max(0, Number(word.attempts) - Number(word.correct));
     misses[word.romaji] = (misses[word.romaji] || 0) + missed;
   }));
   return Object.entries(misses)
@@ -217,7 +219,8 @@ function finishLesson() {
   const assisted = hintedAnswers ? ` · ${hintedAnswers} correct with hints` : "";
   scoreDetails.textContent = `${correctAnswers} unassisted correct out of ${attempts} guesses${assisted} · ${targetLoops} ${targetLoops === 1 ? "loop" : "loops"} completed`;
   wordChart.replaceChildren(...Object.values(wordStats).map(stat => {
-    const rate = stat.attempts ? Math.round((stat.correct / stat.attempts) * 100) : 0;
+    const guesses = stat.right + stat.wrong;
+    const rate = guesses ? Math.round((stat.right / guesses) * 100) : 0;
     const row = document.createElement("div");
     row.className = "chart-row";
 
@@ -235,7 +238,8 @@ function finishLesson() {
 
     const value = document.createElement("span");
     value.className = "chart-value";
-    value.textContent = `${rate}%`;
+    value.textContent = `${stat.right}/${stat.wrong} · ${rate}%`;
+    value.title = `${stat.right} right, ${stat.wrong} wrong`;
     row.append(label, track, value);
     return row;
   }));
@@ -277,20 +281,31 @@ function renderHistory() {
     ? `${runs.length} completed ${runs.length === 1 ? "run" : "runs"}`
     : "No completed runs yet.";
 
-  const misses = {};
+  const totals = {};
   runs.forEach(run => (run.words || []).forEach(word => {
-    const missed = Math.max(0, Number(word.attempts) - Number(word.correct));
-    if (!misses[word.romaji]) misses[word.romaji] = { romaji: word.romaji, meaning: word.meaning, missed: 0 };
-    misses[word.romaji].missed += missed;
+    // Records saved before right/wrong tracking treat all old guesses as right.
+    const right = Object.hasOwn(word, "right")
+      ? Math.max(0, Number(word.right) || 0)
+      : Math.max(0, Number(word.attempts) || Number(word.correct) || 0);
+    const wrong = Object.hasOwn(word, "wrong") ? Math.max(0, Number(word.wrong) || 0) : 0;
+    if (!totals[word.romaji]) totals[word.romaji] = { romaji: word.romaji, meaning: word.meaning, right: 0, wrong: 0 };
+    totals[word.romaji].right += right;
+    totals[word.romaji].wrong += wrong;
   }));
-  const ranked = Object.values(misses).filter(word => word.missed > 0).sort((a, b) => b.missed - a.missed).slice(0, 8);
+  const ranked = Object.values(totals).sort((a, b) => {
+    const aRate = a.right / Math.max(1, a.right + a.wrong);
+    const bRate = b.right / Math.max(1, b.right + b.wrong);
+    return aRate - bRate || b.wrong - a.wrong || a.romaji.localeCompare(b.romaji);
+  });
   missedWords.replaceChildren(...(ranked.length ? ranked.map(word => {
     const item = document.createElement("span");
     item.className = "missed-word";
-    item.textContent = `${word.romaji} · ${word.missed} missed`;
+    const guesses = word.right + word.wrong;
+    const rate = guesses ? Math.round((word.right / guesses) * 100) : 0;
+    item.textContent = `${word.romaji} · ${word.right} right / ${word.wrong} wrong · ${rate}%`;
     item.title = word.meaning;
     return item;
-  }) : [emptyMessage("No missed words yet.")]));
+  }) : [emptyMessage("No word results yet.")]));
 
   runHistory.replaceChildren(...(runs.length ? runs.slice(0, 10).map(run => {
     const accuracy = run.attempts ? Math.round((run.correct / run.attempts) * 100) : 0;
@@ -365,6 +380,8 @@ async function startLesson() {
       meaning: card.meaning,
       attempts: 0,
       correct: 0,
+      right: 0,
+      wrong: 0,
       hinted: 0,
     }]));
     cards = studyMode === "introduction"
@@ -402,6 +419,7 @@ function checkAnswer() {
   attempts += 1;
   wordStats[card.romaji].attempts += 1;
   if (correct) {
+    wordStats[card.romaji].right += 1;
     if (hintUsedForCurrent) {
       hintedAnswers += 1;
       wordStats[card.romaji].hinted += 1;
@@ -410,6 +428,8 @@ function checkAnswer() {
       wordStats[card.romaji].correct += 1;
       if (studyMode === "removal") card.correctCount += 1;
     }
+  } else {
+    wordStats[card.romaji].wrong += 1;
   }
 
   advancing = true;
@@ -453,12 +473,14 @@ function advanceCard(correct, card) {
         index = 0;
       }
     } else if (studyMode === "introduction") {
-      const retryAt = index + 1 + Math.floor(Math.random() * (cards.length - index));
+      const firstRetryAt = Math.min(index + 2, cards.length);
+      const retryAt = firstRetryAt + Math.floor(Math.random() * (cards.length - firstRetryAt + 1));
       cards.splice(retryAt, 0, { type: "quiz", card: { ...card } });
       index += 1;
     } else {
       cards.shift();
-      cards.splice(Math.floor(Math.random() * (cards.length + 1)), 0, card);
+      const retryAt = cards.length ? 1 + Math.floor(Math.random() * cards.length) : 0;
+      cards.splice(retryAt, 0, card);
       index = 0;
     }
     advancing = false;
