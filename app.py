@@ -57,7 +57,10 @@ def load_cards(filename: str) -> list[dict[str, str]]:
             romaji, meaning = row[0].strip(), row[1].strip()
             kana = row[2].strip() if len(row) >= 3 else ""
             if romaji and meaning:
-                cards.append({"romaji": romaji, "meaning": meaning, "kana": kana})
+                card = {"romaji": romaji, "meaning": meaning, "kana": kana}
+                if len(row) >= 4 and row[3].strip().lower() == "kanji":
+                    card["kind"] = "kanji"
+                cards.append(card)
     return cards
 
 

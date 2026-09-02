@@ -59,6 +59,10 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 .card form { width: min(100%, 500px); justify-self: center; display: flex; gap: 10px; }
 #answer { min-width: 0; flex: 1; border: 2px solid #cececa; border-radius: 12px; padding: 14px 16px; background: #fff; color: #252525; font: inherit; font-size: 1.15rem; }
 #answer:focus { outline: 3px solid #8882; border-color: #555; }
+.reading-answers { min-width: 0; flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.reading-answers[hidden] { display: none; }
+.reading-answer { min-width: 0; border: 2px solid #cececa; border-radius: 12px; padding: 14px 10px; background: #fff; color: #252525; font: inherit; font-size: 1.05rem; }
+.reading-answer:focus { outline: 3px solid #8882; border-color: #555; }
 #check, #hint-button { border: 0; border-radius: 12px; padding: 12px 18px; font-weight: 750; cursor: pointer; }
 #check { color: white; background: #333; }
 #hint-button { border: 1px solid #cacac6; color: #4f4f4c; background: #f3f3f1; }
@@ -85,5 +89,6 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 @media (max-width: 560px) {
   header { align-items: stretch; flex-direction: column; }
   .card form { flex-direction: column; }
+  .reading-answers { grid-template-columns: 1fr; }
   .home-button { align-self: flex-start; }
 }

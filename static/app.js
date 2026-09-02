@@ -14,6 +14,7 @@ const startButton = document.querySelector("#start-button");
 const restartButton = document.querySelector("#restart-button");
 const answerForm = document.querySelector("#answer-form");
 const answerInput = document.querySelector("#answer");
+const readingAnswers = document.querySelector("#reading-answers");
 const hintButton = document.querySelector("#hint-button");
 const checkButton = document.querySelector("#check");
 const questionLabel = document.querySelector("#question-label");
@@ -71,6 +72,16 @@ function saveLessonSelection(lesson) {
   }
 }
 
+function selectLessonDirection() {
+  if (lessonSelect.value === "lesson4.csv") {
+    directionSelect.value = "kanji-readings";
+  } else if (lessonSelect.value === "lesson4-2.csv") {
+    directionSelect.value = "english-kana";
+  } else if (directionSelect.value.startsWith("kanji-")) {
+    directionSelect.value = "english-romaji";
+  }
+}
+
 function showScreen(screen) {
   homeScreen.hidden = screen !== "home";
   studyScreen.hidden = screen !== "study";
@@ -82,12 +93,55 @@ function normalize(value) {
   return value.trim().toLocaleLowerCase().replace(/[\s.,!?;:'"()-]+/g, "");
 }
 
+function hiraganaToRomaji(value) {
+  const kana = {
+    あ: "a", い: "i", う: "u", え: "e", お: "o",
+    か: "ka", き: "ki", く: "ku", け: "ke", こ: "ko",
+    が: "ga", ぎ: "gi", ぐ: "gu", げ: "ge", ご: "go",
+    さ: "sa", し: "shi", す: "su", せ: "se", そ: "so",
+    ざ: "za", じ: "ji", ず: "zu", ぜ: "ze", ぞ: "zo",
+    た: "ta", ち: "chi", つ: "tsu", て: "te", と: "to",
+    だ: "da", ぢ: "ji", づ: "zu", で: "de", ど: "do",
+    な: "na", に: "ni", ぬ: "nu", ね: "ne", の: "no",
+    は: "ha", ひ: "hi", ふ: "fu", へ: "he", ほ: "ho",
+    ば: "ba", び: "bi", ぶ: "bu", べ: "be", ぼ: "bo",
+    ぱ: "pa", ぴ: "pi", ぷ: "pu", ぺ: "pe", ぽ: "po",
+    ま: "ma", み: "mi", む: "mu", め: "me", も: "mo",
+    や: "ya", ゆ: "yu", よ: "yo",
+    ら: "ra", り: "ri", る: "ru", れ: "re", ろ: "ro",
+    わ: "wa", を: "wo", ん: "n",
+  };
+  return [...value].map(character => kana[character] || character).join("");
+}
+
 function directionFields(card) {
+  if (card.kind === "kanji" && direction === "kanji-english") {
+    return {
+      prompt: card.romaji,
+      answer: card.meaning,
+      answers: card.meaning.split("/").map(value => value.trim()).filter(Boolean),
+      label: "Kanji meaning",
+      instruction: "What does this kanji mean in English?",
+    };
+  }
+  if (card.kind === "kanji") {
+    const readings = card.kana.split("|").map(value => hiraganaToRomaji(value.trim())).filter(Boolean);
+    return {
+      prompt: card.romaji,
+      answer: readings.join(" · "),
+      answers: readings,
+      label: "Kanji readings",
+      instruction: "Enter every romaji reading (order does not matter)",
+    };
+  }
   if (direction === "kana-english") {
     return { prompt: card.kana, answer: card.meaning, label: "English practice", instruction: "What does this mean in English?" };
   }
   if (direction === "kana-romaji") {
     return { prompt: card.kana, answer: card.romaji, label: "Romaji practice", instruction: "Write this in romaji" };
+  }
+  if (direction === "english-kana") {
+    return { prompt: card.meaning, answer: card.kana, label: "Hiragana practice", instruction: "Write this in hiragana" };
   }
   return { prompt: card.meaning, answer: card.romaji, label: "Romaji practice", instruction: "What is the romaji for" };
 }
@@ -122,6 +176,7 @@ function renderCard() {
   hintsEnabled = !isIntroduction && (hintsMode === "on" || hintsMode === "half");
   const card = studyMode === "introduction" ? item.card : item;
   const fields = directionFields(card);
+  const isKanjiReadings = card.kind === "kanji" && direction !== "kanji-english";
   if (studyMode === "introduction") {
     progress.textContent = `${index + 1} of ${cards.length} · ${isIntroduction ? "new word" : "review"}`;
   } else if (studyMode === "fixed") {
@@ -133,15 +188,28 @@ function renderCard() {
   questionLabel.textContent = fields.label;
   promptLabel.textContent = fields.instruction;
   promptWord.textContent = fields.prompt;
-  const answerLanguage = direction === "kana-english" ? "English" : "Romaji";
+  const answerLanguage = ["kana-english", "kanji-english"].includes(direction)
+    ? "English"
+    : direction === "english-romaji" ? "Romaji" : "Hiragana";
   answerInput.placeholder = `${answerLanguage} answer…`;
   answerInput.setAttribute("aria-label", `${answerLanguage} answer`);
   resultStatus.textContent = "";
   correction.textContent = "";
   result.className = "result";
   answerInput.value = "";
-  answerInput.hidden = isIntroduction;
-  answerInput.disabled = isIntroduction;
+  answerInput.hidden = isIntroduction || isKanjiReadings;
+  answerInput.disabled = isIntroduction || isKanjiReadings;
+  readingAnswers.hidden = isIntroduction || !isKanjiReadings;
+  readingAnswers.replaceChildren(...(isKanjiReadings ? Array.from({ length: 3 }, (_, readingIndex) => {
+    const input = document.createElement("input");
+    input.className = "reading-answer";
+    input.type = "text";
+    input.placeholder = `Reading ${readingIndex + 1}`;
+    input.setAttribute("aria-label", `Romaji reading ${readingIndex + 1}`);
+    input.setAttribute("autocapitalize", "none");
+    input.setAttribute("spellcheck", "false");
+    return input;
+  }) : []));
   hintButton.hidden = isIntroduction || !hintsEnabled;
   hintButton.disabled = false;
   hintLevel = 0;
@@ -155,12 +223,12 @@ function renderCard() {
     questionLabel.textContent = "New word";
     promptLabel.textContent = card.meaning;
     promptWord.textContent = card.romaji;
-    resultStatus.textContent = card.kana || "";
+    resultStatus.textContent = card.kind === "kanji" ? fields.answer : card.kana || "";
     result.className = "result introduction";
-    correction.textContent = "Study this word. You will review it shortly.";
+    correction.textContent = "Study these readings. You will review them shortly.";
     checkButton.focus();
   } else {
-    answerInput.focus();
+    (isKanjiReadings ? readingAnswers.querySelector("input") : answerInput).focus();
   }
 }
 
@@ -210,7 +278,9 @@ function showHint() {
   fullHintUsedForCurrent = hintLevel === 3;
   result.className = "result hint-visible";
   hintButton.disabled = fullHintUsedForCurrent;
-  answerInput.focus();
+  (card.kind === "kanji" && direction !== "kanji-english"
+    ? readingAnswers.querySelector("input")
+    : answerInput).focus();
 }
 
 function finishLesson() {
@@ -365,7 +435,7 @@ async function startLesson() {
     hintsMode = hintsSelect.value;
     hintsEnabled = false;
     if (studyMode === "introduction") targetLoops = 1;
-    if (direction.startsWith("kana") && sourceCards.some(card => !card.kana)) {
+    if ((direction.startsWith("kana") || direction === "english-kana") && sourceCards.some(card => !card.kana)) {
       throw new Error("This lesson is missing kana in the third CSV column.");
     }
     let orderedCards = sourceCards.map(card => ({ ...card }));
@@ -412,10 +482,21 @@ function checkAnswer() {
     advanceCard(pendingCorrect, card);
     return;
   }
-  if (!card || !answerInput.value.trim() || advancing) return;
+  if (!card || advancing) return;
 
   const fields = directionFields(card);
-  const correct = normalize(answerInput.value) === normalize(fields.answer);
+  const suppliedReadings = [...readingAnswers.querySelectorAll("input")]
+    .map(input => normalize(input.value))
+    .filter(Boolean);
+  const isKanjiReadings = card.kind === "kanji" && direction !== "kanji-english";
+  if (isKanjiReadings ? !suppliedReadings.length : !answerInput.value.trim()) return;
+  const expectedReadings = (fields.answers || []).map(normalize).sort();
+  const correct = isKanjiReadings
+    ? suppliedReadings.length === expectedReadings.length
+      && suppliedReadings.sort().every((reading, readingIndex) => reading === expectedReadings[readingIndex])
+    : card.kind === "kanji" && direction === "kanji-english"
+      ? expectedReadings.includes(normalize(answerInput.value))
+    : normalize(answerInput.value) === normalize(fields.answer);
   attempts += 1;
   wordStats[card.romaji].attempts += 1;
   if (correct) {
@@ -439,17 +520,20 @@ function checkAnswer() {
     : "Not quite";
   correction.replaceChildren();
   const answerLine = document.createElement("span");
-  answerLine.textContent = direction === "english-romaji"
+  answerLine.textContent = isKanjiReadings
+    ? `Readings: ${fields.answer}`
+    : direction === "english-romaji"
     ? `Romaji: ${fields.answer}`
     : `Answer: ${fields.answer}`;
   correction.append(answerLine);
-  if (direction === "english-romaji") {
+  if (direction === "english-romaji" && card.kind !== "kanji") {
     const kanaLine = document.createElement("strong");
     kanaLine.className = "revealed-kana";
     kanaLine.textContent = `Hiragana: ${card.kana}`;
     correction.append(kanaLine);
   }
   answerInput.disabled = true;
+  readingAnswers.querySelectorAll("input").forEach(input => { input.disabled = true; });
   hintButton.hidden = true;
 
   pendingCorrect = correct;
@@ -461,6 +545,13 @@ function checkAnswer() {
 
 function advanceCard(correct, card) {
   if (!correct) {
+    if (card.kind === "kanji" && hintsEnabled) {
+      advancing = false;
+      waitingForContinue = false;
+      advanceTimer = null;
+      renderCard();
+      return;
+    }
     // With hints, show one different card before retrying a missed word.
     // Without hints, put the missed word at a random point in the remaining deck.
     if (hintsEnabled) {
@@ -536,6 +627,7 @@ async function loadLessons() {
     if (savedLesson && lessons.some(lesson => lesson.file === savedLesson)) {
       lessonSelect.value = savedLesson;
     }
+    selectLessonDirection();
     await loadHistory();
   } catch (error) {
     message.textContent = error.message;
@@ -547,11 +639,26 @@ answerForm.addEventListener("submit", event => {
   event.preventDefault();
   checkAnswer();
 });
+readingAnswers.addEventListener("keydown", event => {
+  const inputs = [...readingAnswers.querySelectorAll("input:not(:disabled)")];
+  const currentIndex = inputs.indexOf(event.target);
+  if (currentIndex < 0) return;
+  const movement = ["ArrowRight", "ArrowDown"].includes(event.key)
+    ? 1
+    : ["ArrowLeft", "ArrowUp"].includes(event.key) ? -1 : 0;
+  if (!movement) return;
+  const nextIndex = Math.max(0, Math.min(inputs.length - 1, currentIndex + movement));
+  if (nextIndex === currentIndex) return;
+  event.preventDefault();
+  inputs[nextIndex].focus();
+  inputs[nextIndex].select();
+});
 startButton.addEventListener("click", startLesson);
 restartButton.addEventListener("click", startLesson);
 homeButton.addEventListener("click", goHome);
 lessonSelect.addEventListener("change", () => {
   saveLessonSelection(lessonSelect.value);
+  selectLessonDirection();
   renderHistory();
 });
 modeSelect.addEventListener("change", () => {
