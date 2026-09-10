@@ -63,9 +63,9 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 .reading-answers[hidden] { display: none; }
 .reading-answer { min-width: 0; border: 2px solid #cececa; border-radius: 12px; padding: 14px 10px; background: #fff; color: #252525; font: inherit; font-size: 1.05rem; }
 .reading-answer:focus { outline: 3px solid #8882; border-color: #555; }
-#check, #hint-button { border: 0; border-radius: 12px; padding: 12px 18px; font-weight: 750; cursor: pointer; }
+#check, #hint-button, #retry-button { border: 0; border-radius: 12px; padding: 12px 18px; font-weight: 750; cursor: pointer; }
 #check { color: white; background: #333; }
-#hint-button { border: 1px solid #cacac6; color: #4f4f4c; background: #f3f3f1; }
+#hint-button, #retry-button { border: 1px solid #cacac6; color: #4f4f4c; background: #f3f3f1; }
 .result { min-height: 132px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; }
 #result-status { font-family: Georgia, serif; font-size: clamp(1.5rem, 5vw, 2.4rem); }
 #correction { display: flex; flex-direction: column; gap: 5px; color: #645a50; font-size: 1.1rem; }
@@ -92,3 +92,18 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
   .reading-answers { grid-template-columns: 1fr; }
   .home-button { align-self: flex-start; }
 }
+
+.sentence-card #prompt-word { font-family: inherit; font-size: clamp(1.15rem, 2.5vw, 1.5rem); line-height: 1.4; }
+#sentence-original { color: #444; text-align: center; margin-bottom: 16px; }
+.sentence-card form { width: 100%; flex-wrap: wrap; }
+.sentence-card #answer { flex-basis: 100%; }
+.sentence-tokens { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
+.sentence-tokens > span { padding: 4px 8px; border-radius: 6px; overflow-wrap: anywhere; }
+.token-correct { color: #14532d; background: #dcfce7; border: 1px solid #16803d; }
+.token-incorrect { color: #991b1b; background: #fee2e2; border: 1px solid #c02626; }
+
+.sentence-kana { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 5px; font-size: 1.3rem; }
+.sentence-kana > span { padding: 3px 6px; border-radius: 5px; }
+.sentence-kana > span { max-width: 190px; }
+.sentence-kana small { display: block; font-size: .8rem; font-weight: 400; line-height: 1.4; margin-top: 4px; }
+.sentence-explanation { margin-top: 12px; font-size: 1rem; line-height: 1.6; color: #444; }

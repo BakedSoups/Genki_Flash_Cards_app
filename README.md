@@ -4,7 +4,16 @@ A lightweight Japanese flashcard web app powered by Python.
 
 ## Features
 
+- Practice **Lesson 7 Sentences** with token scores, colored Japanese feedback,
+  English explanations, progressive hints, and immediate retries with hints enabled.
+- Study **Lesson 8-1** vocabulary or its **Lesson 8-1 Katakana** subset.
+  Katakana words reveal their katakana spelling after checking an answer.
 - Study Hiragana → English, Hiragana → Romaji, English → Romaji, or English → Hiragana.
+- Select **Learn Katakana** for the 46 basic katakana characters, answered in romaji.
+- Select **Learn Kanji** for a separate lesson of 14 single kanji characters.
+  Guess any listed reading in romaji using one answer field.
+- Choose **Kanji → Romaji (one reading)** to guess one listed reading of a kanji
+  or the full reading of a kanji word. Select Lesson 4 or Lesson 4-2 to try it.
 - Practice kanji-to-romaji readings in any order with up to three separate
   answer fields.
 - Practice kanji meanings in English; cards with multiple listed meanings
@@ -57,6 +66,16 @@ hiragana readings with `|`:
 The `kanji` marker makes the card show the kanji and ask for all readings in romaji.
 Regular three-column lessons continue to use romaji, English, and hiragana as
 shown above.
+
+Compound-kanji lessons use the `kanji-word` marker and ask for one complete
+word reading. They support kanji-to-romaji, kanji-to-hiragana, and
+English-to-romaji practice. English-to-romaji feedback also reveals the full
+kanji spelling below the reading:
+
+```csv
+日本,Japan,にほん,kanji-word
+日曜日,Sunday,にちようび,kanji-word
+```
 
 ## Study history
 

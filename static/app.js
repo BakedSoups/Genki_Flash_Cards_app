@@ -16,6 +16,7 @@ const answerForm = document.querySelector("#answer-form");
 const answerInput = document.querySelector("#answer");
 const readingAnswers = document.querySelector("#reading-answers");
 const hintButton = document.querySelector("#hint-button");
+const retryButton = document.querySelector("#retry-button");
 const checkButton = document.querySelector("#check");
 const questionLabel = document.querySelector("#question-label");
 const promptLabel = document.querySelector("#prompt-label");
@@ -34,6 +35,8 @@ const missedWords = document.querySelector("#missed-words");
 const runHistory = document.querySelector("#run-history");
 const SELECTED_LESSON_KEY = "kotoba-cards:selected-lesson";
 
+let sentenceCorrectTokens = 0;
+let sentenceTotalTokens = 0;
 let sourceCards = [];
 let cards = [];
 let index = 0;
@@ -73,11 +76,20 @@ function saveLessonSelection(lesson) {
 }
 
 function selectLessonDirection() {
-  if (lessonSelect.value === "lesson4.csv") {
+  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-1-katakana.csv"].includes(lessonSelect.value);
+  if (lessonSelect.value === "lesson8-1-katakana.csv") {
+    directionSelect.value = "english-romaji";
+  } else if (lessonSelect.value === "lesson7-sentences.csv") {
+    directionSelect.value = "english-romaji";
+  } else if (lessonSelect.value === "learn-kanji.csv") {
+    directionSelect.value = "kanji-romaji";
+  } else if (lessonSelect.value === "learn-katakana.csv") {
+    directionSelect.value = "katakana-romaji";
+  } else if (lessonSelect.value === "lesson4.csv") {
     directionSelect.value = "kanji-readings";
   } else if (lessonSelect.value === "lesson4-2.csv") {
-    directionSelect.value = "english-kana";
-  } else if (directionSelect.value.startsWith("kanji-")) {
+    directionSelect.value = "kanji-word-romaji";
+  } else if (directionSelect.value.startsWith("kanji-") || directionSelect.value === "katakana-romaji") {
     directionSelect.value = "english-romaji";
   }
 }
@@ -114,7 +126,57 @@ function hiraganaToRomaji(value) {
   return [...value].map(character => kana[character] || character).join("");
 }
 
+function usesReadingFields(card) {
+  return card.kind === "kanji" && !["kanji-english", "kanji-romaji"].includes(direction);
+}
+
 function directionFields(card) {
+  if (card.kind === "reading-word") {
+    return {prompt: card.spelling, answer: card.romaji, label: "Japanese → Romaji", instruction: "Type this word’s reading in romaji"};
+  }
+  if (card.kind === "sentence") {
+    return {prompt: card.meaning, answer: card.romaji, label: "Lesson 7 Sentences",
+      instruction: card.original ? "Translate only this phrase into romaji" : "Translate into romaji (separate words and particles with spaces)"};
+  }
+  if (direction === "katakana-romaji") {
+    return { prompt: card.kana, answer: card.romaji, label: "Katakana → Romaji", instruction: "Write this character in romaji" };
+  }
+  if (direction === "kanji-romaji") {
+    const readings = card.kana.split("|").map(value => hiraganaToRomaji(value.trim())).filter(Boolean);
+    return {
+      prompt: card.romaji,
+      answer: readings.join(" · "),
+      answers: readings,
+      label: "Kanji → Romaji",
+      instruction: card.kind === "kanji-word"
+        ? "Write the full word in romaji"
+        : "Write one reading of this kanji in romaji",
+    };
+  }
+  if (card.kind === "kanji-word" && direction === "english-romaji") {
+    return {
+      prompt: card.meaning,
+      answer: hiraganaToRomaji(card.kana),
+      label: "Romaji word",
+      instruction: "Write the full word in romaji",
+    };
+  }
+  if (card.kind === "kanji-word" && direction === "kanji-word-romaji") {
+    return {
+      prompt: card.romaji,
+      answer: hiraganaToRomaji(card.kana),
+      label: "Kanji word",
+      instruction: "Write the full word in romaji",
+    };
+  }
+  if (card.kind === "kanji-word" && direction === "kanji-kana") {
+    return {
+      prompt: card.romaji,
+      answer: card.kana,
+      label: "Kanji word",
+      instruction: "Write this word in hiragana",
+    };
+  }
   if (card.kind === "kanji" && direction === "kanji-english") {
     return {
       prompt: card.romaji,
@@ -176,7 +238,7 @@ function renderCard() {
   hintsEnabled = !isIntroduction && (hintsMode === "on" || hintsMode === "half");
   const card = studyMode === "introduction" ? item.card : item;
   const fields = directionFields(card);
-  const isKanjiReadings = card.kind === "kanji" && direction !== "kanji-english";
+  const isKanjiReadings = usesReadingFields(card);
   if (studyMode === "introduction") {
     progress.textContent = `${index + 1} of ${cards.length} · ${isIntroduction ? "new word" : "review"}`;
   } else if (studyMode === "fixed") {
@@ -188,9 +250,13 @@ function renderCard() {
   questionLabel.textContent = fields.label;
   promptLabel.textContent = fields.instruction;
   promptWord.textContent = fields.prompt;
+  document.querySelector(".card").classList.toggle("sentence-card", card.kind === "sentence");
+  const original = document.querySelector("#sentence-original");
+  original.hidden = !card.original;
+  original.textContent = card.original || "";
   const answerLanguage = ["kana-english", "kanji-english"].includes(direction)
     ? "English"
-    : direction === "english-romaji" ? "Romaji" : "Hiragana";
+    : ["english-romaji", "kana-romaji", "katakana-romaji", "kanji-word-romaji", "kanji-romaji"].includes(direction) ? "Romaji" : "Hiragana";
   answerInput.placeholder = `${answerLanguage} answer…`;
   answerInput.setAttribute("aria-label", `${answerLanguage} answer`);
   resultStatus.textContent = "";
@@ -211,6 +277,7 @@ function renderCard() {
     return input;
   }) : []));
   hintButton.hidden = isIntroduction || !hintsEnabled;
+  retryButton.hidden = true;
   hintButton.disabled = false;
   hintLevel = 0;
   hintUsedForCurrent = false;
@@ -222,8 +289,8 @@ function renderCard() {
   if (isIntroduction) {
     questionLabel.textContent = "New word";
     promptLabel.textContent = card.meaning;
-    promptWord.textContent = card.romaji;
-    resultStatus.textContent = card.kind === "kanji" ? fields.answer : card.kana || "";
+    promptWord.textContent = card.kind === "katakana" ? card.kana : card.romaji;
+    resultStatus.textContent = card.kind === "katakana" ? card.romaji : card.kind === "kanji" ? fields.answer : card.kana || "";
     result.className = "result introduction";
     correction.textContent = "Study these readings. You will review them shortly.";
     checkButton.focus();
@@ -278,7 +345,7 @@ function showHint() {
   fullHintUsedForCurrent = hintLevel === 3;
   result.className = "result hint-visible";
   hintButton.disabled = fullHintUsedForCurrent;
-  (card.kind === "kanji" && direction !== "kanji-english"
+  (usesReadingFields(card)
     ? readingAnswers.querySelector("input")
     : answerInput).focus();
 }
@@ -288,6 +355,10 @@ function finishLesson() {
   scorePercent.textContent = `${accuracy}%`;
   const assisted = hintedAnswers ? ` · ${hintedAnswers} correct with hints` : "";
   scoreDetails.textContent = `${correctAnswers} unassisted correct out of ${attempts} guesses${assisted} · ${targetLoops} ${targetLoops === 1 ? "loop" : "loops"} completed`;
+  if (sentenceTotalTokens) {
+    scorePercent.textContent = `${Number((100 * sentenceCorrectTokens / sentenceTotalTokens).toFixed(1))}%`;
+    scoreDetails.textContent = `Token accuracy: ${sentenceCorrectTokens}/${sentenceTotalTokens} · ${scoreDetails.textContent}`;
+  }
   wordChart.replaceChildren(...Object.values(wordStats).map(stat => {
     const guesses = stat.right + stat.wrong;
     const rate = guesses ? Math.round((stat.right / guesses) * 100) : 0;
@@ -432,6 +503,19 @@ async function startLesson() {
     targetLoops = Number(loopsSelect.value);
     studyMode = modeSelect.value;
     direction = directionSelect.value;
+    if (direction === "kanji-romaji") {
+      sourceCards = sourceCards.filter(card => ["kanji", "kanji-word"].includes(card.kind));
+      if (!sourceCards.length) {
+        throw new Error("This lesson has no kanji cards. Choose a kanji lesson, such as Lesson 4 or Lesson 4-2.");
+      }
+      if (sourceCards.some(card => !card.kana.trim())) {
+        throw new Error("This lesson is missing kanji readings in the third CSV column.");
+      }
+    }
+    if (direction === "katakana-romaji") {
+      sourceCards = sourceCards.filter(card => card.kind === "katakana");
+      if (!sourceCards.length) throw new Error("Choose Learn Katakana to practice katakana characters.");
+    }
     hintsMode = hintsSelect.value;
     hintsEnabled = false;
     if (studyMode === "introduction") targetLoops = 1;
@@ -460,6 +544,8 @@ async function startLesson() {
         ? Array.from({ length: targetLoops }, () => orderedCards.map(card => ({ ...card }))).flat()
         : orderedCards.map(card => ({ ...card, correctCount: 0 }));
     index = 0;
+    sentenceCorrectTokens = 0;
+    sentenceTotalTokens = 0;
     attempts = 0;
     correctAnswers = 0;
     hintedAnswers = 0;
@@ -488,13 +574,18 @@ function checkAnswer() {
   const suppliedReadings = [...readingAnswers.querySelectorAll("input")]
     .map(input => normalize(input.value))
     .filter(Boolean);
-  const isKanjiReadings = card.kind === "kanji" && direction !== "kanji-english";
+  const isKanjiReadings = usesReadingFields(card);
   if (isKanjiReadings ? !suppliedReadings.length : !answerInput.value.trim()) return;
   const expectedReadings = (fields.answers || []).map(normalize).sort();
-  const correct = isKanjiReadings
+  const sentenceResult = card.kind === "sentence" ? compare(answerInput.value, fields.answer) : null;
+  if (sentenceResult) {
+    sentenceCorrectTokens += sentenceResult.correct;
+    sentenceTotalTokens += sentenceResult.total;
+  }
+  const correct = sentenceResult ? sentenceResult.correct === sentenceResult.total : isKanjiReadings
     ? suppliedReadings.length === expectedReadings.length
       && suppliedReadings.sort().every((reading, readingIndex) => reading === expectedReadings[readingIndex])
-    : card.kind === "kanji" && direction === "kanji-english"
+    : direction === "kanji-romaji" || (card.kind === "kanji" && direction === "kanji-english")
       ? expectedReadings.includes(normalize(answerInput.value))
     : normalize(answerInput.value) === normalize(fields.answer);
   attempts += 1;
@@ -522,15 +613,69 @@ function checkAnswer() {
   const answerLine = document.createElement("span");
   answerLine.textContent = isKanjiReadings
     ? `Readings: ${fields.answer}`
-    : direction === "english-romaji"
+    : ["english-romaji", "kana-romaji", "katakana-romaji", "kanji-word-romaji", "kanji-romaji"].includes(direction)
     ? `Romaji: ${fields.answer}`
     : `Answer: ${fields.answer}`;
+  if (sentenceResult) {
+    const tokens = document.createElement("span");
+    tokens.className = "sentence-tokens";
+    for (const token of sentenceResult.tokens) {
+      const word = document.createElement("span");
+      word.className = token.correct ? "token-correct" : "token-incorrect";
+      word.textContent = token.text;
+      word.setAttribute("aria-label", `${token.correct ? "Correct" : "Incorrect"}: ${token.text}`);
+      tokens.append(word);
+    }
+    correction.append(tokens);
+    answerLine.textContent = `Correct answer: ${fields.answer}`;
+    resultStatus.textContent += ` · ${Number((100 * sentenceResult.correct / sentenceResult.total).toFixed(1))}%`;
+  }
   correction.append(answerLine);
-  if (direction === "english-romaji" && card.kind !== "kanji") {
+  if (["english-romaji", "kana-romaji", "katakana-romaji", "kanji-word-romaji", "kanji-romaji"].includes(direction) && card.kind !== "kanji") {
     const kanaLine = document.createElement("strong");
     kanaLine.className = "revealed-kana";
-    kanaLine.textContent = `Hiragana: ${card.kana}`;
+    kanaLine.textContent = `${card.kind === "sentence" ? "Japanese" : (card.kind === "katakana" || /^[\p{Script=Katakana}ー]+$/u.test(card.kana)) ? "Katakana" : "Hiragana"}: `;
+    if (sentenceResult && card.kana_tokens?.length === tokenize(fields.answer).length) {
+      kanaLine.classList.add("sentence-kana");
+      for (const token of sentenceResult.tokens) {
+        if (token.expectedIndex === undefined) continue;
+        const segment = document.createElement("span");
+        segment.className = token.correct ? "token-correct" : "token-incorrect";
+        segment.textContent = card.kana_tokens[token.expectedIndex];
+        const status = token.correct ? "Correct" : token.missing ? "Missing" : "Incorrect";
+        segment.title = `${status}: ${tokenize(fields.answer)[token.expectedIndex]}`;
+        segment.setAttribute("aria-label", `${status}: ${segment.textContent}`);
+        if (card.token_meanings?.[token.expectedIndex]) {
+          const reading = document.createElement("small");
+          reading.textContent = fields.answer.split(/\s+/)[token.expectedIndex];
+          const meaning = document.createElement("small");
+          meaning.textContent = card.token_meanings[token.expectedIndex];
+          segment.append(reading, meaning);
+          segment.setAttribute("aria-label", `${status}: ${segment.textContent}`);
+        }
+        kanaLine.append(segment);
+      }
+    } else {
+      kanaLine.append(document.createTextNode(card.kana));
+    }
     correction.append(kanaLine);
+    if (card.kind === "reading-word") {
+      const meaningLine = document.createElement("span");
+      meaningLine.textContent = `Meaning: ${card.meaning}`;
+      correction.append(meaningLine);
+    }
+    if (sentenceResult && card.grammar_note) {
+      const note = document.createElement("span");
+      note.className = "sentence-explanation";
+      note.textContent = card.grammar_note;
+      correction.append(note);
+    }
+  }
+  if (direction === "english-romaji" && card.kind === "kanji-word") {
+    const kanjiLine = document.createElement("strong");
+    kanjiLine.className = "revealed-kana";
+    kanjiLine.textContent = `Kanji: ${card.romaji}`;
+    correction.append(kanjiLine);
   }
   answerInput.disabled = true;
   readingAnswers.querySelectorAll("input").forEach(input => { input.disabled = true; });
@@ -538,12 +683,22 @@ function checkAnswer() {
 
   pendingCorrect = correct;
   waitingForContinue = true;
-  checkButton.textContent = "Continue";
+  checkButton.textContent = card.kind === "sentence" ? "Next" : "Continue";
+  retryButton.hidden = card.kind !== "sentence" || !hintsEnabled;
   checkButton.disabled = false;
   checkButton.focus();
 }
 
 function advanceCard(correct, card) {
+  // Sentence fixed loops honor the selected number of attempts, including mistakes.
+  if (card.kind === "sentence" && studyMode === "fixed") {
+    cards.shift();
+    index = 0;
+    advancing = false;
+    waitingForContinue = false;
+    renderCard();
+    return;
+  }
   if (!correct) {
     if (card.kind === "kanji" && hintsEnabled) {
       advancing = false;
@@ -623,7 +778,7 @@ async function loadLessons() {
       option.textContent = lesson.name;
       return option;
     }));
-    const savedLesson = savedLessonSelection();
+    const savedLesson = new URLSearchParams(window.location.search).get("lesson") || savedLessonSelection();
     if (savedLesson && lessons.some(lesson => lesson.file === savedLesson)) {
       lessonSelect.value = savedLesson;
     }
@@ -670,6 +825,15 @@ modeSelect.addEventListener("change", () => {
       : "A word leaves the deck after you answer it correctly this many times.";
 });
 hintButton.addEventListener("click", showHint);
+retryButton.addEventListener("click", () => {
+  if (!waitingForContinue || retryButton.hidden) return;
+  advancing = false;
+  waitingForContinue = false;
+  pendingCorrect = false;
+  renderCard();
+  // The correct answer was just revealed; count this immediate retry as assisted.
+  hintUsedForCurrent = true;
+});
 document.addEventListener("keydown", event => {
   if (event.ctrlKey && !event.altKey && !event.shiftKey && event.key.toLocaleLowerCase() === "h"
       && !studyScreen.hidden && hintsEnabled && !hintButton.hidden) {

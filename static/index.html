@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kotoba Cards</title>
-    <link rel="stylesheet" href="/static/style.css?v=4">
+    <link rel="stylesheet" href="/static/style.css?v=8">
   </head>
   <body>
     <main>
@@ -28,9 +28,13 @@
 
           <label for="direction">Question direction</label>
           <select id="direction" aria-label="Choose a question direction">
+            <option value="kanji-romaji">Kanji → Romaji (one reading)</option>
             <option value="kanji-readings">Kanji → Romaji readings</option>
             <option value="kanji-english">Kanji → English</option>
+            <option value="kanji-word-romaji">Kanji words → Romaji</option>
+            <option value="kanji-kana">Kanji words → Hiragana</option>
             <option value="kana-english">Hiragana → English</option>
+            <option value="katakana-romaji">Katakana → Romaji</option>
             <option value="kana-romaji">Hiragana → Romaji</option>
             <option value="english-kana">English → Hiragana</option>
             <option value="english-romaji" selected>English → Romaji</option>
@@ -81,6 +85,7 @@
         <div class="card">
           <span class="side-label" id="question-label">Romaji practice</span>
           <div class="prompt">
+            <span id="sentence-original" hidden></span>
             <span id="prompt-label">What is the romaji for</span>
             <strong id="prompt-word">—</strong>
           </div>
@@ -89,6 +94,7 @@
             <div id="reading-answers" class="reading-answers" hidden></div>
             <button id="hint-button" type="button" hidden>Hint (Ctrl+H)</button>
             <button id="check" type="submit">Check answer</button>
+            <button id="retry-button" type="button" hidden>Try again</button>
           </form>
           <div id="result" class="result" aria-live="polite">
             <strong id="result-status"></strong>
@@ -109,6 +115,7 @@
 
       <p id="message" class="message" role="alert"></p>
     </main>
-    <script src="/static/app.js?v=24"></script>
+    <script src="/static/sentence-practice.js?v=3"></script>
+    <script src="/static/app.js?v=39"></script>
   </body>
 </html>

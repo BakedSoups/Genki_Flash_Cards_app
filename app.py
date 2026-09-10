@@ -16,6 +16,7 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 LESSON_PATTERN = re.compile(r"lesson(\d+)(?:-(\d+))?\.csv", re.IGNORECASE)
+SPECIAL_LESSONS = {"lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
 HISTORY_FILE = ROOT / "history.json"
 HISTORY_LOCK = threading.Lock()
 
@@ -35,12 +36,17 @@ def available_lessons() -> list[dict[str, object]]:
                     {"number": number, "name": f"Lesson {number}", "file": path.name},
                 )
             )
-    return [lesson for _, lesson in sorted(lessons, key=lambda item: item[0])]
+    result = [lesson for _, lesson in sorted(lessons, key=lambda item: item[0])]
+    result = [
+        {"number": filename.removeprefix("learn-").removesuffix(".csv"), "name": name, "file": filename}
+        for filename, name in SPECIAL_LESSONS.items() if (ROOT / filename).is_file()
+    ] + result
+    return result
 
 
 def load_cards(filename: str) -> list[dict[str, str]]:
     """Load a validated lesson filename as romaji/meaning card pairs."""
-    if not LESSON_PATTERN.fullmatch(filename):
+    if filename not in SPECIAL_LESSONS and not LESSON_PATTERN.fullmatch(filename):
         raise ValueError("Invalid lesson filename")
 
     path = ROOT / filename
@@ -58,8 +64,17 @@ def load_cards(filename: str) -> list[dict[str, str]]:
             kana = row[2].strip() if len(row) >= 3 else ""
             if romaji and meaning:
                 card = {"romaji": romaji, "meaning": meaning, "kana": kana}
-                if len(row) >= 4 and row[3].strip().lower() == "kanji":
-                    card["kind"] = "kanji"
+                if len(row) >= 4 and row[3].strip().lower() in {"kanji", "kanji-word", "katakana", "sentence", "reading-word"}:
+                    card["kind"] = row[3].strip().lower()
+                if card.get("kind") == "sentence" and len(row) >= 5:
+                    card["original"] = row[4].strip()
+                if card.get("kind") == "sentence" and len(row) >= 6:
+                    card["kana_tokens"] = row[5].split("|")
+                if card.get("kind") == "sentence" and len(row) >= 8:
+                    card["token_meanings"] = row[6].split("|")
+                    card["grammar_note"] = row[7].strip()
+                if card.get("kind") == "reading-word" and len(row) >= 5:
+                    card["spelling"] = row[4].strip()
                 cards.append(card)
     return cards
 
@@ -78,7 +93,7 @@ def save_history_entry(value: object) -> dict[str, object]:
     if not isinstance(value, dict):
         raise ValueError("History entry must be an object")
     lesson = value.get("lesson")
-    if not isinstance(lesson, str) or not LESSON_PATTERN.fullmatch(lesson):
+    if not isinstance(lesson, str) or (lesson not in SPECIAL_LESSONS and not LESSON_PATTERN.fullmatch(lesson)):
         raise ValueError("Invalid lesson")
 
     entry = {
