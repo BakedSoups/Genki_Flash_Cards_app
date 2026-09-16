@@ -6,6 +6,7 @@ const lessonSelect = document.querySelector("#lesson");
 const modeSelect = document.querySelector("#mode");
 const modeHelp = document.querySelector("#mode-help");
 const directionSelect = document.querySelector("#direction");
+const directionOptions = [...directionSelect.options];
 const wordSetSelect = document.querySelector("#word-set");
 const loopsSelect = document.querySelector("#loops");
 const shuffleSelect = document.querySelector("#shuffle");
@@ -76,6 +77,11 @@ function saveLessonSelection(lesson) {
 }
 
 function selectLessonDirection() {
+  const previousDirection = directionSelect.value;
+  directionSelect.replaceChildren(...directionOptions.filter(option =>
+    lessonSelect.value !== "lesson5.csv" || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji"].includes(option.value)
+  ));
+  directionSelect.value = previousDirection;
   directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-1-katakana.csv"].includes(lessonSelect.value);
   if (lessonSelect.value === "lesson8-1-katakana.csv") {
     directionSelect.value = "english-romaji";
@@ -85,7 +91,7 @@ function selectLessonDirection() {
     directionSelect.value = "kanji-romaji";
   } else if (lessonSelect.value === "learn-katakana.csv") {
     directionSelect.value = "katakana-romaji";
-  } else if (lessonSelect.value === "lesson4.csv") {
+  } else if (["lesson4.csv", "lesson5.csv"].includes(lessonSelect.value)) {
     directionSelect.value = "kanji-readings";
   } else if (lessonSelect.value === "lesson4-2.csv") {
     directionSelect.value = "kanji-word-romaji";
@@ -127,7 +133,7 @@ function hiraganaToRomaji(value) {
 }
 
 function usesReadingFields(card) {
-  return card.kind === "kanji" && !["kanji-english", "kanji-romaji"].includes(direction);
+  return card.kind === "kanji" && !["kanji-english", "kanji-romaji", "english-kana"].includes(direction);
 }
 
 function directionFields(card) {
@@ -184,6 +190,20 @@ function directionFields(card) {
       answers: card.meaning.split("/").map(value => value.trim()).filter(Boolean),
       label: "Kanji meaning",
       instruction: "What does this kanji mean in English?",
+    };
+  }
+  if (card.kind === "kanji" && ["english-kana", "english-romaji"].includes(direction)) {
+    const readings = card.kana.split("|").map(value => value.trim()).filter(Boolean)
+      .map(value => direction === "english-romaji" ? hiraganaToRomaji(value) : value);
+    const language = direction === "english-romaji" ? "Romaji" : "Hiragana";
+    return {
+      prompt: card.meaning,
+      answer: readings.join(" · "),
+      answers: readings,
+      label: `English → ${language}`,
+      instruction: direction === "english-romaji"
+        ? "Enter every romaji reading (order does not matter)"
+        : "Write one listed reading in hiragana",
     };
   }
   if (card.kind === "kanji") {
@@ -585,7 +605,7 @@ function checkAnswer() {
   const correct = sentenceResult ? sentenceResult.correct === sentenceResult.total : isKanjiReadings
     ? suppliedReadings.length === expectedReadings.length
       && suppliedReadings.sort().every((reading, readingIndex) => reading === expectedReadings[readingIndex])
-    : direction === "kanji-romaji" || (card.kind === "kanji" && direction === "kanji-english")
+    : direction === "kanji-romaji" || (card.kind === "kanji" && ["kanji-english", "english-kana", "english-romaji"].includes(direction))
       ? expectedReadings.includes(normalize(answerInput.value))
     : normalize(answerInput.value) === normalize(fields.answer);
   attempts += 1;
@@ -631,6 +651,21 @@ function checkAnswer() {
     resultStatus.textContent += ` · ${Number((100 * sentenceResult.correct / sentenceResult.total).toFixed(1))}%`;
   }
   correction.append(answerLine);
+  const isKanjiRomaji = isKanjiReadings || ["kanji-romaji", "kanji-word-romaji"].includes(direction);
+  if (direction === "katakana-romaji" || isKanjiRomaji) {
+    const meaningLine = document.createElement("span");
+    meaningLine.textContent = card.kind === "katakana" && card.meaning === `Katakana ${card.romaji}`
+      ? "English meaning: none (this character represents a sound)"
+      : `Meaning: ${card.meaning}`;
+    correction.append(meaningLine);
+  }
+  if ((["kanji-english", "katakana-romaji"].includes(direction) || (isKanjiRomaji && card.kind === "kanji")) && card.kana) {
+    const kanaLine = document.createElement("strong");
+    kanaLine.className = "revealed-kana";
+    const hiragana = card.kana.replace(/[ァ-ヶ]/g, character => String.fromCharCode(character.charCodeAt(0) - 0x60));
+    kanaLine.textContent = `Hiragana: ${hiragana.split("|").map(reading => reading.trim()).filter(Boolean).join(" · ")}`;
+    correction.append(kanaLine);
+  }
   if (["english-romaji", "kana-romaji", "katakana-romaji", "kanji-word-romaji", "kanji-romaji"].includes(direction) && card.kind !== "kanji") {
     const kanaLine = document.createElement("strong");
     kanaLine.className = "revealed-kana";
@@ -671,7 +706,7 @@ function checkAnswer() {
       correction.append(note);
     }
   }
-  if (direction === "english-romaji" && card.kind === "kanji-word") {
+  if (["english-romaji", "english-kana"].includes(direction) && ["kanji", "kanji-word"].includes(card.kind)) {
     const kanjiLine = document.createElement("strong");
     kanjiLine.className = "revealed-kana";
     kanjiLine.textContent = `Kanji: ${card.romaji}`;

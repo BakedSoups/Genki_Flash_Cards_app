@@ -8,10 +8,15 @@ A lightweight Japanese flashcard web app powered by Python.
   English explanations, progressive hints, and immediate retries with hints enabled.
 - Study **Lesson 8-1** vocabulary or its **Lesson 8-1 Katakana** subset.
   Katakana words reveal their katakana spelling after checking an answer.
+- Study **Lesson 8-2** for 28 more vocabulary entries, with romaji, English,
+  and hiragana readings.
 - Study Hiragana → English, Hiragana → Romaji, English → Romaji, or English → Hiragana.
 - Select **Learn Katakana** for the 46 basic katakana characters, answered in romaji.
 - Select **Learn Kanji** for a separate lesson of 14 single kanji characters.
   Guess any listed reading in romaji using one answer field.
+- Select **Lesson 5 Kanji** for 14 kanji, from 山 (mountain) to 飲 (to drink).
+  It defaults to separate reading boxes, like Lesson 4. Enter `ta` and `da`
+  in separate boxes for 田, in either order.
 - Choose **Kanji → Romaji (one reading)** to guess one listed reading of a kanji
   or the full reading of a kanji word. Select Lesson 4 or Lesson 4-2 to try it.
 - Practice kanji-to-romaji readings in any order with up to three separate

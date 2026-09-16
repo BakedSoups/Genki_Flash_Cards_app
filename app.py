@@ -30,10 +30,11 @@ def available_lessons() -> list[dict[str, object]]:
             major = int(match.group(1))
             minor = int(match.group(2)) if match.group(2) is not None else None
             number = f"{major}-{minor}" if minor is not None else str(major)
+            name = "Lesson 5 Kanji" if path.name == "lesson5.csv" else f"Lesson {number}"
             lessons.append(
                 (
                     (major, minor if minor is not None else -1),
-                    {"number": number, "name": f"Lesson {number}", "file": path.name},
+                    {"number": number, "name": name, "file": path.name},
                 )
             )
     result = [lesson for _, lesson in sorted(lessons, key=lambda item: item[0])]
