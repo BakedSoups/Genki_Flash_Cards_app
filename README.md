@@ -6,6 +6,9 @@ A lightweight Japanese flashcard web app powered by Python.
 
 - Practice **Lesson 7 Sentences** with token scores, colored Japanese feedback,
   English explanations, progressive hints, and immediate retries with hints enabled.
+- Practice **Lesson 8 Sentences** with 21 cards from the grammar review sheet:
+  informal questions and negative answers, thoughts, negative requests, reported
+  speech, and personal answers about drawing, sports, the gym, and driving.
 - Study **Lesson 8-1** vocabulary or its **Lesson 8-1 Katakana** subset.
   Katakana words reveal their katakana spelling after checking an answer.
 - Study **Lesson 8-2** for 28 more vocabulary entries, with romaji, English,
@@ -17,6 +20,8 @@ A lightweight Japanese flashcard web app powered by Python.
 - Select **Lesson 5 Kanji** for 14 kanji, from 山 (mountain) to 飲 (to drink).
   It defaults to separate reading boxes, like Lesson 4. Enter `ta` and `da`
   in separate boxes for 田, in either order.
+- Select **Lesson 6 Kanji** for 15 kanji, from 東 (east) to 国 (country),
+  with the same question directions and separate reading boxes as Lesson 5.
 - Choose **Kanji → Romaji (one reading)** to guess one listed reading of a kanji
   or the full reading of a kanji word. Select Lesson 4 or Lesson 4-2 to try it.
 - Practice kanji-to-romaji readings in any order with up to three separate
@@ -24,14 +29,22 @@ A lightweight Japanese flashcard web app powered by Python.
 - Practice kanji meanings in English; cards with multiple listed meanings
   accept any one of them.
 - Choose removal, fixed-loop, or introduction mode.
+- Choose **Most wrong cards (top 10)** in **Study mode** to practice the
+  selected lesson’s most frequently missed cards with removal after correct answers.
 - Practice every word or focus on your most-missed words.
+- Choose **Cards I got wrong** under **Word set** to review every card you
+  answered incorrectly in completed runs of the selected lesson.
 - Set 1–5 loops, shuffle cards, and enable progressive hints.
 - Review each word's right/wrong ratio, accuracy, and recent runs in study history.
+- Refresh to return to the home screen with your dropdown selections preserved.
+  The browser remembers question direction per lesson; active card progress resets.
 
 Press `Enter` to check an answer or continue. Press `Ctrl+H` for a hint when
 hints are enabled. In kanji practice, use the arrow keys to move between
 reading fields. With hints enabled, press `Enter` after an incorrect kanji
-answer to retry the same card immediately. With hints off, it returns later.
+answer to see the next card in the deck, then retry the missed kanji, just like
+other vocabulary cards. If only one card remains, it repeats immediately.
+With hints off, it returns later.
 
 ## Screenshots
 
@@ -93,3 +106,24 @@ cp history.example.json history.json
 
 Older history remains compatible. All guesses in an older word record are
 treated as right, with zero wrong guesses, until new results are recorded.
+
+## Mobile / Vercel
+
+The same app adapts to phone screens with large touch controls and compact
+sentence feedback. Vercel serves a static build with every lesson included.
+Study history is saved in that browser's local storage; it does not sync between
+devices or import your desktop history. Clearing site data removes that progress.
+The Python app continues to use `history.json`.
+
+Build and preview the hosted version locally:
+
+```bash
+python3 scripts/build_static.py
+python3 -m http.server 8002 --directory dist
+```
+
+Open <http://localhost:8002>. Import this repository in Vercel using the Other
+framework preset; `vercel.json` supplies the build command and `dist` output
+folder. No database, environment variables, or Python server is required at
+runtime. Only static assets and lesson JSON are exported; personal study history
+is excluded. Rebuild after editing lesson CSV files.

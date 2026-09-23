@@ -219,3 +219,6 @@ __marimo__/
 
 # Local study progress
 history.json
+.vercel/
+.vercel
+.env*

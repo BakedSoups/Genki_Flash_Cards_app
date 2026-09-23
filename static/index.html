@@ -2,13 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f3f3f1">
     <title>Kotoba Cards</title>
-    <link rel="stylesheet" href="/static/style.css?v=8">
+    <link rel="stylesheet" href="/static/style.css?v=9">
   </head>
   <body>
     <main>
       <header>
+        <a class="brand" href="/">Kotoba <span>Cards</span></a>
         <button id="home-button" class="home-button" aria-label="Home" title="Home" hidden>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
         </button>
@@ -22,6 +24,7 @@
           <label for="mode">Study mode</label>
           <select id="mode" aria-label="Choose a study mode">
             <option value="removal">Flashcards with removal</option>
+            <option value="most-wrong">Most wrong cards (top 10)</option>
             <option value="fixed">Fixed loops (remove either way)</option>
             <option value="introduction">Introduction cards (new, then previous)</option>
           </select>
@@ -43,6 +46,7 @@
           <label for="word-set">Word set</label>
           <select id="word-set" aria-label="Choose which words to practice">
             <option value="all">All words</option>
+            <option value="missed">Cards I got wrong</option>
             <option value="crucial">Crucial words (most missed)</option>
           </select>
 
@@ -72,6 +76,7 @@
         <div class="history-card">
           <span class="side-label">Study history</span>
           <h2 id="history-title">Lesson history</h2>
+          <p id="history-storage-note" class="setup-help" hidden>Progress stays in this browser. Clearing site data removes it.</p>
           <div id="history-summary" class="history-summary"></div>
           <h3>Word success rates</h3>
           <div id="missed-words" class="missed-words"></div>
@@ -90,9 +95,9 @@
             <strong id="prompt-word">—</strong>
           </div>
           <form id="answer-form" autocomplete="off">
-            <input id="answer" type="text" aria-label="Romaji answer" placeholder="Your answer…" autocapitalize="none" spellcheck="false">
+            <input id="answer" type="text" aria-label="Romaji answer" placeholder="Your answer…" autocapitalize="none" autocorrect="off" enterkeyhint="done" spellcheck="false">
             <div id="reading-answers" class="reading-answers" hidden></div>
-            <button id="hint-button" type="button" hidden>Hint (Ctrl+H)</button>
+            <button id="hint-button" type="button" hidden>Hint</button>
             <button id="check" type="submit">Check answer</button>
             <button id="retry-button" type="button" hidden>Try again</button>
           </form>
@@ -116,6 +121,6 @@
       <p id="message" class="message" role="alert"></p>
     </main>
     <script src="/static/sentence-practice.js?v=3"></script>
-    <script src="/static/app.js?v=49"></script>
+    <script src="/static/app.js?v=57"></script>
   </body>
 </html>

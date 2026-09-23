@@ -16,7 +16,7 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 LESSON_PATTERN = re.compile(r"lesson(\d+)(?:-(\d+))?\.csv", re.IGNORECASE)
-SPECIAL_LESSONS = {"lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
+SPECIAL_LESSONS = {"lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
 HISTORY_FILE = ROOT / "history.json"
 HISTORY_LOCK = threading.Lock()
 
@@ -30,7 +30,7 @@ def available_lessons() -> list[dict[str, object]]:
             major = int(match.group(1))
             minor = int(match.group(2)) if match.group(2) is not None else None
             number = f"{major}-{minor}" if minor is not None else str(major)
-            name = "Lesson 5 Kanji" if path.name == "lesson5.csv" else f"Lesson {number}"
+            name = f"Lesson {number} Kanji" if path.name in {"lesson5.csv", "lesson6.csv"} else f"Lesson {number}"
             lessons.append(
                 (
                     (major, minor if minor is not None else -1),

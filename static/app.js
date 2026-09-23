@@ -35,6 +35,12 @@ const historySummary = document.querySelector("#history-summary");
 const missedWords = document.querySelector("#missed-words");
 const runHistory = document.querySelector("#run-history");
 const SELECTED_LESSON_KEY = "kotoba-cards:selected-lesson";
+const SETTINGS_KEY = "kotoba-cards:settings";
+const BROWSER_HISTORY_KEY = "kotoba-cards:history";
+const staticSite = window.KOTOBA_STATIC === true;
+const lessonUrl = filename => staticSite
+  ? (filename ? `/data/${encodeURIComponent(filename)}.json` : "/data/lessons.json")
+  : (filename ? `/api/lessons/${encodeURIComponent(filename)}` : "/api/lessons");
 
 let sentenceCorrectTokens = 0;
 let sentenceTotalTokens = 0;
@@ -60,6 +66,28 @@ let hintLevel = 0;
 let hintUsedForCurrent = false;
 let fullHintUsedForCurrent = false;
 
+function saveSettings() {
+  try {
+    const settings = Object.fromEntries(
+      [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect].map(select => [select.id, select.value])
+    );
+    window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  } catch { /* Keep working when browser storage is disabled. */ }
+}
+
+function restoreSettings() {
+  try {
+    window.localStorage.removeItem("kotoba-cards:active-session");
+    const settings = JSON.parse(window.localStorage.getItem(SETTINGS_KEY)) || {};
+    [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect].forEach(select => {
+      if ([...select.options].some(option => option.value === settings[select.id])) {
+        select.value = settings[select.id];
+      }
+    });
+  } catch { /* Use defaults when saved settings are unavailable. */ }
+  modeSelect.dispatchEvent(new Event("change"));
+}
+
 function savedLessonSelection() {
   try {
     return window.localStorage.getItem(SELECTED_LESSON_KEY);
@@ -79,25 +107,31 @@ function saveLessonSelection(lesson) {
 function selectLessonDirection() {
   const previousDirection = directionSelect.value;
   directionSelect.replaceChildren(...directionOptions.filter(option =>
-    lessonSelect.value !== "lesson5.csv" || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji"].includes(option.value)
+    !["lesson5.csv", "lesson6.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji"].includes(option.value)
   ));
   directionSelect.value = previousDirection;
-  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-1-katakana.csv"].includes(lessonSelect.value);
+  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "lesson8-1-katakana.csv"].includes(lessonSelect.value);
   if (lessonSelect.value === "lesson8-1-katakana.csv") {
     directionSelect.value = "english-romaji";
-  } else if (lessonSelect.value === "lesson7-sentences.csv") {
+  } else if (["lesson7-sentences.csv", "lesson8-sentences.csv"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
   } else if (lessonSelect.value === "learn-kanji.csv") {
     directionSelect.value = "kanji-romaji";
   } else if (lessonSelect.value === "learn-katakana.csv") {
     directionSelect.value = "katakana-romaji";
-  } else if (["lesson4.csv", "lesson5.csv"].includes(lessonSelect.value)) {
+  } else if (["lesson4.csv", "lesson5.csv", "lesson6.csv"].includes(lessonSelect.value)) {
     directionSelect.value = "kanji-readings";
   } else if (lessonSelect.value === "lesson4-2.csv") {
     directionSelect.value = "kanji-word-romaji";
   } else if (directionSelect.value.startsWith("kanji-") || directionSelect.value === "katakana-romaji") {
     directionSelect.value = "english-romaji";
   }
+  try {
+    const savedDirection = window.localStorage.getItem(`kotoba-cards:direction:${lessonSelect.value}`);
+    if (!directionSelect.disabled && [...directionSelect.options].some(option => option.value === savedDirection)) {
+      directionSelect.value = savedDirection;
+    }
+  } catch { /* Keep the default when browser storage is disabled. */ }
 }
 
 function showScreen(screen) {
@@ -105,6 +139,7 @@ function showScreen(screen) {
   studyScreen.hidden = screen !== "study";
   scoreScreen.hidden = screen !== "score";
   homeButton.hidden = screen === "home";
+  window.scrollTo({ top: 0, behavior: "instant" });
 }
 
 function normalize(value) {
@@ -141,8 +176,8 @@ function directionFields(card) {
     return {prompt: card.spelling, answer: card.romaji, label: "Japanese → Romaji", instruction: "Type this word’s reading in romaji"};
   }
   if (card.kind === "sentence") {
-    return {prompt: card.meaning, answer: card.romaji, label: "Lesson 7 Sentences",
-      instruction: card.original ? "Translate only this phrase into romaji" : "Translate into romaji (separate words and particles with spaces)"};
+    return {prompt: card.meaning, answer: card.romaji, label: lessonSelect.selectedOptions[0]?.textContent || "Sentence practice",
+      instruction: card.original ? "Write the answer in romaji" : "Translate into romaji (separate words and particles with spaces)"};
   }
   if (direction === "katakana-romaji") {
     return { prompt: card.kana, answer: card.romaji, label: "Katakana → Romaji", instruction: "Write this character in romaji" };
@@ -236,7 +271,7 @@ function shuffleCards(cardList) {
   return cardList;
 }
 
-function crucialWordsForLesson(lesson) {
+function crucialWordsForLesson(lesson, limit = 10) {
   const misses = {};
   history.filter(run => run.lesson === lesson && run.mode !== "introduction").forEach(run => (run.words || []).forEach(word => {
     const missed = Object.hasOwn(word, "wrong")
@@ -247,7 +282,7 @@ function crucialWordsForLesson(lesson) {
   return Object.entries(misses)
     .filter(([, missed]) => missed > 0)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
+    .slice(0, limit)
     .map(([romaji]) => romaji);
 }
 
@@ -411,19 +446,30 @@ function finishLesson() {
 async function saveRunHistory() {
   historySaved = true;
   try {
-    const response = await fetch("/api/history", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    const entry = {
         lesson: lessonSelect.value,
         mode: studyMode,
         direction,
-        word_set: wordSetSelect.value,
+        word_set: modeSelect.value === "most-wrong" ? "crucial" : wordSetSelect.value,
         loops: targetLoops,
         correct: correctAnswers,
         attempts,
         words: Object.values(wordStats),
-      }),
+    };
+    if (staticSite) {
+      entry.timestamp = new Date().toISOString();
+      const saved = JSON.parse(localStorage.getItem(BROWSER_HISTORY_KEY) || "[]");
+      if (!Array.isArray(saved)) throw new Error("Saved study history is invalid.");
+      const updated = [...saved, entry].slice(-1000);
+      localStorage.setItem(BROWSER_HISTORY_KEY, JSON.stringify(updated));
+      history = updated;
+      renderHistory();
+      return;
+    }
+    const response = await fetch("/api/history", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(entry),
     });
     if (!response.ok) throw new Error("Could not save study history");
     history.push(await response.json());
@@ -477,7 +523,7 @@ function renderHistory() {
     details.textContent = date.toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
     const meta = document.createElement("div");
     meta.className = "run-meta";
-    const setName = run.word_set === "crucial" ? "crucial words" : "all words";
+    const setName = run.word_set === "missed" ? "cards I got wrong" : run.word_set === "crucial" ? "crucial words" : "all words";
     meta.textContent = `${run.correct}/${run.attempts} · ${setName} · ${run.direction} · ${run.loops} ${run.loops === 1 ? "loop" : "loops"}`;
     details.append(meta);
     const score = document.createElement("span");
@@ -497,6 +543,13 @@ function emptyMessage(text) {
 
 async function loadHistory() {
   try {
+    if (staticSite) {
+      const saved = JSON.parse(localStorage.getItem(BROWSER_HISTORY_KEY) || "[]");
+      if (!Array.isArray(saved)) throw new Error("Saved study history is invalid.");
+      history = saved;
+      renderHistory();
+      return;
+    }
     const response = await fetch("/api/history");
     if (!response.ok) throw new Error("Could not load study history");
     history = await response.json();
@@ -510,18 +563,19 @@ async function startLesson() {
   try {
     message.textContent = "";
     startButton.disabled = true;
-    const response = await fetch(`/api/lessons/${encodeURIComponent(lessonSelect.value)}`);
+    const response = await fetch(lessonUrl(lessonSelect.value));
     if (!response.ok) throw new Error((await response.json()).error || "Could not load lesson");
     sourceCards = await response.json();
-    if (wordSetSelect.value === "crucial") {
-      const crucialWords = new Set(crucialWordsForLesson(lessonSelect.value));
+    const wordSet = modeSelect.value === "most-wrong" ? "crucial" : wordSetSelect.value;
+    if (["crucial", "missed"].includes(wordSet)) {
+      const crucialWords = new Set(crucialWordsForLesson(lessonSelect.value, wordSet === "missed" ? Infinity : 10));
       sourceCards = sourceCards.filter(card => crucialWords.has(card.romaji));
       if (!sourceCards.length) {
-        throw new Error("No missed words yet. Complete a regular run first to build crucial-word practice.");
+        throw new Error("No missed words yet. Complete a regular run first to save the cards you got wrong.");
       }
     }
     targetLoops = Number(loopsSelect.value);
-    studyMode = modeSelect.value;
+    studyMode = modeSelect.value === "most-wrong" ? "removal" : modeSelect.value;
     direction = directionSelect.value;
     if (direction === "kanji-romaji") {
       sourceCards = sourceCards.filter(card => ["kanji", "kanji-word"].includes(card.kind));
@@ -735,13 +789,6 @@ function advanceCard(correct, card) {
     return;
   }
   if (!correct) {
-    if (card.kind === "kanji" && hintsEnabled) {
-      advancing = false;
-      waitingForContinue = false;
-      advanceTimer = null;
-      renderCard();
-      return;
-    }
     // With hints, show one different card before retrying a missed word.
     // Without hints, put the missed word at a random point in the remaining deck.
     if (hintsEnabled) {
@@ -804,7 +851,7 @@ function goHome() {
 
 async function loadLessons() {
   try {
-    const response = await fetch("/api/lessons");
+    const response = await fetch(lessonUrl());
     const lessons = await response.json();
     if (!lessons.length) throw new Error("No lesson CSV files were found.");
     lessonSelect.replaceChildren(...lessons.map(lesson => {
@@ -819,6 +866,8 @@ async function loadLessons() {
     }
     selectLessonDirection();
     await loadHistory();
+    restoreSettings();
+    showScreen("home");
   } catch (error) {
     message.textContent = error.message;
     startButton.disabled = true;
@@ -851,9 +900,18 @@ lessonSelect.addEventListener("change", () => {
   selectLessonDirection();
   renderHistory();
 });
+directionSelect.addEventListener("change", () => {
+  try {
+    window.localStorage.setItem(`kotoba-cards:direction:${lessonSelect.value}`, directionSelect.value);
+  } catch { /* Study remains available without browser storage. */ }
+});
 modeSelect.addEventListener("change", () => {
+  wordSetSelect.disabled = modeSelect.value === "most-wrong";
+  if (modeSelect.value === "most-wrong") wordSetSelect.value = "crucial";
   loopsSelect.disabled = modeSelect.value === "introduction";
-  modeHelp.textContent = modeSelect.value === "introduction"
+  modeHelp.textContent = modeSelect.value === "most-wrong"
+    ? "Practice up to 10 cards with the most wrong answers in this lesson’s completed runs. Cards leave after the selected number of correct loops."
+    : modeSelect.value === "introduction"
     ? "See each new word first, then review the previous word after the next introduction."
     : modeSelect.value === "fixed"
       ? "Every word appears once per loop, then leaves whether your answer is right or wrong."
@@ -877,4 +935,8 @@ document.addEventListener("keydown", event => {
   }
 });
 
+[modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect].forEach(select => {
+  select.addEventListener("change", saveSettings);
+});
+document.querySelector("#history-storage-note").hidden = !staticSite;
 loadLessons();

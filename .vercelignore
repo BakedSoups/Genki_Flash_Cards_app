@@ -1,0 +1,8 @@
+.venv
+venv
+__pycache__
+history.json
+docs
+.agents
+.codex
+dist
