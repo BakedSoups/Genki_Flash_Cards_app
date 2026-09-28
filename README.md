@@ -4,8 +4,12 @@ A lightweight Japanese flashcard web app powered by Python.
 
 ## Features
 
+- **Lesson 9 Vocabulary** contains the 26 supplied JSON words. **Lesson 9 Katakana**
+  contains seven words with katakana and English shown; answer in romaji. Long
+  vowels accept macrons or expanded spellings, such as `mēru` / `meeru`.
+
 - Practice **Lesson 7 Sentences** with token scores, colored Japanese feedback,
-  English explanations, progressive hints, and immediate retries with hints enabled.
+  English explanations, verb dictionary forms and conjugation breakdowns, progressive hints, and immediate retries with hints enabled.
 - Practice **Lesson 8 Sentences** with 21 cards from the grammar review sheet:
   informal questions and negative answers, thoughts, negative requests, reported
   speech, and personal answers about drawing, sports, the gym, and driving.

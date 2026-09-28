@@ -124,3 +124,11 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 .sentence-kana > span { max-width: 190px; }
 .sentence-kana small { display: block; font-size: .8rem; font-weight: 400; line-height: 1.4; margin-top: 4px; }
 .sentence-explanation { margin-top: 12px; font-size: 1rem; line-height: 1.6; color: #444; }
+.verb-breakdown { margin-top: 18px; text-align: left; font-size: 1rem; line-height: 1.6; color: #333; overflow-wrap: anywhere; }
+.verb-breakdown h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.verb-detail { padding: 14px; margin-top: 10px; border: 1px solid #dededb; border-radius: 12px; background: #f7f7f5; }
+.verb-detail p { margin: 4px 0; }
+.card > *, #correction, .verb-breakdown { min-width: 0; max-width: 100%; }
+@media (max-width: 560px) {
+  .card form > * { width: 100%; max-width: 100%; }
+}

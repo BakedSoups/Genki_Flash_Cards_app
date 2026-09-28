@@ -110,8 +110,8 @@ function selectLessonDirection() {
     !["lesson5.csv", "lesson6.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji"].includes(option.value)
   ));
   directionSelect.value = previousDirection;
-  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "lesson8-1-katakana.csv"].includes(lessonSelect.value);
-  if (lessonSelect.value === "lesson8-1-katakana.csv") {
+  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
+  if (["lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
   } else if (["lesson7-sentences.csv", "lesson8-sentences.csv"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
@@ -143,7 +143,7 @@ function showScreen(screen) {
 }
 
 function normalize(value) {
-  return value.trim().toLocaleLowerCase().replace(/[\s.,!?;:'"()-]+/g, "");
+  return value.trim().toLocaleLowerCase().replace(/[āīūēō]/g, c => ({ā:"aa", ī:"ii", ū:"uu", ē:"ee", ō:"ou"})[c]).replace(/[\s.,!?;:'"()-]+/g, "");
 }
 
 function hiraganaToRomaji(value) {
@@ -172,6 +172,9 @@ function usesReadingFields(card) {
 }
 
 function directionFields(card) {
+  if (card.kind === "katakana" && lessonSelect.value !== "learn-katakana.csv") {
+    return {prompt: `${card.kana} — ${card.meaning}`, answer: card.romaji, label: "Katakana → Romaji", instruction: "Type this word in romaji"};
+  }
   if (card.kind === "reading-word") {
     return {prompt: card.spelling, answer: card.romaji, label: "Japanese → Romaji", instruction: "Type this word’s reading in romaji"};
   }
@@ -758,6 +761,36 @@ function checkAnswer() {
       note.className = "sentence-explanation";
       note.textContent = card.grammar_note;
       correction.append(note);
+    }
+    if (sentenceResult && Array.isArray(card.verbs)) {
+      const breakdown = document.createElement("section");
+      breakdown.className = "verb-breakdown";
+      const heading = document.createElement("h3");
+      heading.textContent = "Verb breakdown";
+      breakdown.append(heading);
+      if (!card.verbs.length) {
+        const explanation = document.createElement("p");
+        explanation.textContent = "No action or state verb in this sentence. This pattern uses a noun or adjective; da / desu and their negatives are copula forms (linking endings).";
+        breakdown.append(explanation);
+      }
+      for (const verb of card.verbs) {
+        const item = document.createElement("div");
+        item.className = "verb-detail";
+        for (const [label, value] of [
+          ["Dictionary form", verb.dictionary],
+          ["Meaning / type", `${verb.meaning} · ${verb.kind}`],
+          ["In this sentence", verb.used],
+          ["What changed", verb.change],
+        ]) {
+          const line = document.createElement("p");
+          const title = document.createElement("strong");
+          title.textContent = `${label}: `;
+          line.append(title, document.createTextNode(value));
+          item.append(line);
+        }
+        breakdown.append(item);
+      }
+      correction.append(breakdown);
     }
   }
   if (["english-romaji", "english-kana"].includes(direction) && ["kanji", "kanji-word"].includes(card.kind)) {

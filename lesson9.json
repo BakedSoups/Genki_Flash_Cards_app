@@ -1,0 +1,158 @@
+[
+  {
+    "romaji": "tango",
+    "japanese": "単語",
+    "english": "word; vocabulary word",
+    "kana": "たんご"
+  },
+  {
+    "romaji": "sakubun",
+    "japanese": "作文",
+    "english": "essay; composition",
+    "kana": "さくぶん"
+  },
+  {
+    "romaji": "shiken",
+    "japanese": "試験",
+    "english": "exam",
+    "kana": "しけん"
+  },
+  {
+    "romaji": "tegami",
+    "japanese": "手紙",
+    "english": "letter",
+    "kana": "てがみ"
+  },
+  {
+    "romaji": "mēru",
+    "japanese": "メール",
+    "english": "email",
+    "kana": "メール"
+  },
+  {
+    "romaji": "gitā",
+    "japanese": "ギター",
+    "english": "guitar",
+    "kana": "ギター"
+  },
+  {
+    "romaji": "piano",
+    "japanese": "ピアノ",
+    "english": "piano",
+    "kana": "ピアノ"
+  },
+  {
+    "romaji": "konsāto",
+    "japanese": "コンサート",
+    "english": "concert",
+    "kana": "コンサート"
+  },
+  {
+    "romaji": "chiketto",
+    "japanese": "チケット",
+    "english": "ticket",
+    "kana": "チケット"
+  },
+  {
+    "romaji": "kabuki",
+    "japanese": "歌舞伎",
+    "english": "kabuki theater",
+    "kana": "かぶき"
+  },
+  {
+    "romaji": "sukī",
+    "japanese": "スキー",
+    "english": "skiing; skis",
+    "kana": "スキー"
+  },
+  {
+    "romaji": "piza",
+    "japanese": "ピザ",
+    "english": "pizza",
+    "kana": "ピザ"
+  },
+  {
+    "romaji": "byōki",
+    "japanese": "病気",
+    "english": "illness; sickness",
+    "kana": "びょうき"
+  },
+  {
+    "romaji": "kusuri",
+    "japanese": "薬",
+    "english": "medicine",
+    "kana": "くすり"
+  },
+  {
+    "romaji": "ii ko",
+    "japanese": "いい子",
+    "english": "good child",
+    "kana": "いいこ"
+  },
+  {
+    "romaji": "iro",
+    "japanese": "色",
+    "english": "color",
+    "kana": "いろ"
+  },
+  {
+    "romaji": "kondo",
+    "japanese": "今度",
+    "english": "next time; soon; this time (depending on context)",
+    "kana": "こんど"
+  },
+  {
+    "romaji": "sengetsu",
+    "japanese": "先月",
+    "english": "last month",
+    "kana": "せんげつ"
+  },
+  {
+    "romaji": "kyonen",
+    "japanese": "去年",
+    "english": "last year",
+    "kana": "きょねん"
+  },
+  {
+    "romaji": "aoi",
+    "japanese": "青い",
+    "english": "blue",
+    "kana": "あおい"
+  },
+  {
+    "romaji": "akai",
+    "japanese": "赤い",
+    "english": "red",
+    "kana": "あかい"
+  },
+  {
+    "romaji": "kuroi",
+    "japanese": "黒い",
+    "english": "black",
+    "kana": "くろい"
+  },
+  {
+    "romaji": "shiroi",
+    "japanese": "白い",
+    "english": "white",
+    "kana": "しろい"
+  },
+  {
+    "romaji": "sabishii",
+    "japanese": "寂しい",
+    "english": "lonely",
+    "kana": "さびしい"
+  },
+  {
+    "romaji": "wakai",
+    "japanese": "若い",
+    "english": "young",
+    "kana": "わかい"
+  },
+  {
+    "romaji": "ijiwaru",
+    "japanese": "意地悪",
+    "english": "mean; mean-spirited",
+    "kana": "いじわる"
+  }
+]

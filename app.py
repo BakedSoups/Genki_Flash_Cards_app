@@ -16,7 +16,7 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 LESSON_PATTERN = re.compile(r"lesson(\d+)(?:-(\d+))?\.csv", re.IGNORECASE)
-SPECIAL_LESSONS = {"lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
+SPECIAL_LESSONS = {"lesson9.json": "Lesson 9 Vocabulary", "lesson9-katakana.json": "Lesson 9 Katakana", "lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
 HISTORY_FILE = ROOT / "history.json"
 HISTORY_LOCK = threading.Lock()
 
@@ -54,6 +54,15 @@ def load_cards(filename: str) -> list[dict[str, str]]:
     if not path.is_file():
         raise FileNotFoundError(filename)
 
+    if path.suffix == ".json":
+        entries = json.loads(path.read_text(encoding="utf-8"))
+        return [
+            {"romaji": entry["romaji"], "meaning": entry["english"],
+             "kana": entry["kana"], "spelling": entry["japanese"],
+             "kind": "katakana" if all("ァ" <= c <= "ヺ" or c == "ー" for c in entry["japanese"]) else "vocabulary"}
+            for entry in entries
+        ]
+
     cards = []
     with path.open(encoding="utf-8-sig", newline="") as csv_file:
         for row_number, row in enumerate(csv.reader(csv_file), start=1):
@@ -74,6 +83,8 @@ def load_cards(filename: str) -> list[dict[str, str]]:
                 if card.get("kind") == "sentence" and len(row) >= 8:
                     card["token_meanings"] = row[6].split("|")
                     card["grammar_note"] = row[7].strip()
+                if card.get("kind") == "sentence" and len(row) >= 9 and row[8].strip():
+                    card["verbs"] = json.loads(row[8])
                 if card.get("kind") == "reading-word" and len(row) >= 5:
                     card["spelling"] = row[4].strip()
                 cards.append(card)
