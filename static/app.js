@@ -173,7 +173,7 @@ function usesReadingFields(card) {
 
 function directionFields(card) {
   if (card.kind === "katakana" && lessonSelect.value !== "learn-katakana.csv") {
-    return {prompt: `${card.kana} — ${card.meaning}`, answer: card.romaji, label: "Katakana → Romaji", instruction: "Type this word in romaji"};
+    return {prompt: `${card.kana} ${card.meaning}`, answer: card.romaji, label: "Katakana → Romaji", instruction: "Type this word in romaji"};
   }
   if (card.kind === "reading-word") {
     return {prompt: card.spelling, answer: card.romaji, label: "Japanese → Romaji", instruction: "Type this word’s reading in romaji"};
