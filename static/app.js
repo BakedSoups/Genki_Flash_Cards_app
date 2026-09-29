@@ -175,7 +175,8 @@ function usesReadingFields(card) {
 function directionFields(card) {
   if (card.kind === "katakana" && lessonSelect.value !== "learn-katakana.csv") {
     const showKatakana = showKatakanaSelect.value !== "no";
-    return {prompt: showKatakana ? `${card.kana} ${card.meaning}` : card.meaning,
+    return {prompt: showKatakanaSelect.value === "only" ? card.kana
+      : showKatakana ? `${card.kana} ${card.meaning}` : card.meaning,
       answer: card.romaji, label: showKatakana ? "Katakana → Romaji" : "English → Romaji",
       instruction: "Type this word in romaji"};
   }

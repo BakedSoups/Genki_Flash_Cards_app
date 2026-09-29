@@ -6,7 +6,8 @@ A lightweight Japanese flashcard web app powered by Python.
 
 - **Lesson 9 Vocabulary** contains the 26 supplied JSON words. **Lesson 9 Katakana**
   contains seven words with katakana and English shown; answer in romaji.
-  Choose **Show katakana → No** for English-only prompts, with katakana revealed
+  Choose **Show katakana → Katakana only** to read katakana without English,
+  or **English only** for English prompts, with katakana revealed
   after checking. This preference is saved in your browser. Long
   vowels accept macrons or expanded spellings, such as `mēru` / `meeru`.
 
