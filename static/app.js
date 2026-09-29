@@ -11,6 +11,7 @@ const wordSetSelect = document.querySelector("#word-set");
 const loopsSelect = document.querySelector("#loops");
 const shuffleSelect = document.querySelector("#shuffle");
 const hintsSelect = document.querySelector("#hints");
+const showKatakanaSelect = document.querySelector("#show-katakana");
 const startButton = document.querySelector("#start-button");
 const restartButton = document.querySelector("#restart-button");
 const answerForm = document.querySelector("#answer-form");
@@ -69,7 +70,7 @@ let fullHintUsedForCurrent = false;
 function saveSettings() {
   try {
     const settings = Object.fromEntries(
-      [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect].map(select => [select.id, select.value])
+      [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].map(select => [select.id, select.value])
     );
     window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
   } catch { /* Keep working when browser storage is disabled. */ }
@@ -79,7 +80,7 @@ function restoreSettings() {
   try {
     window.localStorage.removeItem("kotoba-cards:active-session");
     const settings = JSON.parse(window.localStorage.getItem(SETTINGS_KEY)) || {};
-    [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect].forEach(select => {
+    [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].forEach(select => {
       if ([...select.options].some(option => option.value === settings[select.id])) {
         select.value = settings[select.id];
       }
@@ -173,7 +174,10 @@ function usesReadingFields(card) {
 
 function directionFields(card) {
   if (card.kind === "katakana" && lessonSelect.value !== "learn-katakana.csv") {
-    return {prompt: `${card.kana} ${card.meaning}`, answer: card.romaji, label: "Katakana → Romaji", instruction: "Type this word in romaji"};
+    const showKatakana = showKatakanaSelect.value !== "no";
+    return {prompt: showKatakana ? `${card.kana} ${card.meaning}` : card.meaning,
+      answer: card.romaji, label: showKatakana ? "Katakana → Romaji" : "English → Romaji",
+      instruction: "Type this word in romaji"};
   }
   if (card.kind === "reading-word") {
     return {prompt: card.spelling, answer: card.romaji, label: "Japanese → Romaji", instruction: "Type this word’s reading in romaji"};
@@ -968,7 +972,7 @@ document.addEventListener("keydown", event => {
   }
 });
 
-[modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect].forEach(select => {
+[modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].forEach(select => {
   select.addEventListener("change", saveSettings);
 });
 document.querySelector("#history-storage-note").hidden = !staticSite;

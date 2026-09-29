@@ -64,6 +64,13 @@
             <option value="no">No</option>
           </select>
 
+          <label for="show-katakana">Show katakana</label>
+          <select id="show-katakana" aria-label="Show katakana in vocabulary questions">
+            <option value="yes">Yes — katakana and English</option>
+            <option value="no">No — English only</option>
+          </select>
+          <p class="setup-help">For katakana vocabulary. The katakana is revealed after checking your answer.</p>
+
           <label for="hints">Hints</label>
           <select id="hints" aria-label="Choose whether hints are available">
             <option value="off">Off</option>
@@ -121,6 +128,6 @@
       <p id="message" class="message" role="alert"></p>
     </main>
     <script src="/static/sentence-practice.js?v=3"></script>
-    <script src="/static/app.js?v=60"></script>
+    <script src="/static/app.js?v=61"></script>
   </body>
 </html>
