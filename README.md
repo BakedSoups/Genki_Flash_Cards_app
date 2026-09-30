@@ -4,6 +4,8 @@ A lightweight Japanese flashcard web app powered by Python.
 
 ## Features
 
+- **Lesson 9-2 Vocabulary** adds 30 verbs, expressions, and counters from one to ten.
+
 - **Lesson 9 Vocabulary** contains the 26 supplied JSON words. **Lesson 9 Katakana**
   contains seven words with katakana and English shown; answer in romaji.
   Choose **Show katakana → Katakana only** to read katakana without English,

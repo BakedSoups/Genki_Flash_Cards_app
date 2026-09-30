@@ -1,0 +1,182 @@
+[
+  {
+    "romaji": "odoru",
+    "japanese": "踊る",
+    "kana": "おどる",
+    "english": "to dance"
+  },
+  {
+    "romaji": "ga owaru",
+    "japanese": "が終わる",
+    "kana": "がおわる",
+    "english": "something ends"
+  },
+  {
+    "romaji": "kusuri o nomu",
+    "japanese": "薬を飲む",
+    "kana": "くすりをのむ",
+    "english": "to take medicine"
+  },
+  {
+    "romaji": "ga hajimaru",
+    "japanese": "が始まる",
+    "kana": "がはじまる",
+    "english": "something begins"
+  },
+  {
+    "romaji": "ga ninki ga aru",
+    "japanese": "が人気がある",
+    "kana": "がにんきがある",
+    "english": "something is popular"
+  },
+  {
+    "romaji": "hiku",
+    "japanese": "弾く",
+    "kana": "ひく",
+    "english": "to play a string instrument or piano"
+  },
+  {
+    "romaji": "morau",
+    "japanese": "もらう",
+    "kana": "もらう",
+    "english": "to receive from somebody"
+  },
+  {
+    "romaji": "oboeru",
+    "japanese": "覚える",
+    "kana": "おぼえる",
+    "english": "to memorize; to learn"
+  },
+  {
+    "romaji": "ni deru",
+    "japanese": "に出る",
+    "kana": "にでる",
+    "english": "to appear in; to attend"
+  },
+  {
+    "romaji": "o deru",
+    "japanese": "を出る",
+    "kana": "をでる",
+    "english": "to leave; to exit"
+  },
+  {
+    "romaji": "undou suru",
+    "japanese": "運動する",
+    "kana": "うんどうする",
+    "english": "to exercise"
+  },
+  {
+    "romaji": "sanpo suru",
+    "japanese": "散歩する",
+    "kana": "さんぽする",
+    "english": "to take a walk"
+  },
+  {
+    "romaji": "sou",
+    "japanese": "そう",
+    "kana": "そう",
+    "english": "so; that's right"
+  },
+  {
+    "romaji": "sou omou",
+    "japanese": "そう思う",
+    "kana": "そうおもう",
+    "english": "to think so"
+  },
+  {
+    "romaji": "kara",
+    "japanese": "から",
+    "kana": "から",
+    "english": "from"
+  },
+  {
+    "romaji": "made",
+    "japanese": "まで",
+    "kana": "まで",
+    "english": "to; until"
+  },
+  {
+    "romaji": "zehi",
+    "japanese": "ぜひ",
+    "kana": "ぜひ",
+    "english": "by all means"
+  },
+  {
+    "romaji": "tokoro de",
+    "japanese": "ところで",
+    "kana": "ところで",
+    "english": "by the way"
+  },
+  {
+    "romaji": "minna",
+    "japanese": "みんな",
+    "kana": "みんな",
+    "english": "everyone; all"
+  },
+  {
+    "romaji": "mou",
+    "japanese": "もう",
+    "kana": "もう",
+    "english": "already"
+  },
+  {
+    "romaji": "hitotsu",
+    "japanese": "一つ",
+    "kana": "ひとつ",
+    "english": "one"
+  },
+  {
+    "romaji": "futatsu",
+    "japanese": "二つ",
+    "kana": "ふたつ",
+    "english": "two"
+  },
+  {
+    "romaji": "mittsu",
+    "japanese": "三つ",
+    "kana": "みっつ",
+    "english": "three"
+  },
+  {
+    "romaji": "yottsu",
+    "japanese": "四つ",
+    "kana": "よっつ",
+    "english": "four"
+  },
+  {
+    "romaji": "itsutsu",
+    "japanese": "五つ",
+    "kana": "いつつ",
+    "english": "five"
+  },
+  {
+    "romaji": "muttsu",
+    "japanese": "六つ",
+    "kana": "むっつ",
+    "english": "six"
+  },
+  {
+    "romaji": "nanatsu",
+    "japanese": "七つ",
+    "kana": "ななつ",
+    "english": "seven"
+  },
+  {
+    "romaji": "yattsu",
+    "japanese": "八つ",
+    "kana": "やっつ",
+    "english": "eight"
+  },
+  {
+    "romaji": "kokonotsu",
+    "japanese": "九つ",
+    "kana": "ここのつ",
+    "english": "nine"
+  },
+  {
+    "romaji": "too",
+    "japanese": "十",
+    "kana": "とお",
+    "english": "ten"
+  }
+]
