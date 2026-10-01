@@ -430,8 +430,26 @@ function finishLesson() {
 
     const label = document.createElement("span");
     label.className = "chart-label";
-    label.textContent = stat.romaji;
-    label.title = `${stat.romaji} — ${stat.meaning}`;
+    const card = sourceCards.find(card => card.romaji === stat.romaji);
+    const answer = document.createElement("strong");
+    answer.textContent = stat.romaji;
+    const meaning = document.createElement("span");
+    meaning.className = "chart-meaning";
+    meaning.textContent = stat.meaning;
+    label.append(answer, meaning);
+    if (card?.kana) {
+      const japanese = document.createElement("span");
+      japanese.className = "chart-reading";
+      japanese.textContent = [card.spelling, card.kana.split("|").join(" / ")]
+        .filter((value, index, values) => value && values.indexOf(value) === index).join(" · ");
+      label.append(japanese);
+      if (card.kind === "kanji" || card.kind === "kanji-word") {
+        const readings = document.createElement("span");
+        readings.className = "chart-reading";
+        readings.textContent = `Romaji: ${card.kana.split("|").map(hiraganaToRomaji).join(" / ")}`;
+        label.append(readings);
+      }
+    }
 
     const track = document.createElement("div");
     track.className = "chart-track";
