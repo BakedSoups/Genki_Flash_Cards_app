@@ -4,6 +4,10 @@ A lightweight Japanese flashcard web app powered by Python.
 
 ## Features
 
+- **Lesson 7 Kanji** contains 13 kanji with separate reading boxes, matching
+  Lessons 5 and 6. Use plain romaji (`kyou`, `tou`, `kou`); multiple readings
+  can be entered in either order.
+
 - **Lesson 9-2 Vocabulary** adds 30 verbs, expressions, and counters from one to ten.
 
 - **Lesson 9 Vocabulary** contains the 26 supplied JSON words. **Lesson 9 Katakana**

@@ -108,7 +108,7 @@ function saveLessonSelection(lesson) {
 function selectLessonDirection() {
   const previousDirection = directionSelect.value;
   directionSelect.replaceChildren(...directionOptions.filter(option =>
-    !["lesson5.csv", "lesson6.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji"].includes(option.value)
+    !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji"].includes(option.value)
   ));
   directionSelect.value = previousDirection;
   directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
@@ -120,7 +120,7 @@ function selectLessonDirection() {
     directionSelect.value = "kanji-romaji";
   } else if (lessonSelect.value === "learn-katakana.csv") {
     directionSelect.value = "katakana-romaji";
-  } else if (["lesson4.csv", "lesson5.csv", "lesson6.csv"].includes(lessonSelect.value)) {
+  } else if (["lesson4.csv", "lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value)) {
     directionSelect.value = "kanji-readings";
   } else if (lessonSelect.value === "lesson4-2.csv") {
     directionSelect.value = "kanji-word-romaji";
