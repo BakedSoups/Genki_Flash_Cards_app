@@ -4,6 +4,10 @@ A lightweight Japanese flashcard web app powered by Python.
 
 ## Features
 
+- Choose **Write kanji (drawing pad)** in a single-kanji lesson to draw with a
+  finger, stylus, or mouse. Compare your drawing with the correct kanji beside it,
+  then choose **Got it** or **Needs practice**. Scores use your own assessment.
+
 - **Lesson 7 Kanji** contains 13 kanji with separate reading boxes, matching
   Lessons 5 and 6. Use plain romaji (`kyou`, `tou`, `kou`); multiple readings
   can be entered in either order.

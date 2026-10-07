@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#f3f3f1">
     <title>Kotoba Cards</title>
-    <link rel="stylesheet" href="/static/style.css?v=11">
+    <link rel="stylesheet" href="/static/style.css?v=12">
   </head>
   <body>
     <main>
@@ -32,6 +32,7 @@
           <label for="direction">Question direction</label>
           <select id="direction" aria-label="Choose a question direction">
             <option value="kanji-romaji">Kanji → Romaji (one reading)</option>
+            <option value="kanji-writing">Write kanji (drawing pad)</option>
             <option value="kanji-readings">Kanji → Romaji readings</option>
             <option value="kanji-english">Kanji → English</option>
             <option value="kanji-word-romaji">Kanji words → Romaji</option>
@@ -104,6 +105,15 @@
           </div>
           <form id="answer-form" autocomplete="off">
             <input id="answer" type="text" aria-label="Romaji answer" placeholder="Your answer…" autocapitalize="none" autocorrect="off" enterkeyhint="done" spellcheck="false">
+            <div id="handwriting" hidden>
+              <div class="writing-pair">
+                <div><span class="writing-label">Your drawing</span><canvas id="kanji-pad" width="600" height="600" aria-label="Draw the kanji with your finger, pen, or mouse"></canvas></div>
+                <div><span class="writing-label">Correct kanji</span><div id="kanji-reference" class="kanji-reference" aria-live="polite">?</div></div>
+              </div>
+              <div class="writing-actions"><button id="undo-stroke" type="button">Undo stroke</button><button id="clear-drawing" type="button">Clear</button></div>
+              <p class="setup-help">Draw first, then compare the shapes. You grade your own handwriting.</p>
+              <div id="writing-grade" class="writing-actions" hidden><button id="writing-wrong" type="button">Needs practice</button><button id="writing-right" type="button">Got it</button></div>
+            </div>
             <div id="reading-answers" class="reading-answers" hidden></div>
             <button id="hint-button" type="button" hidden>Hint</button>
             <button id="check" type="submit">Check answer</button>
@@ -129,6 +139,7 @@
       <p id="message" class="message" role="alert"></p>
     </main>
     <script src="/static/sentence-practice.js?v=3"></script>
-    <script src="/static/app.js?v=66"></script>
+    <script src="/static/handwriting.js?v=1"></script>
+    <script src="/static/app.js?v=67"></script>
   </body>
 </html>

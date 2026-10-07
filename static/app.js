@@ -108,7 +108,7 @@ function saveLessonSelection(lesson) {
 function selectLessonDirection() {
   const previousDirection = directionSelect.value;
   directionSelect.replaceChildren(...directionOptions.filter(option =>
-    !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji"].includes(option.value)
+    !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value)
   ));
   directionSelect.value = previousDirection;
   directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
@@ -174,10 +174,14 @@ function hiraganaToRomaji(value) {
 }
 
 function usesReadingFields(card) {
-  return card.kind === "kanji" && !["kanji-english", "kanji-romaji", "english-kana"].includes(direction);
+  return card.kind === "kanji" && !["kanji-english", "kanji-romaji", "english-kana", "kanji-writing"].includes(direction);
 }
 
 function directionFields(card) {
+  if (direction === "kanji-writing") {
+    return {prompt: `${card.kana.split("|").join(" · ")} (${card.meaning})`, answer: card.romaji,
+      label: "Write kanji", instruction: "Draw the kanji, then compare it with the answer"};
+  }
   if (card.kind === "katakana" && lessonSelect.value !== "learn-katakana.csv") {
     const showKatakana = showKatakanaSelect.value !== "no";
     return {prompt: showKatakanaSelect.value === "only" ? card.kana
@@ -343,8 +347,15 @@ function renderCard() {
   correction.textContent = "";
   result.className = "result";
   answerInput.value = "";
-  answerInput.hidden = isIntroduction || isKanjiReadings;
-  answerInput.disabled = isIntroduction || isKanjiReadings;
+  const isWriting = direction === "kanji-writing" && !isIntroduction;
+  document.querySelector("#handwriting").hidden = !isWriting;
+  document.querySelector(".card").classList.toggle("writing-card", isWriting);
+  KanjiPad.reset();
+  document.querySelector("#kanji-reference").textContent = "?";
+  document.querySelector("#writing-grade").hidden = true;
+  checkButton.hidden = false;
+  answerInput.hidden = isIntroduction || isKanjiReadings || isWriting;
+  answerInput.disabled = isIntroduction || isKanjiReadings || isWriting;
   readingAnswers.hidden = isIntroduction || !isKanjiReadings;
   readingAnswers.replaceChildren(...(isKanjiReadings ? Array.from({ length: 3 }, (_, readingIndex) => {
     const input = document.createElement("input");
@@ -356,14 +367,14 @@ function renderCard() {
     input.setAttribute("spellcheck", "false");
     return input;
   }) : []));
-  hintButton.hidden = isIntroduction || !hintsEnabled;
+  hintButton.hidden = isIntroduction || !hintsEnabled || isWriting;
   retryButton.hidden = true;
   hintButton.disabled = false;
   hintLevel = 0;
   hintUsedForCurrent = false;
   fullHintUsedForCurrent = false;
   checkButton.disabled = false;
-  checkButton.textContent = isIntroduction ? "Continue" : "Check answer";
+  checkButton.textContent = isIntroduction ? "Continue" : isWriting ? "Compare" : "Check answer";
   waitingForContinue = isIntroduction;
 
   if (isIntroduction) {
@@ -375,7 +386,7 @@ function renderCard() {
     correction.textContent = "Study these readings. You will review them shortly.";
     checkButton.focus();
   } else {
-    (isKanjiReadings ? readingAnswers.querySelector("input") : answerInput).focus();
+    if (!isWriting) (isKanjiReadings ? readingAnswers.querySelector("input") : answerInput).focus();
   }
 }
 
@@ -435,6 +446,7 @@ function finishLesson() {
   scorePercent.textContent = `${accuracy}%`;
   const assisted = hintedAnswers ? ` · ${hintedAnswers} correct with hints` : "";
   scoreDetails.textContent = `${correctAnswers} unassisted correct out of ${attempts} guesses${assisted} · ${targetLoops} ${targetLoops === 1 ? "loop" : "loops"} completed`;
+  if (direction === "kanji-writing") scoreDetails.textContent = `${correctAnswers} self-marked correct out of ${attempts} drawings · ${targetLoops} ${targetLoops === 1 ? "loop" : "loops"} completed`;
   if (sentenceTotalTokens) {
     scorePercent.textContent = `${Number((100 * sentenceCorrectTokens / sentenceTotalTokens).toFixed(1))}%`;
     scoreDetails.textContent = `Token accuracy: ${sentenceCorrectTokens}/${sentenceTotalTokens} · ${scoreDetails.textContent}`;
@@ -620,6 +632,10 @@ async function startLesson() {
     targetLoops = Number(loopsSelect.value);
     studyMode = modeSelect.value === "most-wrong" ? "removal" : modeSelect.value;
     direction = directionSelect.value;
+    if (direction === "kanji-writing") {
+      sourceCards = sourceCards.filter(card => card.kind === "kanji");
+      if (!sourceCards.length) throw new Error("Choose a single-kanji lesson for handwriting practice.");
+    }
     if (direction === "kanji-romaji") {
       sourceCards = sourceCards.filter(card => ["kanji", "kanji-word"].includes(card.kind));
       if (!sourceCards.length) {
@@ -678,7 +694,7 @@ async function startLesson() {
   }
 }
 
-function checkAnswer() {
+function checkAnswer(writingGrade = null) {
   const item = cards[index];
   const card = studyMode === "introduction" ? item?.card : item;
   if (waitingForContinue) {
@@ -686,20 +702,37 @@ function checkAnswer() {
     return;
   }
   if (!card || advancing) return;
+  if (direction === "kanji-writing") {
+    if (!KanjiPad.hasDrawing()) {
+      message.textContent = "Draw the kanji before comparing.";
+      return;
+    }
+    message.textContent = "";
+    if (typeof writingGrade !== "boolean") {
+      document.querySelector("#kanji-reference").textContent = card.romaji;
+      document.querySelector("#writing-grade").hidden = false;
+      checkButton.hidden = true;
+      KanjiPad.lock();
+      return;
+    }
+    if (document.querySelector("#writing-grade").hidden) return;
+    document.querySelector("#writing-grade").hidden = true;
+    checkButton.hidden = false;
+  }
 
   const fields = directionFields(card);
   const suppliedReadings = [...readingAnswers.querySelectorAll("input")]
     .map(input => normalize(input.value))
     .filter(Boolean);
   const isKanjiReadings = usesReadingFields(card);
-  if (isKanjiReadings ? !suppliedReadings.length : !answerInput.value.trim()) return;
+  if (direction !== "kanji-writing" && (isKanjiReadings ? !suppliedReadings.length : !answerInput.value.trim())) return;
   const expectedReadings = (fields.answers || []).map(normalize).sort();
   const sentenceResult = card.kind === "sentence" ? compare(answerInput.value, fields.answer) : null;
   if (sentenceResult) {
     sentenceCorrectTokens += sentenceResult.correct;
     sentenceTotalTokens += sentenceResult.total;
   }
-  const correct = sentenceResult ? sentenceResult.correct === sentenceResult.total : isKanjiReadings
+  const correct = direction === "kanji-writing" ? writingGrade : sentenceResult ? sentenceResult.correct === sentenceResult.total : isKanjiReadings
     ? suppliedReadings.length === expectedReadings.length
       && suppliedReadings.sort().every((reading, readingIndex) => reading === expectedReadings[readingIndex])
     : direction === "kanji-romaji" || (card.kind === "kanji" && ["kanji-english", "english-kana", "english-romaji"].includes(direction))
@@ -853,7 +886,7 @@ function checkAnswer() {
 
 function advanceCard(correct, card) {
   // Sentence fixed loops honor the selected number of attempts, including mistakes.
-  if (card.kind === "sentence" && studyMode === "fixed") {
+  if ((card.kind === "sentence" || direction === "kanji-writing") && studyMode === "fixed") {
     cards.shift();
     index = 0;
     advancing = false;
@@ -1013,3 +1046,6 @@ document.addEventListener("keydown", event => {
 });
 document.querySelector("#history-storage-note").hidden = !staticSite;
 loadLessons();
+
+document.querySelector("#writing-right").addEventListener("click", () => checkAnswer(true));
+document.querySelector("#writing-wrong").addEventListener("click", () => checkAnswer(false));

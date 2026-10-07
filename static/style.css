@@ -134,3 +134,15 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 @media (max-width: 560px) {
   .card form > * { width: 100%; max-width: 100%; }
 }
+.writing-card form { width: 100%; flex-wrap: wrap; }
+#handwriting { width: 100%; flex-basis: 100%; }
+.writing-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.writing-pair > div { min-width: 0; }
+.writing-label { display: block; margin-bottom: 8px; color: #666; font-size: .85rem; }
+#kanji-pad, .kanji-reference { width: 100%; aspect-ratio: 1; border: 2px solid #cececa; border-radius: 12px; background: #fff; }
+#kanji-pad { display: block; touch-action: none; cursor: crosshair; }
+.kanji-reference { display: grid; place-items: center; font-family: 'Noto Serif CJK JP', 'Yu Mincho', serif; font-size: clamp(5rem, 22vw, 12rem); line-height: 1; }
+.writing-actions { display: flex; gap: 10px; margin: 12px 0; }
+.writing-actions button { flex: 1; padding: 10px; border: 1px solid #cacac6; border-radius: 10px; font: inherit; cursor: pointer; }
+#writing-right { background: #28714a; color: white; }
+.writing-actions button:disabled { opacity: .45; cursor: default; }
