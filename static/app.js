@@ -165,7 +165,12 @@ function hiraganaToRomaji(value) {
     ら: "ra", り: "ri", る: "ru", れ: "re", ろ: "ro",
     わ: "wa", を: "wo", ん: "n",
   };
-  return [...value].map(character => kana[character] || character).join("");
+  const combined = {き: "ky", ぎ: "gy", し: "sh", じ: "j", ち: "ch", ぢ: "j",
+    に: "ny", ひ: "hy", び: "by", ぴ: "py", み: "my", り: "ry"};
+  return (value.match(/[きぎしじちぢにひびぴみり][ゃゅょ]|./gu) || []).map(part =>
+    part.length === 2 ? combined[part[0]] + ({ゃ: "a", ゅ: "u", ょ: "o"})[part[1]]
+      : kana[part] || part
+  ).join("");
 }
 
 function usesReadingFields(card) {
