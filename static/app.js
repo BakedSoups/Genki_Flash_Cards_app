@@ -108,7 +108,7 @@ function saveLessonSelection(lesson) {
 function selectLessonDirection() {
   const previousDirection = directionSelect.value;
   directionSelect.replaceChildren(...directionOptions.filter(option =>
-    !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji"].includes(option.value)
+    !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji"].includes(option.value)
   ));
   directionSelect.value = previousDirection;
   directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
@@ -194,6 +194,18 @@ function directionFields(card) {
   }
   if (direction === "katakana-romaji") {
     return { prompt: card.kana, answer: card.romaji, label: "Katakana → Romaji", instruction: "Write this character in romaji" };
+  }
+  if (direction === "kana-romaji" && ["kanji", "kanji-word"].includes(card.kind)) {
+    const readings = card.kana.split("|").map(value => hiraganaToRomaji(value.trim())).filter(Boolean);
+    return {
+      prompt: card.kana.split("|").join(" · "),
+      answer: readings.join(" · "),
+      answers: readings,
+      label: "Hiragana → Romaji",
+      instruction: card.kind === "kanji"
+        ? "Enter every romaji reading (order does not matter)"
+        : "Write this word in romaji",
+    };
   }
   if (direction === "kanji-romaji") {
     const readings = card.kana.split("|").map(value => hiraganaToRomaji(value.trim())).filter(Boolean);
@@ -821,7 +833,7 @@ function checkAnswer() {
       correction.append(breakdown);
     }
   }
-  if (["english-romaji", "english-kana"].includes(direction) && ["kanji", "kanji-word"].includes(card.kind)) {
+  if (["english-romaji", "english-kana", "kana-romaji"].includes(direction) && ["kanji", "kanji-word"].includes(card.kind)) {
     const kanjiLine = document.createElement("strong");
     kanjiLine.className = "revealed-kana";
     kanjiLine.textContent = `Kanji: ${card.romaji}`;
