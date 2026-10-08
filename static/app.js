@@ -174,7 +174,7 @@ function hiraganaToRomaji(value) {
 }
 
 function usesReadingFields(card) {
-  return card.kind === "kanji" && !["kanji-english", "kanji-romaji", "english-kana", "kanji-writing"].includes(direction);
+  return card.kind === "kanji" && !["kanji-english", "english-kana", "kanji-writing"].includes(direction);
 }
 
 function directionFields(card) {
@@ -220,7 +220,7 @@ function directionFields(card) {
       label: "Kanji → Romaji",
       instruction: card.kind === "kanji-word"
         ? "Write the full word in romaji"
-        : "Write one reading of this kanji in romaji",
+        : "Enter every romaji reading (order does not matter)",
     };
   }
   if (card.kind === "kanji-word" && direction === "english-romaji") {

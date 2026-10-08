@@ -39,7 +39,7 @@ A lightweight Japanese flashcard web app powered by Python.
   in separate boxes for 田, in either order.
 - Select **Lesson 6 Kanji** for 15 kanji, from 東 (east) to 国 (country),
   with the same question directions and separate reading boxes as Lesson 5.
-- Choose **Kanji → Romaji (one reading)** to guess one listed reading of a kanji
+- Choose **Kanji → Romaji (all readings)** to enter all listed readings in separate boxes
   or the full reading of a kanji word. Select Lesson 4 or Lesson 4-2 to try it.
 - Practice kanji-to-romaji readings in any order with up to three separate
   answer fields.
