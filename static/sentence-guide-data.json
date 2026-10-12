@@ -1,0 +1,1890 @@
+[
+  {
+    "romaji": "Kyou shukudai aru",
+    "meaning": "Do you have homework today? (informal)",
+    "kana": "きょうしゅくだいある",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "きょう",
+      "しゅくだい",
+      "ある"
+    ],
+    "token_meanings": [
+      "today",
+      "homework",
+      "have / exist"
+    ],
+    "grammar_note": "Use the short form aru with rising intonation for an informal question. The particle ga can be omitted in casual speech.",
+    "verbs": [
+      {
+        "dictionary": "ある (aru)",
+        "meaning": "to exist / have",
+        "kind": "u-verb (irregular negative)",
+        "used": "ある (aru)",
+        "change": "Unchanged dictionary form; rising intonation makes the question."
+      }
+    ],
+    "guide": {
+      "forms": "aru (u-verb) → aru: unchanged plain nonpast, “have / exist.”",
+      "particles": "Shukudai is what exists; ga is omitted in this casual question. No ka is needed with rising intonation.",
+      "past": "Change aru → atta: Kinou shukudai atta? = Did you have homework yesterday?",
+      "swap": "Replace shukudai with jikan: Jikan aru? = Do you have time?"
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Uun shukudai nai",
+    "meaning": "No, I do not have homework. (informal)",
+    "kana": "ううんしゅくだいない",
+    "kind": "sentence",
+    "original": "Do you have homework today? Answer in the negative.",
+    "kana_tokens": [
+      "ううん",
+      "しゅくだい",
+      "ない"
+    ],
+    "token_meanings": [
+      "no (informal)",
+      "homework",
+      "do not have / does not exist"
+    ],
+    "grammar_note": "The short negative of aru is nai, not aranai.",
+    "verbs": [
+      {
+        "dictionary": "ある (aru)",
+        "meaning": "to exist / have",
+        "kind": "u-verb (irregular negative)",
+        "used": "ない (nai)",
+        "change": "aru → nai: plain negative, “do not have.” Not aranai."
+      }
+    ],
+    "guide": {
+      "forms": "aru → nai: irregular plain negative, “do not have.”",
+      "particles": "Uun means no. Shukudai is what you do not have; casual speech omits ga.",
+      "past": "nai → nakatta: Uun, shukudai nakatta. = No, I did not have homework.",
+      "swap": "Swap shukudai for jikan: Uun, jikan nai. = No, I do not have time."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Nihonjin",
+    "meaning": "Are you Japanese? (informal)",
+    "kana": "にほんじん",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "にほんじん"
+    ],
+    "token_meanings": [
+      "Japanese person"
+    ],
+    "grammar_note": "For an informal noun question, omit da and use rising intonation.",
+    "verbs": [],
+    "guide": {
+      "forms": "Nihonjin is a noun, not a verb. Omit da in a casual noun question.",
+      "particles": "No particle is needed here; the listener and topic are understood.",
+      "past": "Nihonjin datta? = Were you Japanese? Grammatically possible, but an unusual question unless nationality changed. Gakusei datta? (Were you a student?) is a more natural past example.",
+      "swap": "Nihonjin → daigakusei: Daigakusei? = Are you a college student?"
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Uun Nihonjin janai",
+    "meaning": "No, I am not Japanese. (informal)",
+    "kana": "ううんにほんじんじゃない",
+    "kind": "sentence",
+    "original": "Are you Japanese? Answer in the negative.",
+    "kana_tokens": [
+      "ううん",
+      "にほんじん",
+      "じゃない"
+    ],
+    "token_meanings": [
+      "no (informal)",
+      "Japanese person",
+      "am not"
+    ],
+    "grammar_note": "For nouns, use janai for the informal negative.",
+    "verbs": [],
+    "guide": {
+      "forms": "Noun + janai is the plain negative of noun + da.",
+      "particles": "Uun answers no; the subject is understood.",
+      "past": "janai → janakatta: Uun, Nihonjin janakatta. = No, [the person] was not Japanese.",
+      "swap": "Nihonjin → gakusei: Uun, gakusei janai. = No, I am not a student."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Mainichi nihongo o hanasu",
+    "meaning": "Do you speak Japanese every day? (informal)",
+    "kana": "まいにちにほんごをはなす",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "まいにち",
+      "にほんご",
+      "を",
+      "はなす"
+    ],
+    "token_meanings": [
+      "every day",
+      "Japanese language",
+      "object marker",
+      "speak"
+    ],
+    "grammar_note": "Hanasu is the dictionary / present short form of hanashimasu. Use rising intonation.",
+    "verbs": [
+      {
+        "dictionary": "はなす (hanasu)",
+        "meaning": "to speak",
+        "kind": "u-verb",
+        "used": "はなす (hanasu)",
+        "change": "Unchanged dictionary form in an informal question."
+      }
+    ],
+    "guide": {
+      "forms": "hanasu (u-verb) is the plain nonpast of hanashimasu.",
+      "particles": "O marks nihongo as the language spoken. Mainichi usually takes no ni.",
+      "past": "hanasu → hanashita: Kinou nihongo o hanashita? = Did you speak Japanese yesterday?",
+      "swap": "Nihongo → eigo: Mainichi eigo o hanasu? = Do you speak English every day?"
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Uun mainichi nihongo o hanasanai",
+    "meaning": "No, I do not speak Japanese every day. (informal)",
+    "kana": "ううんまいにちにほんごをはなさない",
+    "kind": "sentence",
+    "original": "Do you speak Japanese every day? Answer in the negative.",
+    "kana_tokens": [
+      "ううん",
+      "まいにち",
+      "にほんご",
+      "を",
+      "はなさない"
+    ],
+    "token_meanings": [
+      "no (informal)",
+      "every day",
+      "Japanese language",
+      "object marker",
+      "do not speak"
+    ],
+    "grammar_note": "Hanasu becomes hanasanai: change the final su to sa and add nai.",
+    "verbs": [
+      {
+        "dictionary": "はなす (hanasu)",
+        "meaning": "to speak",
+        "kind": "u-verb",
+        "used": "はなさない (hanasanai)",
+        "change": "hanasu → hanasanai: su → sa + nai, plain negative."
+      }
+    ],
+    "guide": {
+      "forms": "hanasu → hanasanai: su → sa + nai.",
+      "particles": "O marks the language. Mainichi + negative means not every day, not necessarily never.",
+      "past": "hanasanai → hanasanakatta: Kinou nihongo o hanasanakatta. = I did not speak Japanese yesterday.",
+      "swap": "Nihongo → eigo; retain o before the verb."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Atsui",
+    "meaning": "Is it hot? (informal)",
+    "kana": "あつい",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "あつい"
+    ],
+    "token_meanings": [
+      "hot"
+    ],
+    "grammar_note": "An i-adjective can form an informal question by itself with rising intonation.",
+    "verbs": [],
+    "guide": {
+      "forms": "Atsui is an i-adjective, not a verb; it can end a plain sentence by itself.",
+      "particles": "No particles are needed in this short question about the weather.",
+      "past": "atsui → atsukatta: Kinou atsukatta? = Was it hot yesterday?",
+      "swap": "Atsui → samui: Samui? = Is it cold?"
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Uun atsukunai",
+    "meaning": "No, it is not hot. (informal)",
+    "kana": "ううんあつくない",
+    "kind": "sentence",
+    "original": "Is it hot? Answer in the negative.",
+    "kana_tokens": [
+      "ううん",
+      "あつくない"
+    ],
+    "token_meanings": [
+      "no (informal)",
+      "not hot"
+    ],
+    "grammar_note": "For an i-adjective negative, replace the final i with kunai: atsui → atsukunai.",
+    "verbs": [],
+    "guide": {
+      "forms": "atsui → atsukunai: remove the final i and add kunai.",
+      "particles": "Uun is the informal no; the weather topic is understood.",
+      "past": "atsukunai → atsukunakatta: Uun, atsukunakatta. = No, it was not hot.",
+      "swap": "Samui → samukunai: Uun, samukunai. = No, it is not cold."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Yamashita sensei wa kakkoii to omoimasu",
+    "meaning": "I think Professor Yamashita is good-looking.",
+    "kana": "やましたせんせいはかっこいいとおもいます",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "やました",
+      "せんせい",
+      "は",
+      "かっこいい",
+      "と",
+      "おもいます"
+    ],
+    "token_meanings": [
+      "Yamashita",
+      "professor / teacher",
+      "topic marker",
+      "good-looking",
+      "quotation marker",
+      "think"
+    ],
+    "grammar_note": "Put a short-form clause before to omoimasu. Kakkoii is an i-adjective, so do not add da.",
+    "verbs": [
+      {
+        "dictionary": "おもう (omou)",
+        "meaning": "to think",
+        "kind": "u-verb",
+        "used": "おもいます (omoimasu)",
+        "change": "omou → omoimasu: polite present, “think.”"
+      }
+    ],
+    "guide": {
+      "forms": "omou (u-verb) → omoimasu. Kakkoii is an i-adjective; no da before to.",
+      "particles": "Wa marks Professor Yamashita as the topic. To introduces the thought: “is good-looking.”",
+      "past": "omoimasu → omoimashita = I thought he was good-looking. Kakkoii → kakkoyokatta before to omoimasu = I think he was good-looking. These shift different parts of the sentence.",
+      "swap": "Yamashita sensei → Tanaka-san; or kakkoii → yasashii (kind)."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Kono machi wa omoshirokunai to omoimasu",
+    "meaning": "I do not think this town is interesting.",
+    "kana": "このまちはおもしろくないとおもいます",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "この",
+      "まち",
+      "は",
+      "おもしろくない",
+      "と",
+      "おもいます"
+    ],
+    "token_meanings": [
+      "this",
+      "town",
+      "topic marker",
+      "not interesting",
+      "quotation marker",
+      "think"
+    ],
+    "grammar_note": "Literally: I think this town is not interesting. Omoshiroi becomes omoshirokunai before to omoimasu.",
+    "verbs": [
+      {
+        "dictionary": "おもう (omou)",
+        "meaning": "to think",
+        "kind": "u-verb",
+        "used": "おもいます (omoimasu)",
+        "change": "omou → omoimasu: polite present, “think.”"
+      }
+    ],
+    "guide": {
+      "forms": "omoshiroi → omoshirokunai; omou → omoimasu. Literally “I think [this town is not interesting].”",
+      "particles": "Wa marks the town; to quotes the entire negative description.",
+      "past": "Omoshirokunakatta to omoimasu = I think it was not interesting. Omoshirokunai to omoimashita = I thought it was not interesting.",
+      "swap": "Kono machi → kono eiga: Kono eiga wa omoshirokunai to omoimasu. = I do not think this movie is interesting."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Mado o akenaide kudasai",
+    "meaning": "Please do not open the window.",
+    "kana": "まどをあけないでください",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "まど",
+      "を",
+      "あけないで",
+      "ください"
+    ],
+    "token_meanings": [
+      "window",
+      "object marker",
+      "do not open (request form)",
+      "please"
+    ],
+    "grammar_note": "Akeru → akenai → akenaide kudasai. Use the short negative plus de kudasai for a negative request.",
+    "verbs": [
+      {
+        "dictionary": "あける (akeru)",
+        "meaning": "to open",
+        "kind": "ru-verb",
+        "used": "あけないでください (akenaide kudasai)",
+        "change": "akeru → akenai → akenaide kudasai: drop ru, add nai, then de kudasai for “please do not.”"
+      }
+    ],
+    "guide": {
+      "forms": "akeru (ru-verb) → akenai → akenaide kudasai: please do not open.",
+      "particles": "O marks mado as the object. De here belongs to the negative request ending, not a location particle.",
+      "past": "A request itself does not become past tense. To report a past action: Mado o akemasen deshita (polite) / Mado o akenakatta (plain) = I did not open the window.",
+      "swap": "Mado → doa: Doa o akenaide kudasai. = Please do not open the door."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Kasa o wasurenaide kudasai",
+    "meaning": "Please do not forget your umbrella.",
+    "kana": "かさをわすれないでください",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "かさ",
+      "を",
+      "わすれないで",
+      "ください"
+    ],
+    "token_meanings": [
+      "umbrella",
+      "object marker",
+      "do not forget (request form)",
+      "please"
+    ],
+    "grammar_note": "Wasureru → wasurenai → wasurenaide kudasai: please do not forget.",
+    "verbs": [
+      {
+        "dictionary": "わすれる (wasureru)",
+        "meaning": "to forget",
+        "kind": "ru-verb",
+        "used": "わすれないでください (wasurenaide kudasai)",
+        "change": "wasureru → wasurenai → wasurenaide kudasai: drop ru, add nai, then de kudasai for “please do not.”"
+      }
+    ],
+    "guide": {
+      "forms": "wasureru (ru-verb) → wasurenai → wasurenaide kudasai.",
+      "particles": "O marks the thing that must not be forgotten.",
+      "past": "For a past statement: Kasa o wasuremasen deshita / Kasa o wasurenakatta = I did not forget my umbrella. Do not conjugate kudasai as a past request.",
+      "swap": "Kasa → shukudai: Shukudai o wasurenaide kudasai. = Please do not forget your homework."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Tanaka-san wa daigakusei janai to iimashita",
+    "meaning": "Tanaka said that he is not a college student.",
+    "kana": "たなかさんはだいがくせいじゃないといいました",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "たなかさん",
+      "は",
+      "だいがくせい",
+      "じゃない",
+      "と",
+      "いいました"
+    ],
+    "token_meanings": [
+      "Tanaka (polite name)",
+      "topic marker",
+      "college student",
+      "is not",
+      "quotation marker",
+      "said"
+    ],
+    "grammar_note": "Use the noun negative janai before to iimashita (said).",
+    "verbs": [
+      {
+        "dictionary": "いう (iu)",
+        "meaning": "to say",
+        "kind": "u-verb",
+        "used": "いいました (iimashita)",
+        "change": "iu → iimasu → iimashita: polite past, “said.”"
+      }
+    ],
+    "guide": {
+      "forms": "iu (u-verb) → iimasu → iimashita. Daigakusei janai is a negative noun predicate.",
+      "particles": "Wa marks the speaker; to marks the reported words.",
+      "past": "Iimashita is already past (“said”). Daigakusei janakatta to iimashita = he said he had not been / was not a college student at the relevant earlier time. Japanese does not automatically shift every quoted verb into past tense.",
+      "swap": "Tanaka-san → Mearii-san; daigakusei → sensei (teacher)."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Tanaka-san wa kekkon shite inai to iimashita",
+    "meaning": "Tanaka said that he is not married.",
+    "kana": "たなかさんはけっこんしていないといいました",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "たなかさん",
+      "は",
+      "けっこん",
+      "して",
+      "いない",
+      "と",
+      "いいました"
+    ],
+    "token_meanings": [
+      "Tanaka (polite name)",
+      "topic marker",
+      "marriage",
+      "do (te-form)",
+      "not in that state",
+      "quotation marker",
+      "said"
+    ],
+    "grammar_note": "Kekkon shite iru means is married. Its short negative is kekkon shite inai.",
+    "verbs": [
+      {
+        "dictionary": "けっこんする (kekkon suru)",
+        "meaning": "to get married",
+        "kind": "irregular suru-verb",
+        "used": "けっこんしていない (kekkon shite inai)",
+        "change": "suru → shite (te-form) + inai: the negative of shite iru, “is not married.”"
+      },
+      {
+        "dictionary": "いる (iru)",
+        "meaning": "to be / exist; auxiliary for a continuing state",
+        "kind": "ru-verb",
+        "used": "いない (inai)",
+        "change": "iru → inai: drop ru and add nai. After shite, this negates the state of being married."
+      },
+      {
+        "dictionary": "いう (iu)",
+        "meaning": "to say",
+        "kind": "u-verb",
+        "used": "いいました (iimashita)",
+        "change": "iu → iimasu → iimashita: polite past, “said.”"
+      }
+    ],
+    "guide": {
+      "forms": "kekkon suru → kekkon shite iru → kekkon shite inai. Iu → iimashita.",
+      "particles": "Wa marks Tanaka as speaker; to encloses the reported state.",
+      "past": "Iimashita is already past. Shite inai → shite inakatta changes the reported state to “was not married.”",
+      "swap": "Tanaka-san → ani: Ani wa kekkon shite inai to iimashita. = My older brother said he is not married."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Mearii-san wa mainichi tanoshii to iimashita",
+    "meaning": "Mary said that every day is fun.",
+    "kana": "メアリーさんはまいにちたのしいといいました",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "メアリーさん",
+      "は",
+      "まいにち",
+      "たのしい",
+      "と",
+      "いいました"
+    ],
+    "token_meanings": [
+      "Mary (polite name)",
+      "topic marker",
+      "every day",
+      "fun",
+      "quotation marker",
+      "said"
+    ],
+    "grammar_note": "Tanoshii is an i-adjective. Put it directly before to iimashita without da.",
+    "verbs": [
+      {
+        "dictionary": "いう (iu)",
+        "meaning": "to say",
+        "kind": "u-verb",
+        "used": "いいました (iimashita)",
+        "change": "iu → iimasu → iimashita: polite past, “said.”"
+      }
+    ],
+    "guide": {
+      "forms": "Tanoshii is an i-adjective; iu → iimashita. No da after tanoshii.",
+      "particles": "Wa marks Mary; to quotes mainichi tanoshii, “every day is fun.”",
+      "past": "Iimashita is already past. Tanoshii → tanoshikatta makes the quoted description past: every day was fun.",
+      "swap": "Mainichi → ryokou: Mearii-san wa ryokou ga tanoshikatta to iimashita. = Mary said the trip was fun."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Mearii-san wa amari sake o nomanai to iimashita",
+    "meaning": "Mary said that she does not drink sake much.",
+    "kana": "メアリーさんはあまりさけをのまないといいました",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "メアリーさん",
+      "は",
+      "あまり",
+      "さけ",
+      "を",
+      "のまない",
+      "と",
+      "いいました"
+    ],
+    "token_meanings": [
+      "Mary (polite name)",
+      "topic marker",
+      "not much (with a negative)",
+      "sake",
+      "object marker",
+      "does not drink",
+      "quotation marker",
+      "said"
+    ],
+    "grammar_note": "Amari pairs with a negative. Nomu becomes nomanai before to iimashita.",
+    "verbs": [
+      {
+        "dictionary": "のむ (nomu)",
+        "meaning": "to drink",
+        "kind": "u-verb",
+        "used": "のまない (nomanai)",
+        "change": "nomu → nomanai: mu → ma + nai, plain negative."
+      },
+      {
+        "dictionary": "いう (iu)",
+        "meaning": "to say",
+        "kind": "u-verb",
+        "used": "いいました (iimashita)",
+        "change": "iu → iimasu → iimashita: polite past, “said.”"
+      }
+    ],
+    "guide": {
+      "forms": "nomu (u-verb) → nomanai. Iu → iimashita.",
+      "particles": "O marks sake; amari + negative means not much; to marks the quote.",
+      "past": "Iimashita is already past. Nomanai → nomanakatta changes the quote to “did not drink much.”",
+      "swap": "Sake → koohii: Mearii-san wa amari koohii o nomanai to iimashita."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Mearii-san wa mikan ga suki da to iimashita",
+    "meaning": "Mary said that she likes mandarin oranges.",
+    "kana": "メアリーさんはみかんがすきだといいました",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "メアリーさん",
+      "は",
+      "みかん",
+      "が",
+      "すき",
+      "だ",
+      "と",
+      "いいました"
+    ],
+    "token_meanings": [
+      "Mary (polite name)",
+      "topic marker",
+      "mandarin oranges",
+      "marks what is liked",
+      "liked",
+      "plain copula",
+      "quotation marker",
+      "said"
+    ],
+    "grammar_note": "The worksheet says likes. Suki is a na-adjective, so use suki da before to iimashita. Does not like would be suki janai to iimashita.",
+    "verbs": [
+      {
+        "dictionary": "いう (iu)",
+        "meaning": "to say",
+        "kind": "u-verb",
+        "used": "いいました (iimashita)",
+        "change": "iu → iimasu → iimashita: polite past, “said.”"
+      }
+    ],
+    "guide": {
+      "forms": "Suki is a na-adjective: suki da before to. Iu → iimashita.",
+      "particles": "Ga marks what Mary likes; to quotes the statement; wa marks Mary.",
+      "past": "Iimashita is already past. Suki da → suki datta changes the quote to “liked.”",
+      "swap": "Mikan → ringo: Mearii-san wa ringo ga suki da to iimashita. = Mary said she likes apples."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Watashi wa e o kaku no ga jouzu desu",
+    "meaning": "I am good at drawing.",
+    "kana": "わたしはえをかくのがじょうずです",
+    "kind": "sentence",
+    "original": "Which activity are you good at doing?",
+    "kana_tokens": [
+      "わたし",
+      "は",
+      "え",
+      "を",
+      "かく",
+      "の",
+      "が",
+      "じょうず",
+      "です"
+    ],
+    "token_meanings": [
+      "I",
+      "topic marker",
+      "picture",
+      "object marker",
+      "draw",
+      "turns the verb phrase into an activity",
+      "subject marker",
+      "skillful / good at",
+      "polite ending"
+    ],
+    "grammar_note": "Use dictionary-form verb + no ga jouzu desu. E o kaku no means drawing pictures.",
+    "verbs": [
+      {
+        "dictionary": "かく (kaku)",
+        "meaning": "to draw / write",
+        "kind": "u-verb",
+        "used": "かくの (kaku no)",
+        "change": "Kaku stays in dictionary form. Adding no turns e o kaku into the activity “drawing pictures”; ga marks that activity."
+      }
+    ],
+    "guide": {
+      "forms": "kaku (u-verb) stays in dictionary form before no. Jouzu is a na-adjective.",
+      "particles": "O marks pictures as the object; no turns e o kaku into “drawing”; ga marks the activity you are good at; wa marks you as topic.",
+      "past": "Jouzu desu → jouzu deshita = I was good at drawing. Keep kaku in dictionary form: kaita no would refer to a past drawing event.",
+      "swap": "E o kaku → uta o utau: Watashi wa uta o utau no ga jouzu desu. = I am good at singing."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Watashi wa supootsu o suru no ga jouzu janai desu",
+    "meaning": "I am not good at sports.",
+    "kana": "わたしはスポーツをするのがじょうずじゃないです",
+    "kind": "sentence",
+    "original": "Which activity are you poor at doing?",
+    "kana_tokens": [
+      "わたし",
+      "は",
+      "スポーツ",
+      "を",
+      "する",
+      "の",
+      "が",
+      "じょうず",
+      "じゃない",
+      "です"
+    ],
+    "token_meanings": [
+      "I",
+      "topic marker",
+      "sports",
+      "object marker",
+      "do",
+      "turns the verb phrase into an activity",
+      "subject marker",
+      "skillful / good at",
+      "not",
+      "polite ending"
+    ],
+    "grammar_note": "Supootsu o suru no means doing sports. Jouzu janai desu means am not good at. Heta desu is another way to say am poor at.",
+    "verbs": [
+      {
+        "dictionary": "する (suru)",
+        "meaning": "to do",
+        "kind": "irregular verb",
+        "used": "するの (suru no)",
+        "change": "Suru stays in dictionary form. Supootsu o suru + no means “doing sports.” No ga is added after the verb; jouzu janai desu makes “good at” negative."
+      }
+    ],
+    "guide": {
+      "forms": "suru is irregular but unchanged before no. Jouzu janai desu means not good at.",
+      "particles": "O marks sports; no makes “doing sports” a noun phrase; ga marks the skill being evaluated.",
+      "past": "Jouzu janai desu → jouzu janakatta desu = I was not good at sports. Suru remains nonpast because the activity is general.",
+      "swap": "Supootsu o suru → oyogu: Watashi wa oyogu no ga jouzu janai desu. = I am not good at swimming."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Watashi wa jimu ni iku no ga suki desu",
+    "meaning": "I like going to the gym.",
+    "kana": "わたしはジムにいくのがすきです",
+    "kind": "sentence",
+    "original": "Which activity do you like doing?",
+    "kana_tokens": [
+      "わたし",
+      "は",
+      "ジム",
+      "に",
+      "いく",
+      "の",
+      "が",
+      "すき",
+      "です"
+    ],
+    "token_meanings": [
+      "I",
+      "topic marker",
+      "gym",
+      "to (destination)",
+      "go",
+      "turns the verb phrase into an activity",
+      "marks what is liked",
+      "liked",
+      "polite ending"
+    ],
+    "grammar_note": "Jimu ni iku no means going to the gym. Use dictionary-form iku, not ikimasu, before no ga.",
+    "verbs": [
+      {
+        "dictionary": "いく (iku)",
+        "meaning": "to go",
+        "kind": "u-verb (irregular te-form)",
+        "used": "いくの (iku no)",
+        "change": "Iku stays in dictionary form. Jimu ni iku + no means “going to the gym”; ga marks what you like."
+      }
+    ],
+    "guide": {
+      "forms": "iku stays in dictionary form before no; suki is a na-adjective.",
+      "particles": "Ni marks gym as destination; no makes “going to the gym” an activity; ga marks what you like.",
+      "past": "Suki desu → suki deshita = I liked going to the gym. Keep iku unchanged.",
+      "swap": "Jimu → toshokan: Watashi wa toshokan ni iku no ga suki desu. = I like going to the library."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Watashi wa kuruma o unten suru no ga kirai desu",
+    "meaning": "I dislike driving a car.",
+    "kana": "わたしはくるまをうんてんするのがきらいです",
+    "kind": "sentence",
+    "original": "Which activity do you dislike doing?",
+    "kana_tokens": [
+      "わたし",
+      "は",
+      "くるま",
+      "を",
+      "うんてん",
+      "する",
+      "の",
+      "が",
+      "きらい",
+      "です"
+    ],
+    "token_meanings": [
+      "I",
+      "topic marker",
+      "car",
+      "object marker",
+      "driving",
+      "do",
+      "turns the verb phrase into an activity",
+      "marks what is disliked",
+      "disliked",
+      "polite ending"
+    ],
+    "grammar_note": "Kuruma o unten suru no means driving a car. Keep o after kuruma and no ga before kirai.",
+    "verbs": [
+      {
+        "dictionary": "うんてんする (unten suru)",
+        "meaning": "to drive",
+        "kind": "irregular suru-verb",
+        "used": "うんてんするの (unten suru no)",
+        "change": "Unchanged dictionary form + no turns the phrase into “driving”; ga marks what you dislike."
+      }
+    ],
+    "guide": {
+      "forms": "unten suru is a suru-verb; no follows its dictionary form. Kirai is a na-adjective despite ending in i.",
+      "particles": "O marks the car; no turns driving into a noun phrase; ga marks what you dislike.",
+      "past": "Kirai desu → kirai deshita = I disliked driving. Do not use kiraikatta.",
+      "swap": "Kuruma o unten suru → souji suru: Watashi wa souji suru no ga kirai desu. = I dislike cleaning."
+    },
+    "group": "Lesson 1 — Grammar"
+  },
+  {
+    "romaji": "Konnichiwa. Ogenki desu ka?",
+    "meaning": "Hello. How are you?",
+    "kana": "こんにちはお元気ですか",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "こんにちは",
+      "お元気",
+      "です",
+      "か"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Ogenki desu ka asks how someone is doing.",
+    "guide": {
+      "forms": "Konnichiwa is a greeting; genki is a na-adjective. Desu makes the question polite.",
+      "particles": "O- is a polite prefix in ogenki; ka marks the question.",
+      "past": "Ogenki deshita ka? = Were you well? Konnichiwa has no tense.",
+      "swap": "Ogenki desu ka? → Oisogashii desu ka? = Are you busy? (Different adjective type; do not copy na-adjective rules onto isogashii.)"
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Toukyou no tenki wa dou desu ka?",
+    "meaning": "How is the weather in Tokyo?",
+    "kana": "東京の天気はどうですか",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "東京",
+      "の",
+      "天気",
+      "は",
+      "どう",
+      "です",
+      "か"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "No links Tokyo to its weather; dou desu ka asks what it is like.",
+    "guide": {
+      "forms": "Dou desu ka asks how something is. There is no action verb here.",
+      "particles": "No links Tokyo and its weather; wa marks the weather as topic; ka makes the question.",
+      "past": "Toukyou no tenki wa dou deshita ka? = How was the weather in Tokyo?",
+      "swap": "Toukyou → Oosaka: Oosaka no tenki wa dou desu ka?"
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "San Furanshisuko no tenki wa yoi desu.",
+    "meaning": "The weather in San Francisco is nice.",
+    "kana": "サンフランシスコの天気はよいです",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "サン",
+      "フランシスコ",
+      "の",
+      "天気",
+      "は",
+      "よい",
+      "です"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Yoi means good or nice. San Furanshisuko is written as two romaji words here.",
+    "guide": {
+      "forms": "Yoi is the standard form related to ii (good), an i-adjective.",
+      "particles": "No links the city and weather; wa marks the topic.",
+      "past": "Yoi → yokatta: San Furanshisuko no tenki wa yokatta desu. = The weather was nice. Desu stays desu with a past i-adjective.",
+      "swap": "Yoi → samui: San Furanshisuko no tenki wa samui desu. = The weather is cold."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Watashi ni wa chichi to haha to imouto ga hitori imasu.",
+    "meaning": "I have a father, a mother, and one younger sister.",
+    "kana": "私には父と母といもうとが一人います",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "私",
+      "に",
+      "は",
+      "父",
+      "と",
+      "母",
+      "と",
+      "いもうと",
+      "が",
+      "一人",
+      "います"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "To joins family members; hitori counts one person. Imasu is the polite form of iru, used for people.",
+    "guide": {
+      "forms": "iru (ru-verb) → imasu: people exist / I have family members. Hitori means one person.",
+      "particles": "Ni wa presents your situation; to lists family; ga marks who exists. Hitori is intended to count the younger sister here.",
+      "past": "Imasu → imashita = I had / there were these family members. A past form can suggest a changed family situation, so use it only when intended.",
+      "swap": "Imouto ga hitori → imouto ga futari (two younger sisters). A clearer standalone count is Watashi ni wa imouto ga hitori imasu."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Chichi to haha wa Ookurando ni sunde imasu.",
+    "meaning": "My father and mother live in Oakland.",
+    "kana": "父と母はオークランドに住んでいます",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "父",
+      "と",
+      "母",
+      "は",
+      "オークランド",
+      "に",
+      "住んで",
+      "います"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Sumu → sunde + imasu means live / reside. Ni marks where they live.",
+    "guide": {
+      "forms": "sumu (u-verb) → sunde + iru → sunde imasu: live / reside.",
+      "particles": "To joins father and mother; wa marks them as topic; ni marks residence.",
+      "past": "Sunde imasu → sunde imashita = lived / were living. The auxiliary iru changes tense; sunde stays the same.",
+      "swap": "Ookurando → Toukyou: Chichi to haha wa Toukyou ni sunde imasu."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Demo, imouto wa San Diego ni sunde imasu.",
+    "meaning": "But my younger sister lives in San Diego.",
+    "kana": "でもいもうとはサンディエゴに住んでいます",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "でも",
+      "いもうと",
+      "は",
+      "サン",
+      "ディエゴ",
+      "に",
+      "住んで",
+      "います"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Demo means but. Sumu → sunde imasu describes where someone lives.",
+    "guide": {
+      "forms": "sumu → sunde imasu. Demo introduces a contrast.",
+      "particles": "Wa marks the younger sister; ni marks where she lives.",
+      "past": "Sunde imasu → sunde imashita = my younger sister lived there.",
+      "swap": "Imouto → ani: Demo, ani wa San Diego ni sunde imasu. = But my older brother lives in San Diego."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Chichi wa rokujussai desu.",
+    "meaning": "My father is 60.",
+    "kana": "父は六十歳です",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "父",
+      "は",
+      "六十歳",
+      "です"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Rokujussai means sixty years old. Keep the doubled ss.",
+    "guide": {
+      "forms": "Rokujussai is an age expression, not a verb. Desu is the polite copula.",
+      "particles": "Wa marks father as the topic.",
+      "past": "Desu → deshita: Chichi wa rokujussai deshita. = My father was 60.",
+      "swap": "Rokujussai → gojussai: Chichi wa gojussai desu. = My father is 50."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Haha wa gojussai desu.",
+    "meaning": "My mother is 50.",
+    "kana": "母は五十歳です",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "母",
+      "は",
+      "五十歳",
+      "です"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Gojussai means fifty years old.",
+    "guide": {
+      "forms": "Gojussai is an age expression; desu is the polite ending.",
+      "particles": "Wa marks mother as the topic.",
+      "past": "Haha wa gojussai deshita. = My mother was 50.",
+      "swap": "Gojussai → rokujussai: Haha wa rokujussai desu. = My mother is 60."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Imouto wa juuhassai desu.",
+    "meaning": "My younger sister is 18.",
+    "kana": "いもうとは十八歳です",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "いもうと",
+      "は",
+      "十八歳",
+      "です"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Juuhassai means eighteen years old; hassai uses doubled ss.",
+    "guide": {
+      "forms": "Juuhassai means eighteen years old; desu links it to the topic.",
+      "particles": "Wa marks the younger sister.",
+      "past": "Imouto wa juuhassai deshita. = My younger sister was 18.",
+      "swap": "Juuhassai → juukyuusai: Imouto wa juukyuusai desu. = My younger sister is 19."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Chichi wa kensetsu no shigoto o shite imasu.",
+    "meaning": "My father works in construction.",
+    "kana": "父はけんせつのしごとをしています",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "父",
+      "は",
+      "けんせつ",
+      "の",
+      "しごと",
+      "を",
+      "して",
+      "います"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Suru → shite + imasu describes an occupation. Kensetsu no shigoto means construction work.",
+    "guide": {
+      "forms": "suru → shite + iru → shite imasu: doing work / working in an occupation.",
+      "particles": "Wa marks father; no describes the kind of work; o marks shigoto as the object of suru.",
+      "past": "Shite imasu → shite imashita = worked / was working. Change the final auxiliary, not shite.",
+      "swap": "Kensetsu → jimu: Chichi wa jimu no shigoto o shite imasu. = My father does office work."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Haha wa jimu no shigoto o shite imasu.",
+    "meaning": "My mother does office work.",
+    "kana": "母はじむのしごとをしています",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "母",
+      "は",
+      "じむ",
+      "の",
+      "しごと",
+      "を",
+      "して",
+      "います"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Jimu means office / administrative work here. Shite imasu comes from suru, to do.",
+    "guide": {
+      "forms": "suru → shite imasu. Jimu here means office administration, not the gym (jimu in katakana).",
+      "particles": "Wa marks mother; no connects office work to shigoto; o marks the object.",
+      "past": "Shite imasu → shite imashita = my mother did office work.",
+      "swap": "Haha → ani: Ani wa jimu no shigoto o shite imasu."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Imouto wa daigakusei desu.",
+    "meaning": "My younger sister is a college student.",
+    "kana": "いもうとは大学生です",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "いもうと",
+      "は",
+      "大学生",
+      "です"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Daigakusei means college student.",
+    "guide": {
+      "forms": "Daigakusei is a noun. Desu is the polite copula; plain form is da.",
+      "particles": "Wa marks the younger sister as topic.",
+      "past": "Desu → deshita: Imouto wa daigakusei deshita. = My younger sister was a college student.",
+      "swap": "Daigakusei → kaishain: Imouto wa kaishain desu. = My younger sister is a company employee."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Chichi to terebi o mimasu.",
+    "meaning": "I watch TV with my father.",
+    "kana": "父とテレビを見ます",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "父",
+      "と",
+      "テレビ",
+      "を",
+      "見ます"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "To means with; miru → mimasu means watch (polite).",
+    "guide": {
+      "forms": "miru (ru-verb) → mimasu: drop ru and add masu.",
+      "particles": "To means with father; o marks TV as what you watch. The subject I is understood.",
+      "past": "Mimasu → mimashita (polite); miru → mita (plain). Chichi to terebi o mimashita. = I watched TV with my father.",
+      "swap": "Terebi → eiga: Chichi to eiga o mimasu. = I watch a movie with my father."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Haha to haikingu ni ikimasu.",
+    "meaning": "I go hiking with my mother.",
+    "kana": "母とハイキングに行きます",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "母",
+      "と",
+      "ハイキング",
+      "に",
+      "行きます"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Iku → ikimasu means go (polite). Haikingu ni iku means go hiking.",
+    "guide": {
+      "forms": "iku (u-verb) → ikimasu. Haikingu ni iku is go hiking.",
+      "particles": "To marks mother as companion; ni marks the activity you go to do.",
+      "past": "Ikimasu → ikimashita (polite); iku → itta (irregular plain past).",
+      "swap": "Haha → tomodachi: Tomodachi to haikingu ni ikimasu. = I go hiking with friends."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Imouto to geemu o shimasu.",
+    "meaning": "I play games with my younger sister.",
+    "kana": "いもうととゲームをします",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "いもうと",
+      "と",
+      "ゲーム",
+      "を",
+      "します"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Suru → shimasu means do (polite). Geemu o suru means play games.",
+    "guide": {
+      "forms": "suru (irregular) → shimasu: do / play.",
+      "particles": "The first to follows imouto (with my sister); o marks games as the object.",
+      "past": "Shimasu → shimashita (polite); suru → shita (plain).",
+      "swap": "Geemu → tenisu: Imouto to tenisu o shimasu. = I play tennis with my younger sister."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Sore dewa, minasan ni oai suru no o tanoshimi ni shite imasu.",
+    "meaning": "I look forward to meeting you all.",
+    "kana": "それでは皆さんにお会いするのを楽しみにしています",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "それ",
+      "では",
+      "皆さん",
+      "に",
+      "お会い",
+      "する",
+      "の",
+      "を",
+      "楽しみ",
+      "に",
+      "して",
+      "います"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Oai suru is a polite expression for meeting. No makes meeting you all into a noun phrase. Tanoshimi ni shite imasu means look forward to.",
+    "guide": {
+      "forms": "au → oai suru is a humble expression for meeting. Suru stays nonpast before no; shite imasu comes from suru + iru.",
+      "particles": "Ni marks whom you meet; no turns meeting into a noun phrase; o marks what you look forward to; ni belongs to tanoshimi ni suru.",
+      "past": "Final shite imasu → shite imashita = I was looking forward to meeting you all. Keep oai suru unchanged because the meeting was still anticipated at that time.",
+      "swap": "Minasan → sensei: Sensei ni oai suru no o tanoshimi ni shite imasu. = I look forward to meeting the teacher."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Yoroshiku onegai shimasu.",
+    "meaning": "Thank you in advance.",
+    "kana": "よろしくお願いします",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "よろしく",
+      "お願い",
+      "します"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "A polite closing requesting goodwill; the English translation depends on context.",
+    "guide": {
+      "forms": "Onegai suru → onegai shimasu: a set polite request / closing, not a literal universal “thank you.”",
+      "particles": "No standalone particles occur in this expression. Yoroshiku modifies the request.",
+      "past": "Do not mechanically turn this greeting into a past-tense closing. Onegai shimashita means “I asked / requested,” a different statement.",
+      "swap": "For a more formal closing: Yoroshiku onegai itashimasu. Keep the set phrase intact."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Arekkusu yori",
+    "meaning": "From Alex",
+    "kana": "アレックスより",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "アレックス",
+      "より"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Yori means from in a letter signature.",
+    "guide": {
+      "forms": "A signature fragment, not a verb sentence; there is no dictionary verb to conjugate.",
+      "particles": "Yori means from and follows the sender’s name.",
+      "past": "No tense change: a name + yori signature is the same in a letter about past or present events.",
+      "swap": "Arekkusu → Mearii: Mearii yori = From Mary."
+    },
+    "group": "Lesson 2 — Family letter"
+  },
+  {
+    "romaji": "Watashi wa taitei asa hachiji goro okiru.",
+    "meaning": "I usually wake up around 8 a.m.",
+    "kana": "私はたいてい朝八時ごろ起きる",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "私",
+      "は",
+      "たいてい",
+      "朝",
+      "八時",
+      "ごろ",
+      "起きる"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Okiru is a ru-verb in its dictionary / plain nonpast form. Here it describes a routine, not a past event.",
+    "guide": {
+      "forms": "okiru (ru-verb) stays plain nonpast to describe a routine.",
+      "particles": "Wa marks the speaker; goro means around and follows the time.",
+      "past": "Okiru → okita (plain) / okimashita (polite).",
+      "swap": "Hachiji → shichiji: Asa shichiji goro okiru. = I wake around 7 a.m."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Sorekara, tsumetai shawaa o abite, asagohan o tabete, basu de shigoto ni iku.",
+    "meaning": "Then I take a cold shower, eat breakfast, and go to work by bus.",
+    "kana": "それから冷たいシャワーを浴びて朝ご飯を食べてバスで仕事に行く",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "それから",
+      "冷たい",
+      "シャワー",
+      "を",
+      "浴びて",
+      "朝ご飯",
+      "を",
+      "食べて",
+      "バス",
+      "で",
+      "仕事",
+      "に",
+      "行く"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Abiru → abite; taberu → tabete: te-forms link actions. Iku at the end sets the nonpast tense of the sequence.",
+    "guide": {
+      "forms": "abiru → abite; taberu → tabete (ru-verbs). Iku ends the sequence.",
+      "particles": "O marks shower and breakfast; de marks transport; ni marks destination.",
+      "past": "Change final iku → itta: abite and tabete stay in te-form. The whole sequence is then past.",
+      "swap": "Basu de → densha de (by train); shigoto ni → gakkou ni (to school)."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Gogo wa konpyuutaa de muzukashii mondai o toku.",
+    "meaning": "In the afternoon, I solve difficult problems on the computer.",
+    "kana": "午後はコンピューターで難しい問題を解く",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "午後",
+      "は",
+      "コンピューター",
+      "で",
+      "難しい",
+      "問題",
+      "を",
+      "解く"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Toku means solve; it is a u-verb. De marks the tool, the computer; o marks the problems being solved.",
+    "guide": {
+      "forms": "toku (u-verb) means solve; not to talk.",
+      "particles": "Wa marks afternoon as topic; de marks the computer as tool; o marks problems.",
+      "past": "Toku → toita (plain) / tokimashita (polite).",
+      "swap": "Muzukashii → yasashii (easy): yasashii mondai o toku = solve easy problems."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Shigoto wa isogashikute taihen da.",
+    "meaning": "Work is busy and tough.",
+    "kana": "仕事は忙しくて大変だ",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "仕事",
+      "は",
+      "忙しくて",
+      "大変",
+      "だ"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Isogashii → isogashikute joins an i-adjective to another description. Taihen is a na-adjective; da is the plain ending.",
+    "guide": {
+      "forms": "isogashii → isogashikute joins descriptions; taihen is a na-adjective.",
+      "particles": "Wa marks work as topic.",
+      "past": "Change final da → datta: Shigoto wa isogashikute taihen datta. = Work was busy and tough.",
+      "swap": "Shigoto → gakkou: Gakkou wa isogashikute taihen da. = School is busy and tough."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Sorekara, tomodachi to koohii o nomi ni itte, kyuukei suru.",
+    "meaning": "Then I go drink coffee with friends and take a break.",
+    "kana": "それから友達とコーヒーを飲みに行って休憩する",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "それから",
+      "友達",
+      "と",
+      "コーヒー",
+      "を",
+      "飲み",
+      "に",
+      "行って",
+      "休憩",
+      "する"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Nomu → nomimasu → nomi (stem) + ni expresses purpose. Iku → itte links going to kyuukei suru, taking a break.",
+    "guide": {
+      "forms": "nomu → nomimasu → nomi (stem); iku → itte; kyuukei suru = take a break.",
+      "particles": "To marks friends as companions; o marks coffee; stem + ni gives the purpose of going.",
+      "past": "Change final suru → shita; itte remains te-form.",
+      "swap": "Koohii → ocha: ocha o nomi ni iku = go to drink tea."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Koohii wa tsumetakute oishii.",
+    "meaning": "The coffee is cold and delicious.",
+    "kana": "コーヒーは冷たくておいしい",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "コーヒー",
+      "は",
+      "冷たくて",
+      "おいしい"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Tsumetai → tsumetakute joins two descriptions. The final adjective oishii sets the tense.",
+    "guide": {
+      "forms": "tsumetai → tsumetakute joins descriptions; oishii stays nonpast.",
+      "particles": "Wa marks coffee as topic.",
+      "past": "Oishii → oishikatta: Koohii wa tsumetakute oishikatta. = The coffee was cold and delicious.",
+      "swap": "Tsumetakute → atatakakute: Koohii wa atatakakute oishii. = The coffee is warm and delicious."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Gogo goji made ni ie ni kaeru.",
+    "meaning": "I return home by 5 p.m.",
+    "kana": "午後五時までに家に帰る",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "午後",
+      "五時",
+      "まで",
+      "に",
+      "家",
+      "に",
+      "帰る"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Made ni means by a deadline; ni after ie marks the destination. Kaeru is a u-verb despite ending in eru.",
+    "guide": {
+      "forms": "kaeru (u-verb) means return; do not treat it as a ru-verb.",
+      "particles": "Made ni marks the deadline; ie ni marks home as destination.",
+      "past": "Kaeru → kaetta (plain) / kaerimashita (polite).",
+      "swap": "Goji → rokuji: Gogo rokuji made ni ie ni kaeru. = I return home by 6 p.m."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Soshite, atatakai bangohan o tabete, tomodachi to tanoshii terebi geemu o suru.",
+    "meaning": "Then I eat a warm dinner and play fun video games with friends.",
+    "kana": "そして温かい晩ご飯を食べて友達と楽しいテレビゲームをする",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "そして",
+      "温かい",
+      "晩ご飯",
+      "を",
+      "食べて",
+      "友達",
+      "と",
+      "楽しい",
+      "テレビ",
+      "ゲーム",
+      "を",
+      "する"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Taberu → tabete links eating to playing. To marks companions; o marks the object of each activity.",
+    "guide": {
+      "forms": "taberu → tabete; suru ends the linked sequence.",
+      "particles": "O marks dinner and games; to marks friends as companions.",
+      "past": "Change final suru → shita; tabete remains te-form.",
+      "swap": "Tomodachi to → imouto to: play with your younger sister instead."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Demo, watashitachi wa geemu ga amari jouzu janai.",
+    "meaning": "But we aren’t very good at games.",
+    "kana": "でも私たちはゲームがあまり上手じゃない",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "でも",
+      "私たち",
+      "は",
+      "ゲーム",
+      "が",
+      "あまり",
+      "上手",
+      "じゃない"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Amari pairs with a negative: not very. Jouzu is a na-adjective; jouzu janai means not good at.",
+    "guide": {
+      "forms": "jouzu is a na-adjective; janai is its plain negative.",
+      "particles": "Wa marks we; ga marks games as the skill; amari plus negative means not very.",
+      "past": "Janai → janakatta: Geemu ga amari jouzu janakatta. = We were not very good at games.",
+      "swap": "Geemu → tenisu: Watashitachi wa tenisu ga amari jouzu janai."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Shuumatsu wa jimu ni iku.",
+    "meaning": "On weekends, I go to the gym.",
+    "kana": "週末はジムに行く",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "週末",
+      "は",
+      "ジム",
+      "に",
+      "行く"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Wa presents weekends as the time topic. Ni marks the destination; iku is plain nonpast.",
+    "guide": {
+      "forms": "iku is plain nonpast, describing a weekend habit.",
+      "particles": "Wa marks weekends as time topic; ni marks gym as destination.",
+      "past": "Iku → itta: Shuumatsu wa jimu ni itta. = I went to the gym on the weekend.",
+      "swap": "Jimu → toshokan: Shuumatsu wa toshokan ni iku. = I go to the library on weekends."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Sorekara, tomodachi to asobu.",
+    "meaning": "Then I hang out with friends.",
+    "kana": "それから友達と遊ぶ",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "それから",
+      "友達",
+      "と",
+      "遊ぶ"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "To marks who you spend time with. Asobu is a u-verb meaning play / hang out.",
+    "guide": {
+      "forms": "asobu (u-verb) means play / spend leisure time.",
+      "particles": "To marks the companion.",
+      "past": "Asobu → asonda (plain) / asobimashita (polite).",
+      "swap": "Tomodachi → imouto: Sorekara, imouto to asobu. = Then I hang out with my younger sister."
+    },
+    "group": "Lesson 3 — Daily routine"
+  },
+  {
+    "romaji": "Watashi wa kuruma o unten suru no ga suki desu.",
+    "meaning": "I like driving.",
+    "kana": "わたしはくるまをうんてんするのがすきです",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "わたし",
+      "は",
+      "くるま",
+      "を",
+      "うんてん",
+      "する",
+      "の",
+      "が",
+      "すき",
+      "です"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Unten suru means drive. Suru stays in dictionary form before no. Suki is a na-adjective, not a verb.",
+    "guide": {
+      "forms": "Unten suru means drive. Suru stays in dictionary form before no. Suki is a na-adjective, not a verb.",
+      "particles": "Wa marks you as topic; o marks the car; no turns driving into an activity noun; ga marks what you like.",
+      "past": "Suki desu → suki deshita = I liked driving. Keep unten suru unchanged for the general activity.",
+      "swap": "Kuruma o unten suru → hon o yomu: Watashi wa hon o yomu no ga suki desu. = I like reading books."
+    },
+    "group": "Lesson 4 — Likes and skills"
+  },
+  {
+    "romaji": "Watashi wa itsumo kuruma o unten shimasu.",
+    "meaning": "I always drive.",
+    "kana": "わたしはいつもくるまをうんてんします",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "わたし",
+      "は",
+      "いつも",
+      "くるま",
+      "を",
+      "うんてん",
+      "します"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Unten suru → unten shimasu: polite nonpast. Itsumo means always.",
+    "guide": {
+      "forms": "Unten suru → unten shimasu: polite nonpast. Itsumo means always.",
+      "particles": "Wa marks you as topic; o marks the car being driven.",
+      "past": "Shimasu → shimashita: Watashi wa itsumo kuruma o unten shimashita. = I always drove (in the period being discussed).",
+      "swap": "Itsumo → tokidoki: Watashi wa tokidoki kuruma o unten shimasu. = I sometimes drive."
+    },
+    "group": "Lesson 4 — Likes and skills"
+  },
+  {
+    "romaji": "Unten wa tanoshikute omoshiroi to omoimasu.",
+    "meaning": "I think driving is fun and interesting.",
+    "kana": "うんてんはたのしくておもしろいとおもいます",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "うんてん",
+      "は",
+      "たのしくて",
+      "おもしろい",
+      "と",
+      "おもいます"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Tanoshii → tanoshikute links two descriptions. Omou → omoimasu means think (polite).",
+    "guide": {
+      "forms": "Tanoshii → tanoshikute links two descriptions. Omou → omoimasu means think (polite).",
+      "particles": "Wa marks driving; to marks the thought: fun and interesting.",
+      "past": "Omoimasu → omoimashita = I thought driving was fun and interesting. To describe driving itself as past while keeping “I think,” use tanoshikute omoshirokatta to omoimasu.",
+      "swap": "Unten → ryouri: Ryouri wa tanoshikute omoshiroi to omoimasu. = I think cooking is fun and interesting."
+    },
+    "group": "Lesson 4 — Likes and skills"
+  },
+  {
+    "romaji": "Watashi wa shashin o toru no ga kirai desu. Muzukashii kara desu.",
+    "meaning": "I dislike taking photos because it’s difficult.",
+    "kana": "わたしはしゃしんをとるのがきらいですむずかしいからです",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "わたし",
+      "は",
+      "しゃしん",
+      "を",
+      "とる",
+      "の",
+      "が",
+      "きらい",
+      "です",
+      "むずかしい",
+      "から",
+      "です"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Toru (u-verb) means take a photo; it stays in dictionary form before no. Kirai is a na-adjective. Muzukashii is an i-adjective.",
+    "guide": {
+      "forms": "Toru (u-verb) means take a photo; it stays in dictionary form before no. Kirai is a na-adjective. Muzukashii is an i-adjective.",
+      "particles": "O marks photos; no turns taking photos into an activity; ga marks what you dislike; kara explains the reason.",
+      "past": "Kirai desu → kirai deshita; muzukashii → muzukashikatta: I disliked taking photos because it was difficult. Keep toru nonpast for the general activity.",
+      "swap": "Shashin o toru → oyogu: Watashi wa oyogu no ga kirai desu. Muzukashii kara desu. = I dislike swimming because it is difficult."
+    },
+    "group": "Lesson 4 — Likes and skills"
+  },
+  {
+    "romaji": "Sorekara, watashi wa ryouri o suru no ga jouzu desu. Omoshiroi to omou kara desu.",
+    "meaning": "Then, I’m good at cooking because I find it interesting.",
+    "kana": "それからわたしはりょうりをするのがじょうずですおもしろいとおもうからです",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "それから",
+      "わたし",
+      "は",
+      "りょうり",
+      "を",
+      "する",
+      "の",
+      "が",
+      "じょうず",
+      "です",
+      "おもしろい",
+      "と",
+      "おもう",
+      "から",
+      "です"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Suru stays in dictionary form before no. Jouzu is a na-adjective. Omou stays plain before kara, even though the sentence ends politely.",
+    "guide": {
+      "forms": "Suru stays in dictionary form before no. Jouzu is a na-adjective. Omou stays plain before kara, even though the sentence ends politely.",
+      "particles": "O marks cooking; no makes the activity a noun phrase; ga marks the skill; to marks the thought; kara means because.",
+      "past": "Jouzu desu → jouzu deshita; omou → omotta: Omoshiroi to omotta kara desu = because I thought it was interesting. Do not automatically make every embedded word past.",
+      "swap": "Ryouri o suru → e o kaku: Watashi wa e o kaku no ga jouzu desu. = I am good at drawing. Use this as a pattern; praising your own skill with jouzu can sound boastful in conversation."
+    },
+    "group": "Lesson 4 — Likes and skills"
+  },
+  {
+    "romaji": "Watashi wa supootsu o suru no ga heta desu. Amari renshuu shinai kara desu.",
+    "meaning": "I’m bad at sports because I don’t practice much.",
+    "kana": "わたしはスポーツをするのがへたですあまりれんしゅうしないからです",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "わたし",
+      "は",
+      "スポーツ",
+      "を",
+      "する",
+      "の",
+      "が",
+      "へた",
+      "です",
+      "あまり",
+      "れんしゅう",
+      "しない",
+      "から",
+      "です"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Suru stays unchanged before no. Renshuu suru → renshuu shinai is the plain negative of practice. Heta is a na-adjective.",
+    "guide": {
+      "forms": "Suru stays unchanged before no. Renshuu suru → renshuu shinai is the plain negative of practice. Heta is a na-adjective.",
+      "particles": "O marks sports; no makes doing sports an activity; ga marks the skill. Amari pairs with a negative for not much; kara gives the reason.",
+      "past": "Heta desu → heta deshita; shinai → shinakatta: Amari renshuu shinakatta kara desu = because I did not practice much.",
+      "swap": "Supootsu o suru → uta o utau: Watashi wa uta o utau no ga heta desu. = I am bad at singing."
+    },
+    "group": "Lesson 4 — Likes and skills"
+  },
+  {
+    "romaji": "Motto renshuu shimasu.",
+    "meaning": "I will practice more.",
+    "kana": "もっとれんしゅうします",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "もっと",
+      "れんしゅう",
+      "します"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Renshuu suru → renshuu shimasu. Polite nonpast can express future intention; motto means more.",
+    "guide": {
+      "forms": "Renshuu suru → renshuu shimasu. Polite nonpast can express future intention; motto means more.",
+      "particles": "No explicit particle is needed in this suru-verb phrase. The subject I is understood.",
+      "past": "Shimasu → shimashita: Motto renshuu shimashita. = I practiced more.",
+      "swap": "Renshuu → benkyou: Motto benkyou shimasu. = I will study more."
+    },
+    "group": "Lesson 4 — Likes and skills"
+  },
+  {
+    "romaji": "Kuroi shatsu o kite imasu.",
+    "meaning": "I’m wearing a black shirt.",
+    "kana": "くろいシャツをきています",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "くろい",
+      "シャツ",
+      "を",
+      "きて",
+      "います"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Kiru (ru-verb, to put on upper-body clothing) → kite + imasu. The resulting state is “am wearing.” Kuroi is an i-adjective.",
+    "guide": {
+      "forms": "Kiru (ru-verb, to put on upper-body clothing) → kite + imasu. The resulting state is “am wearing.” Kuroi is an i-adjective.",
+      "particles": "O marks the shirt being worn. The subject I is understood.",
+      "past": "Kite imasu → kite imashita = I was wearing a black shirt. Keep kite unchanged.",
+      "swap": "Kuroi → shiroi: Shiroi shatsu o kite imasu. = I am wearing a white shirt."
+    },
+    "group": "Lesson 5 — Clothing and appearance"
+  },
+  {
+    "romaji": "Kuroi zubon o haite imasu.",
+    "meaning": "I’m wearing black pants.",
+    "kana": "くろいズボンをはいています",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "くろい",
+      "ズボン",
+      "を",
+      "はいて",
+      "います"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Haku (u-verb, to put on lower-body clothing or footwear) → haite + imasu = am wearing. Ku → ite makes the te-form.",
+    "guide": {
+      "forms": "Haku (u-verb, to put on lower-body clothing or footwear) → haite + imasu = am wearing. Ku → ite makes the te-form.",
+      "particles": "O marks the pants. Kuroi directly describes zubon; no na is needed.",
+      "past": "Haite imasu → haite imashita = I was wearing black pants.",
+      "swap": "Kuroi → aoi: Aoi zubon o haite imasu. = I am wearing blue pants."
+    },
+    "group": "Lesson 5 — Clothing and appearance"
+  },
+  {
+    "romaji": "Chairoi kutsu o haite imasu.",
+    "meaning": "I’m wearing brown shoes.",
+    "kana": "ちゃいろいくつをはいています",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "ちゃいろい",
+      "くつ",
+      "を",
+      "はいて",
+      "います"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Haku → haite imasu is used for shoes as well as pants. Chairoi means brown and is an i-adjective.",
+    "guide": {
+      "forms": "Haku → haite imasu is used for shoes as well as pants. Chairoi means brown and is an i-adjective.",
+      "particles": "O marks shoes as the item worn. The subject I is understood.",
+      "past": "Haite imasu → haite imashita = I was wearing brown shoes.",
+      "swap": "Chairoi → kuroi: Kuroi kutsu o haite imasu. = I am wearing black shoes."
+    },
+    "group": "Lesson 5 — Clothing and appearance"
+  },
+  {
+    "romaji": "Kami ga mijikakute, se ga takai desu.",
+    "meaning": "My hair is short, and I’m tall.",
+    "kana": "かみがみじかくてせがたかいです",
+    "kind": "sentence",
+    "original": "",
+    "kana_tokens": [
+      "かみ",
+      "が",
+      "みじかくて",
+      "せ",
+      "が",
+      "たかい",
+      "です"
+    ],
+    "token_meanings": [
+      ""
+    ],
+    "grammar_note": "Mijikai → mijikakute links “hair is short” to the next description. Se ga takai literally means height is high. Both are i-adjectives.",
+    "guide": {
+      "forms": "Mijikai → mijikakute links “hair is short” to the next description. Se ga takai literally means height is high. Both are i-adjectives.",
+      "particles": "The first ga marks hair as the subject of short; the second ga marks height as the subject of high. My is understood from context.",
+      "past": "Change final takai → takakatta: Kami ga mijikakute, se ga takakatta desu. = My hair was short and I was tall. Desu stays desu after the past i-adjective.",
+      "swap": "Mijikakute → nagakute: Kami ga nagakute, se ga takai desu. = My hair is long and I am tall."
+    },
+    "group": "Lesson 5 — Clothing and appearance"
+  }
+]

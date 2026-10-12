@@ -14,6 +14,10 @@ def build():
     output = ROOT / "dist"
     if output.exists():
         shutil.rmtree(output)
+    (ROOT / "static" / "sentence-guide-data.json").write_text(
+        json.dumps(load_cards("lesson8-review.json"), ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     shutil.copytree(ROOT / "static", output / "static")
     (output / "data").mkdir()
     lessons = available_lessons()

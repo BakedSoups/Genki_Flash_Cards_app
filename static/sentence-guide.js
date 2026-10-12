@@ -20,9 +20,8 @@ async function loadSentenceGuide() {
   const select = document.querySelector('#guide-lesson');
   const message = document.querySelector('#guide-message');
   try {
-    // Both the standalone static build and the local Python app use the same data.
-    let response = await fetch('/data/lesson8-review.json.json');
-    if (!response.ok) response = await fetch('/api/lessons/lesson8-review.json');
+    // A bundled snapshot also works with an already-running local server.
+    const response = await fetch('/static/sentence-guide-data.json', {cache: 'no-cache'});
     if (!response.ok) throw new Error('Could not load the sentence guide. Please refresh.');
     const cards = await response.json();
     for (const group of new Set(cards.map(card => card.group))) {
