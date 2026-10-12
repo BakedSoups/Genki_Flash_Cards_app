@@ -111,10 +111,10 @@ function selectLessonDirection() {
     !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value)
   ));
   directionSelect.value = previousDirection;
-  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
+  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
   if (["lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
-  } else if (["lesson7-sentences.csv", "lesson8-sentences.csv"].includes(lessonSelect.value)) {
+  } else if (["lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
   } else if (lessonSelect.value === "learn-kanji.csv") {
     directionSelect.value = "kanji-romaji";
@@ -193,7 +193,7 @@ function directionFields(card) {
     return {prompt: card.spelling, answer: card.romaji, label: "Japanese → Romaji", instruction: "Type this word’s reading in romaji"};
   }
   if (card.kind === "sentence") {
-    return {prompt: card.meaning, answer: card.romaji, label: lessonSelect.selectedOptions[0]?.textContent || "Sentence practice",
+    return {prompt: card.prompt || card.meaning, answer: card.romaji, label: lessonSelect.selectedOptions[0]?.textContent || "Sentence practice",
       instruction: card.original ? "Write the answer in romaji" : "Translate into romaji (separate words and particles with spaces)"};
   }
   if (direction === "katakana-romaji") {
@@ -828,6 +828,11 @@ function checkAnswer(writingGrade = null) {
       const meaningLine = document.createElement("span");
       meaningLine.textContent = `Meaning: ${card.meaning}`;
       correction.append(meaningLine);
+    }
+    if (sentenceResult && card.prompt) {
+      const translation = document.createElement("span");
+      translation.textContent = card.meaning;
+      correction.append(translation);
     }
     if (sentenceResult && card.grammar_note) {
       const note = document.createElement("span");

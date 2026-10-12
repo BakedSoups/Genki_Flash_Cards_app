@@ -4,6 +4,9 @@ A lightweight Japanese flashcard web app powered by Python.
 
 ## Features
 
+- **Midterm Review Part 2** practices answering the bookstore directions question
+  in romaji, with Japanese, English, and verb explanations after checking.
+
 - Choose **Write kanji (drawing pad)** in a single-kanji lesson to draw with a
   finger, stylus, or mouse. Compare your drawing with the correct kanji beside it,
   then choose **Got it** or **Needs practice**. Scores use your own assessment.

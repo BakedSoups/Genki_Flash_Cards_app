@@ -16,7 +16,7 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 LESSON_PATTERN = re.compile(r"lesson(\d+)(?:-(\d+))?\.csv", re.IGNORECASE)
-SPECIAL_LESSONS = {"lesson7-kanji.csv": "Lesson 7 Kanji", "lesson9.json": "Lesson 9 Vocabulary", "lesson9-2.json": "Lesson 9-2 Vocabulary", "lesson9-katakana.json": "Lesson 9 Katakana", "lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
+SPECIAL_LESSONS = {"midterm-part2.csv": "Midterm Review Part 2", "lesson7-kanji.csv": "Lesson 7 Kanji", "lesson9.json": "Lesson 9 Vocabulary", "lesson9-2.json": "Lesson 9-2 Vocabulary", "lesson9-katakana.json": "Lesson 9 Katakana", "lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
 HISTORY_FILE = ROOT / "history.json"
 HISTORY_LOCK = threading.Lock()
 
@@ -85,6 +85,8 @@ def load_cards(filename: str) -> list[dict[str, str]]:
                     card["grammar_note"] = row[7].strip()
                 if card.get("kind") == "sentence" and len(row) >= 9 and row[8].strip():
                     card["verbs"] = json.loads(row[8])
+                if card.get("kind") == "sentence" and len(row) >= 10:
+                    card["prompt"] = row[9].strip()
                 if card.get("kind") == "reading-word" and len(row) >= 5:
                     card["spelling"] = row[4].strip()
                 cards.append(card)
