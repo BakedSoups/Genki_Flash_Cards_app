@@ -146,3 +146,12 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 .writing-actions button { flex: 1; padding: 10px; border: 1px solid #cacac6; border-radius: 10px; font: inherit; cursor: pointer; }
 #writing-right { background: #28714a; color: white; }
 .writing-actions button:disabled { opacity: .45; cursor: default; }
+.sentence-guide { margin-top: 18px; padding: 16px; border: 1px solid #dededb; border-radius: 12px; background: #f7f7f5; text-align: left; font-size: 1rem; line-height: 1.65; overflow-wrap: anywhere; }
+.sentence-guide h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.sentence-guide p { margin: 12px 0; }
+.guide-page { line-height: 1.65; }
+.guide-page header { align-items: center; flex-wrap: wrap; }
+.guide-card { padding: 18px; margin: 16px 0; background: white; border: 1px solid #dededb; border-radius: 16px; overflow-wrap: anywhere; }
+.guide-card summary { cursor: pointer; font-weight: 700; min-height: 44px; }
+.guide-japanese { font-size: 1.2rem; }
+.guide-romaji { color: #555; }

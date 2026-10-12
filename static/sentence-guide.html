@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sentence guides · Kotoba Cards</title>
+  <link rel="stylesheet" href="/static/style.css?v=13">
+</head>
+<body>
+<main class="guide-page">
+  <header><a class="brand" href="/">Kotoba <span>Cards</span></a><a href="/">Back to practice</a></header>
+  <h1>Understand the sentence</h1>
+  <p>Read the pattern, notice each particle, then change one word or the tense. The cards keep your original wording; the examples below show other ways to use it.</p>
+  <details class="guide-card" open>
+    <summary>The essentials: dictionary form, tense, and particles</summary>
+    <p><strong>Find the dictionary form:</strong> identify the verb and its group first. For a ru-verb, tabemasu → taberu. For a u-verb, nomimasu → nomu (i-row → u-row). Shimasu → suru and kimasu → kuru are irregular. You cannot reliably turn every -masu into -ru: kaerimasu → kaeru, but kaeru is a u-verb. Learn the dictionary form and group together.</p>
+    <p><strong>Plain vs polite:</strong> taberu / tabemasu mean eat or will eat; context supplies the time. Tabeta / tabemashita mean ate. A daily routine uses nonpast forms. Polite past is -masu → -mashita; polite negative past is -masen deshita.</p>
+    <p><strong>Plain past:</strong> ru-verbs drop ru + ta (taberu → tabeta). U-verbs: u/tsu/ru → tta; mu/bu/nu → nda; ku → ita; gu → ida; su → shita. Exceptions: iku → itta, suru → shita, kuru → kita. Plain negatives end in nai; nai → nakatta makes them past.</p>
+    <p><strong>Te-form is not past tense:</strong> use the same sound changes as plain past, but te/de instead of ta/da. Tabete links “eat and…”; tabeta says “ate.” In a chain such as abite, tabete, iku, change the final iku → itta to put the sequence in the past. Te + imasu can describe an ongoing action or a continuing state; te + imashita puts it in the past.</p>
+    <p><strong>Adjectives and nouns:</strong> i-adjective atsui → atsukatta; negative atsukunai → atsukunakatta. Ii/yoi → yokatta. Nouns and na-adjectives use da → datta, desu → deshita; janai → janakatta. Suki, kirai, and jouzu are na-adjectives. They are not verbs.</p>
+    <p><strong>Particles:</strong> wa marks the topic; ga marks the subject or what is liked / done well; o marks an object; ni marks a destination, existence location, specific time, or recipient; de marks where an action happens or the means used; to means “with,” joins nouns, or quotes a clause; no links nouns or turns a verb phrase into a noun. Their job depends on the sentence.</p>
+    <p><strong>Swap a whole unit:</strong> replace a noun while keeping its particle (basu de → densha de). Replace a verb while choosing the right group and particles (terebi o miru → ongaku o kiku). In verb + no ga patterns, keep the verb in dictionary form for a general activity; change suki desu → suki deshita to say you used to like it.</p>
+  </details>
+  <label for="guide-lesson">Lesson</label>
+  <select id="guide-lesson"><option value="all">All lessons</option></select>
+  <p id="guide-message" role="status">Loading sentence guides…</p>
+  <div id="guide-cards"></div>
+</main>
+<script src="/static/sentence-guide.js?v=1"></script>
+</body>
+</html>

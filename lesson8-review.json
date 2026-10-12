@@ -7,6 +7,10 @@
     {
       "file": "lesson8-letter.csv",
       "name": "Lesson 2 — Family letter"
+    },
+    {
+      "file": "lesson8-routine.csv",
+      "name": "Lesson 3 — Daily routine"
     }
   ]
 }
