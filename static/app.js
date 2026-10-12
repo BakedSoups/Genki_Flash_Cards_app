@@ -115,10 +115,10 @@ function selectLessonDirection() {
     !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value)
   ));
   directionSelect.value = previousDirection;
-  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-review.json", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
+  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "lesson8-review.json", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
   if (["lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
-  } else if (["lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-review.json"].includes(lessonSelect.value)) {
+  } else if (["lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "lesson8-review.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
   } else if (lessonSelect.value === "learn-kanji.csv") {
     directionSelect.value = "kanji-romaji";

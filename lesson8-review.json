@@ -11,6 +11,14 @@
     {
       "file": "lesson8-routine.csv",
       "name": "Lesson 3 — Daily routine"
+    },
+    {
+      "file": "lesson8-skills.csv",
+      "name": "Lesson 4 — Likes and skills"
+    },
+    {
+      "file": "lesson8-clothing.csv",
+      "name": "Lesson 5 — Clothing and appearance"
     }
   ]
 }

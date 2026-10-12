@@ -16,7 +16,7 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 LESSON_PATTERN = re.compile(r"lesson(\d+)(?:-(\d+))?\.csv", re.IGNORECASE)
-SPECIAL_LESSONS = {"lesson8-routine.csv": "Lesson 8 Review — Lesson 3", "lesson8-review.json": "Lesson 8 Review (Lessons 1–3)", "lesson8-letter.csv": "Lesson 8 Review — Lesson 2", "midterm-part2.csv": "Midterm Review Part 2", "lesson7-kanji.csv": "Lesson 7 Kanji", "lesson9.json": "Lesson 9 Vocabulary", "lesson9-2.json": "Lesson 9-2 Vocabulary", "lesson9-katakana.json": "Lesson 9 Katakana", "lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
+SPECIAL_LESSONS = {"lesson8-skills.csv": "Lesson 8 Review — Lesson 4", "lesson8-clothing.csv": "Lesson 8 Review — Lesson 5", "lesson8-routine.csv": "Lesson 8 Review — Lesson 3", "lesson8-review.json": "Lesson 8 Review (Lessons 1–5)", "lesson8-letter.csv": "Lesson 8 Review — Lesson 2", "midterm-part2.csv": "Midterm Review Part 2", "lesson7-kanji.csv": "Lesson 7 Kanji", "lesson9.json": "Lesson 9 Vocabulary", "lesson9-2.json": "Lesson 9-2 Vocabulary", "lesson9-katakana.json": "Lesson 9 Katakana", "lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
 HISTORY_FILE = ROOT / "history.json"
 HISTORY_LOCK = threading.Lock()
 
