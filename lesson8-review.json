@@ -1,0 +1,12 @@
+{
+  "lessons": [
+    {
+      "file": "lesson8-sentences.csv",
+      "name": "Lesson 1 — Grammar"
+    },
+    {
+      "file": "lesson8-letter.csv",
+      "name": "Lesson 2 — Family letter"
+    }
+  ]
+}

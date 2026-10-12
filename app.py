@@ -16,7 +16,7 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 LESSON_PATTERN = re.compile(r"lesson(\d+)(?:-(\d+))?\.csv", re.IGNORECASE)
-SPECIAL_LESSONS = {"midterm-part2.csv": "Midterm Review Part 2", "lesson7-kanji.csv": "Lesson 7 Kanji", "lesson9.json": "Lesson 9 Vocabulary", "lesson9-2.json": "Lesson 9-2 Vocabulary", "lesson9-katakana.json": "Lesson 9 Katakana", "lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
+SPECIAL_LESSONS = {"lesson8-review.json": "Lesson 8 Review (Lessons 1 + 2)", "lesson8-letter.csv": "Lesson 8 Review — Lesson 2", "midterm-part2.csv": "Midterm Review Part 2", "lesson7-kanji.csv": "Lesson 7 Kanji", "lesson9.json": "Lesson 9 Vocabulary", "lesson9-2.json": "Lesson 9-2 Vocabulary", "lesson9-katakana.json": "Lesson 9 Katakana", "lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
 HISTORY_FILE = ROOT / "history.json"
 HISTORY_LOCK = threading.Lock()
 
@@ -56,6 +56,9 @@ def load_cards(filename: str) -> list[dict[str, str]]:
 
     if path.suffix == ".json":
         entries = json.loads(path.read_text(encoding="utf-8"))
+        if filename == "lesson8-review.json":
+            return [dict(card, group=lesson["name"])
+                    for lesson in entries["lessons"] for card in load_cards(lesson["file"])]
         return [
             {"romaji": entry["romaji"], "meaning": entry["english"],
              "kana": entry["kana"], "spelling": entry["japanese"],

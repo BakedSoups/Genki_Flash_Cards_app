@@ -21,6 +21,13 @@
           <label for="lesson">Lesson</label>
           <select id="lesson" aria-label="Choose a lesson"></select>
 
+          <label id="review-part-label" for="review-part" hidden>Review lesson</label>
+          <select id="review-part" hidden>
+            <option value="all">All lessons — mixed order</option>
+            <option value="Lesson 1 — Grammar">Lesson 1 — Grammar</option>
+            <option value="Lesson 2 — Family letter">Lesson 2 — Family letter</option>
+          </select>
+
           <label for="mode">Study mode</label>
           <select id="mode" aria-label="Choose a study mode">
             <option value="removal">Flashcards with removal</option>
@@ -140,6 +147,6 @@
     </main>
     <script src="/static/sentence-practice.js?v=3"></script>
     <script src="/static/handwriting.js?v=1"></script>
-    <script src="/static/app.js?v=69"></script>
+    <script src="/static/app.js?v=70"></script>
   </body>
 </html>

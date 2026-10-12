@@ -10,6 +10,7 @@ const directionOptions = [...directionSelect.options];
 const wordSetSelect = document.querySelector("#word-set");
 const loopsSelect = document.querySelector("#loops");
 const shuffleSelect = document.querySelector("#shuffle");
+const reviewPartSelect = document.querySelector("#review-part");
 const hintsSelect = document.querySelector("#hints");
 const showKatakanaSelect = document.querySelector("#show-katakana");
 const startButton = document.querySelector("#start-button");
@@ -70,7 +71,7 @@ let fullHintUsedForCurrent = false;
 function saveSettings() {
   try {
     const settings = Object.fromEntries(
-      [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].map(select => [select.id, select.value])
+      [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect, reviewPartSelect].map(select => [select.id, select.value])
     );
     window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
   } catch { /* Keep working when browser storage is disabled. */ }
@@ -80,7 +81,7 @@ function restoreSettings() {
   try {
     window.localStorage.removeItem("kotoba-cards:active-session");
     const settings = JSON.parse(window.localStorage.getItem(SETTINGS_KEY)) || {};
-    [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].forEach(select => {
+    [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect, reviewPartSelect].forEach(select => {
       if ([...select.options].some(option => option.value === settings[select.id])) {
         select.value = settings[select.id];
       }
@@ -106,15 +107,18 @@ function saveLessonSelection(lesson) {
 }
 
 function selectLessonDirection() {
+  const isReview = lessonSelect.value === "lesson8-review.json";
+  reviewPartSelect.hidden = !isReview;
+  document.querySelector("#review-part-label").hidden = !isReview;
   const previousDirection = directionSelect.value;
   directionSelect.replaceChildren(...directionOptions.filter(option =>
     !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value)
   ));
   directionSelect.value = previousDirection;
-  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
+  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-review.json", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
   if (["lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
-  } else if (["lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv"].includes(lessonSelect.value)) {
+  } else if (["lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-review.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
   } else if (lessonSelect.value === "learn-kanji.csv") {
     directionSelect.value = "kanji-romaji";
@@ -193,7 +197,7 @@ function directionFields(card) {
     return {prompt: card.spelling, answer: card.romaji, label: "Japanese → Romaji", instruction: "Type this word’s reading in romaji"};
   }
   if (card.kind === "sentence") {
-    return {prompt: card.prompt || card.meaning, answer: card.romaji, label: lessonSelect.selectedOptions[0]?.textContent || "Sentence practice",
+    return {prompt: card.prompt || card.meaning, answer: card.romaji, label: card.group || lessonSelect.selectedOptions[0]?.textContent || "Sentence practice",
       instruction: card.original ? "Write the answer in romaji" : "Translate into romaji (separate words and particles with spaces)"};
   }
   if (direction === "katakana-romaji") {
@@ -621,6 +625,9 @@ async function startLesson() {
     const response = await fetch(lessonUrl(lessonSelect.value));
     if (!response.ok) throw new Error((await response.json()).error || "Could not load lesson");
     sourceCards = await response.json();
+    if (lessonSelect.value === "lesson8-review.json" && reviewPartSelect.value !== "all") {
+      sourceCards = sourceCards.filter(card => card.group === reviewPartSelect.value);
+    }
     const wordSet = modeSelect.value === "most-wrong" ? "crucial" : wordSetSelect.value;
     if (["crucial", "missed"].includes(wordSet)) {
       const crucialWords = new Set(crucialWordsForLesson(lessonSelect.value, wordSet === "missed" ? Infinity : 10));
@@ -657,11 +664,11 @@ async function startLesson() {
     }
     let orderedCards = sourceCards.map(card => ({ ...card }));
     if (hintsMode === "half") {
-      if (shuffleSelect.value === "yes") shuffleCards(orderedCards);
+      if (shuffleSelect.value === "yes" || lessonSelect.value === "lesson8-review.json" && reviewPartSelect.value === "all") shuffleCards(orderedCards);
       orderedCards = orderedCards.slice(0, Math.max(1, Math.floor(orderedCards.length / 2)));
       sourceCards = orderedCards.map(card => ({ ...card }));
     }
-    if (shuffleSelect.value === "yes") shuffleCards(orderedCards);
+    if (shuffleSelect.value === "yes" || lessonSelect.value === "lesson8-review.json" && reviewPartSelect.value === "all") shuffleCards(orderedCards);
     wordStats = Object.fromEntries(orderedCards.map(card => [card.romaji, {
       romaji: card.romaji,
       meaning: card.meaning,
@@ -1046,7 +1053,7 @@ document.addEventListener("keydown", event => {
   }
 });
 
-[modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].forEach(select => {
+[modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect, reviewPartSelect].forEach(select => {
   select.addEventListener("change", saveSettings);
 });
 document.querySelector("#history-storage-note").hidden = !staticSite;

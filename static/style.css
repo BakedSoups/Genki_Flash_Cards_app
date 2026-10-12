@@ -113,7 +113,7 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 }
 
 .sentence-card #prompt-word { font-family: inherit; font-size: clamp(1.15rem, 2.5vw, 1.5rem); line-height: 1.4; }
-#sentence-original { color: #444; text-align: center; margin-bottom: 16px; }
+#sentence-original { white-space: pre-line; color: #444; text-align: center; margin-bottom: 16px; }
 .sentence-card form { width: 100%; flex-wrap: wrap; }
 .sentence-card #answer { flex-basis: 100%; }
 .sentence-tokens { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
