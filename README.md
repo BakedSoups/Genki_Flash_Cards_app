@@ -4,11 +4,11 @@ A lightweight Japanese flashcard web app powered by Python.
 
 ## Features
 
-- **Lesson 8 Review** lets you select Lesson 1 (grammar), Lesson 2 (an 18-card
+- **Lesson 8 Review** lets you select Lesson 1 (three bookstore-direction segments), Lesson 2 (an 18-card
   family letter), Lesson 3 (an 11-card daily routine), Lesson 4 (likes and skills), Lesson 5 (clothing and appearance, kana only),
-  or all 61 cards mixed together.
+  or all 43 cards mixed together.
   Use the Lesson 1–5 checkboxes to mix any subset. Choices are remembered, and
-  cards, results, and saved runs retain their lesson labels. The sentence guide explains all 61 cards
+  cards, results, and saved runs retain their lesson labels. The sentence guide explains all 43 cards
   with dictionary forms, particles, past-tense changes, and word substitutions.
 
 - **Midterm Review Part 2** practices answering the bookstore directions question
@@ -154,3 +154,7 @@ framework preset; `vercel.json` supplies the build command and `dist` output
 folder. No database, environment variables, or Python server is required at
 runtime. Only static assets and lesson JSON are exported; personal study history
 is excluded. Rebuild after editing lesson CSV files.
+
+The same Lesson 1–5 checkboxes are available under **Midterm Review Part 2**.
+Lesson 1 contains only the bookstore directions; the original grammar deck remains
+available separately as **Lesson 8 Sentences**.

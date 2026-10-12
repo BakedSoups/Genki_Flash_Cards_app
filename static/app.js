@@ -87,7 +87,7 @@ function restoreSettings() {
     const settings = JSON.parse(window.localStorage.getItem(SETTINGS_KEY)) || {};
     const savedGroups = Array.isArray(settings.reviewGroups) ? settings.reviewGroups
       : settings["review-part"] && settings["review-part"] !== "all" ? [settings["review-part"]] : null;
-    if (savedGroups) reviewChecks.forEach(input => { input.checked = savedGroups.includes(input.value); });
+    if (savedGroups) reviewChecks.forEach(input => { input.checked = savedGroups.includes(input.value) || input.value === "Lesson 1 — Directions" && savedGroups.includes("Lesson 1 — Grammar"); });
     [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].forEach(select => {
       if ([...select.options].some(option => option.value === settings[select.id])) {
         select.value = settings[select.id];
@@ -114,17 +114,17 @@ function saveLessonSelection(lesson) {
 }
 
 function selectLessonDirection() {
-  const isReview = lessonSelect.value === "lesson8-review.json";
+  const isReview = ["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value);
   reviewParts.hidden = !isReview;
   const previousDirection = directionSelect.value;
   directionSelect.replaceChildren(...directionOptions.filter(option =>
     !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value)
   ));
   directionSelect.value = previousDirection;
-  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "lesson8-review.json", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
+  directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "midterm-directions.csv", "lesson8-review.json", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
   if (["lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
-  } else if (["lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "lesson8-review.json"].includes(lessonSelect.value)) {
+  } else if (["lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "midterm-directions.csv", "lesson8-review.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
   } else if (lessonSelect.value === "learn-kanji.csv") {
     directionSelect.value = "kanji-romaji";
@@ -639,7 +639,7 @@ async function startLesson() {
     const response = await fetch(lessonUrl(lessonSelect.value));
     if (!response.ok) throw new Error((await response.json()).error || "Could not load lesson");
     sourceCards = await response.json();
-    if (lessonSelect.value === "lesson8-review.json") {
+    if (["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value)) {
       const selected = selectedReviewGroups();
       if (!selected.length) throw new Error("Select at least one review lesson.");
       sourceCards = sourceCards.filter(card => selected.includes(card.group));
@@ -680,11 +680,11 @@ async function startLesson() {
     }
     let orderedCards = sourceCards.map(card => ({ ...card }));
     if (hintsMode === "half") {
-      if (shuffleSelect.value === "yes" || lessonSelect.value === "lesson8-review.json" && selectedReviewGroups().length > 1) shuffleCards(orderedCards);
+      if (shuffleSelect.value === "yes" || ["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value) && selectedReviewGroups().length > 1) shuffleCards(orderedCards);
       orderedCards = orderedCards.slice(0, Math.max(1, Math.floor(orderedCards.length / 2)));
       sourceCards = orderedCards.map(card => ({ ...card }));
     }
-    if (shuffleSelect.value === "yes" || lessonSelect.value === "lesson8-review.json" && selectedReviewGroups().length > 1) shuffleCards(orderedCards);
+    if (shuffleSelect.value === "yes" || ["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value) && selectedReviewGroups().length > 1) shuffleCards(orderedCards);
     practicedGroups = [...new Set(orderedCards.map(card => card.group).filter(Boolean))].sort();
     wordStats = Object.fromEntries(orderedCards.map(card => [card.romaji, {
       group: card.group || "",

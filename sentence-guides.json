@@ -364,5 +364,23 @@
     "particles": "The first ga marks hair as the subject of short; the second ga marks height as the subject of high. My is understood from context.",
     "past": "Change final takai → takakatta: Kami ga mijikakute, se ga takakatta desu. = My hair was short and I was tall. Desu stays desu after the past i-adjective.",
     "swap": "Mijikakute → nagakute: Kami ga nagakute, se ga takai desu. = My hair is long and I am tall."
+  },
+  "Massugu itte,": {
+    "forms": "Iku (to go) → itte, the irregular te-form. Here it links “go straight” to the following instruction; it is not past tense.",
+    "particles": "Massugu describes how to go. No particle is needed between this adverb and itte.",
+    "past": "For a past statement, iku → itta: Massugu itta. = I went straight. The original is an instruction, not a past event.",
+    "swap": "Replace massugu with yukkuri: Yukkuri itte. = Go slowly. This card is the opening segment of the full answer."
+  },
+  "Futatsume no kado o hidari ni magatte kudasai.": {
+    "forms": "Magaru (u-verb, to turn) → magatte + kudasai = please turn. Futatsume means second.",
+    "particles": "No links second and corner. O marks the corner where you turn; ni marks the direction, left.",
+    "past": "A request does not become a past request. To report the action: Futatsume no kado o hidari ni magatta. = I turned left at the second corner.",
+    "swap": "Hidari → migi: Futatsume no kado o migi ni magatte kudasai. = Turn right at the second corner. Futatsume → hitotsume changes it to the first corner."
+  },
+  "Honya wa michi no hidarigawa ni arimasu yo.": {
+    "forms": "Aru (u-verb, to exist) → arimasu, polite nonpast. Use aru for a place or inanimate thing, not iru.",
+    "particles": "Wa marks bookstore as topic; no links street to its left side; ni marks where it is; yo adds information for the listener.",
+    "past": "Arimasu → arimashita: Honya wa michi no hidarigawa ni arimashita. = The bookstore was on the left side of the street.",
+    "swap": "Honya → ginkou and hidarigawa → migigawa: Ginkou wa michi no migigawa ni arimasu yo. = The bank is on the right side of the street."
   }
 }
