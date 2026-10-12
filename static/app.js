@@ -10,7 +10,10 @@ const directionOptions = [...directionSelect.options];
 const wordSetSelect = document.querySelector("#word-set");
 const loopsSelect = document.querySelector("#loops");
 const shuffleSelect = document.querySelector("#shuffle");
-const reviewPartSelect = document.querySelector("#review-part");
+const reviewParts = document.querySelector("#review-parts");
+const reviewChecks = [...reviewParts.querySelectorAll("input")];
+const selectedReviewGroups = () => reviewChecks.filter(input => input.checked).map(input => input.value);
+let practicedGroups = [];
 const hintsSelect = document.querySelector("#hints");
 const showKatakanaSelect = document.querySelector("#show-katakana");
 const startButton = document.querySelector("#start-button");
@@ -71,8 +74,9 @@ let fullHintUsedForCurrent = false;
 function saveSettings() {
   try {
     const settings = Object.fromEntries(
-      [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect, reviewPartSelect].map(select => [select.id, select.value])
+      [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].map(select => [select.id, select.value])
     );
+    settings.reviewGroups = selectedReviewGroups();
     window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
   } catch { /* Keep working when browser storage is disabled. */ }
 }
@@ -81,7 +85,10 @@ function restoreSettings() {
   try {
     window.localStorage.removeItem("kotoba-cards:active-session");
     const settings = JSON.parse(window.localStorage.getItem(SETTINGS_KEY)) || {};
-    [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect, reviewPartSelect].forEach(select => {
+    const savedGroups = Array.isArray(settings.reviewGroups) ? settings.reviewGroups
+      : settings["review-part"] && settings["review-part"] !== "all" ? [settings["review-part"]] : null;
+    if (savedGroups) reviewChecks.forEach(input => { input.checked = savedGroups.includes(input.value); });
+    [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].forEach(select => {
       if ([...select.options].some(option => option.value === settings[select.id])) {
         select.value = settings[select.id];
       }
@@ -108,8 +115,7 @@ function saveLessonSelection(lesson) {
 
 function selectLessonDirection() {
   const isReview = lessonSelect.value === "lesson8-review.json";
-  reviewPartSelect.hidden = !isReview;
-  document.querySelector("#review-part-label").hidden = !isReview;
+  reviewParts.hidden = !isReview;
   const previousDirection = directionSelect.value;
   directionSelect.replaceChildren(...directionOptions.filter(option =>
     !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value)
@@ -469,6 +475,12 @@ function finishLesson() {
     const meaning = document.createElement("span");
     meaning.className = "chart-meaning";
     meaning.textContent = stat.meaning;
+    if (stat.group) {
+      const group = document.createElement("span");
+      group.className = "chart-reading";
+      group.textContent = stat.group;
+      label.append(group);
+    }
     label.append(answer, meaning);
     if (card?.kana) {
       const japanese = document.createElement("span");
@@ -514,6 +526,7 @@ async function saveRunHistory() {
         correct: correctAnswers,
         attempts,
         words: Object.values(wordStats),
+        groups: practicedGroups,
     };
     if (staticSite) {
       entry.timestamp = new Date().toISOString();
@@ -584,6 +597,7 @@ function renderHistory() {
     meta.className = "run-meta";
     const setName = run.word_set === "missed" ? "cards I got wrong" : run.word_set === "crucial" ? "crucial words" : "all words";
     meta.textContent = `${run.correct}/${run.attempts} · ${setName} · ${run.direction} · ${run.loops} ${run.loops === 1 ? "loop" : "loops"}`;
+    if (run.groups?.length) meta.textContent += ` · ${run.groups.join("; ")}`;
     details.append(meta);
     const score = document.createElement("span");
     score.className = "run-score";
@@ -625,8 +639,10 @@ async function startLesson() {
     const response = await fetch(lessonUrl(lessonSelect.value));
     if (!response.ok) throw new Error((await response.json()).error || "Could not load lesson");
     sourceCards = await response.json();
-    if (lessonSelect.value === "lesson8-review.json" && reviewPartSelect.value !== "all") {
-      sourceCards = sourceCards.filter(card => card.group === reviewPartSelect.value);
+    if (lessonSelect.value === "lesson8-review.json") {
+      const selected = selectedReviewGroups();
+      if (!selected.length) throw new Error("Select at least one review lesson.");
+      sourceCards = sourceCards.filter(card => selected.includes(card.group));
     }
     const wordSet = modeSelect.value === "most-wrong" ? "crucial" : wordSetSelect.value;
     if (["crucial", "missed"].includes(wordSet)) {
@@ -664,12 +680,14 @@ async function startLesson() {
     }
     let orderedCards = sourceCards.map(card => ({ ...card }));
     if (hintsMode === "half") {
-      if (shuffleSelect.value === "yes" || lessonSelect.value === "lesson8-review.json" && reviewPartSelect.value === "all") shuffleCards(orderedCards);
+      if (shuffleSelect.value === "yes" || lessonSelect.value === "lesson8-review.json" && selectedReviewGroups().length > 1) shuffleCards(orderedCards);
       orderedCards = orderedCards.slice(0, Math.max(1, Math.floor(orderedCards.length / 2)));
       sourceCards = orderedCards.map(card => ({ ...card }));
     }
-    if (shuffleSelect.value === "yes" || lessonSelect.value === "lesson8-review.json" && reviewPartSelect.value === "all") shuffleCards(orderedCards);
+    if (shuffleSelect.value === "yes" || lessonSelect.value === "lesson8-review.json" && selectedReviewGroups().length > 1) shuffleCards(orderedCards);
+    practicedGroups = [...new Set(orderedCards.map(card => card.group).filter(Boolean))].sort();
     wordStats = Object.fromEntries(orderedCards.map(card => [card.romaji, {
+      group: card.group || "",
       romaji: card.romaji,
       meaning: card.meaning,
       attempts: 0,
@@ -1054,7 +1072,7 @@ document.addEventListener("keydown", event => {
   }
 });
 
-[modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect, reviewPartSelect].forEach(select => {
+[modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].forEach(select => {
   select.addEventListener("change", saveSettings);
 });
 document.querySelector("#history-storage-note").hidden = !staticSite;
@@ -1062,3 +1080,11 @@ loadLessons();
 
 document.querySelector("#writing-right").addEventListener("click", () => checkAnswer(true));
 document.querySelector("#writing-wrong").addEventListener("click", () => checkAnswer(false));
+
+reviewChecks.forEach(input => input.addEventListener("change", saveSettings));
+for (const [id, checked] of [["review-all", true], ["review-none", false]]) {
+  document.querySelector(`#${id}`).addEventListener("click", () => {
+    reviewChecks.forEach(input => { input.checked = checked; });
+    saveSettings();
+  });
+}

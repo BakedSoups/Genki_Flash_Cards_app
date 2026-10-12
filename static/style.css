@@ -155,3 +155,9 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 .guide-card summary { cursor: pointer; font-weight: 700; min-height: 44px; }
 .guide-japanese { font-size: 1.2rem; }
 .guide-romaji { color: #555; }
+
+#review-parts { min-width: 0; margin: 12px 0; border: 1px solid #dededb; border-radius: 12px; padding: 14px; }
+#review-parts legend { font-weight: 700; }
+#review-parts label { display: flex; align-items: center; gap: 10px; min-height: 48px; margin: 0; font-weight: 500; }
+#review-parts input { width: 22px; height: 22px; min-height: 22px; flex-shrink: 0; accent-color: #28714a; }
+.review-selection-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }

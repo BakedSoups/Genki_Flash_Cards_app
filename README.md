@@ -7,7 +7,8 @@ A lightweight Japanese flashcard web app powered by Python.
 - **Lesson 8 Review** lets you select Lesson 1 (grammar), Lesson 2 (an 18-card
   family letter), Lesson 3 (an 11-card daily routine), Lesson 4 (likes and skills), Lesson 5 (clothing and appearance, kana only),
   or all 61 cards mixed together.
-  Each card retains its lesson label. The sentence guide explains all 61 cards
+  Use the Lesson 1–5 checkboxes to mix any subset. Choices are remembered, and
+  cards, results, and saved runs retain their lesson labels. The sentence guide explains all 61 cards
   with dictionary forms, particles, past-tense changes, and word substitutions.
 
 - **Midterm Review Part 2** practices answering the bookstore directions question

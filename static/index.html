@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#f3f3f1">
     <title>Kotoba Cards</title>
-    <link rel="stylesheet" href="/static/style.css?v=13">
+    <link rel="stylesheet" href="/static/style.css?v=14">
   </head>
   <body>
     <main>
@@ -21,15 +21,16 @@
           <label for="lesson">Lesson</label>
           <select id="lesson" aria-label="Choose a lesson"></select>
 
-          <label id="review-part-label" for="review-part" hidden>Review lesson</label>
-          <select id="review-part" hidden>
-            <option value="all">All lessons — mixed order</option>
-            <option value="Lesson 1 — Grammar">Lesson 1 — Grammar</option>
-            <option value="Lesson 2 — Family letter">Lesson 2 — Family letter</option>
-            <option value="Lesson 3 — Daily routine">Lesson 3 — Daily routine</option>
-            <option value="Lesson 4 — Likes and skills">Lesson 4 — Likes and skills</option>
-            <option value="Lesson 5 — Clothing and appearance">Lesson 5 — Clothing and appearance</option>
-          </select>
+          <fieldset id="review-parts" hidden>
+            <legend>Choose review lessons</legend>
+            <label><input type="checkbox" value="Lesson 1 — Grammar" checked> Lesson 1 — Grammar</label>
+            <label><input type="checkbox" value="Lesson 2 — Family letter" checked> Lesson 2 — Family letter</label>
+            <label><input type="checkbox" value="Lesson 3 — Daily routine" checked> Lesson 3 — Daily routine</label>
+            <label><input type="checkbox" value="Lesson 4 — Likes and skills" checked> Lesson 4 — Likes and skills</label>
+            <label><input type="checkbox" value="Lesson 5 — Clothing and appearance" checked> Lesson 5 — Clothing and appearance</label>
+            <div class="review-selection-actions"><button id="review-all" type="button">Select all</button><button id="review-none" type="button">Clear all</button></div>
+            <p class="setup-help">Selected lessons are mixed together. Each card keeps its lesson label.</p>
+          </fieldset>
 
           <a href="/static/sentence-guide.html">Sentence guides: Lessons 1–5</a>
 
@@ -153,6 +154,6 @@
     <script src="/static/sentence-practice.js?v=3"></script>
     <script src="/static/handwriting.js?v=1"></script>
     <script src="/static/sentence-guide.js?v=2"></script>
-    <script src="/static/app.js?v=72"></script>
+    <script src="/static/app.js?v=73"></script>
   </body>
 </html>

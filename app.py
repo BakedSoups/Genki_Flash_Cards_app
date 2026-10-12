@@ -119,7 +119,11 @@ def save_history_entry(value: object) -> dict[str, object]:
     if not isinstance(lesson, str) or (lesson not in SPECIAL_LESSONS and not LESSON_PATTERN.fullmatch(lesson)):
         raise ValueError("Invalid lesson")
 
+    groups = value.get("groups", [])
+    if not isinstance(groups, list) or any(not isinstance(group, str) for group in groups):
+        raise ValueError("Review groups must be a list of strings")
     entry = {
+        "groups": [group[:100] for group in groups[:5]],
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "lesson": lesson,
         "mode": str(value.get("mode", ""))[:30],
