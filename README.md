@@ -162,3 +162,7 @@ available separately as **Lesson 8 Sentences**.
 Lesson 1 unlocks the full bookstore-directions answer once all three segments
 are recalled correctly without hints in the current run. The whole answer is
 then practiced as one card and included in the score and history.
+
+Lesson 2 has nested section checkboxes for greeting, weather, family members,
+residence, ages, jobs and school, activities together, and closing. Selections
+are remembered; section labels are retained in cards, results, and run history.

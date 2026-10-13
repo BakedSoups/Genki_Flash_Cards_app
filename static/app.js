@@ -11,8 +11,17 @@ const wordSetSelect = document.querySelector("#word-set");
 const loopsSelect = document.querySelector("#loops");
 const shuffleSelect = document.querySelector("#shuffle");
 const reviewParts = document.querySelector("#review-parts");
-const reviewChecks = [...reviewParts.querySelectorAll("input")];
+const reviewChecks = [...reviewParts.querySelectorAll(":scope > label input")];
 const selectedReviewGroups = () => reviewChecks.filter(input => input.checked).map(input => input.value);
+const familyChecks = [...document.querySelectorAll("#family-topics input")];
+const familyParent = reviewChecks.find(input => input.value === "Lesson 2 — Family letter");
+const selectedFamilyTopics = () => familyChecks.filter(input => input.checked).map(input => input.value);
+function syncFamilyParent() {
+  const count = selectedFamilyTopics().length;
+  familyParent.checked = count > 0;
+  familyParent.indeterminate = count > 0 && count < familyChecks.length;
+}
+let practicedTopics = [];
 let practicedGroups = [];
 let pendingFullAnswer = null;
 let masteredSegments = new Set();
@@ -79,6 +88,7 @@ function saveSettings() {
       [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].map(select => [select.id, select.value])
     );
     settings.reviewGroups = selectedReviewGroups();
+    settings.familyTopics = selectedFamilyTopics();
     window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
   } catch { /* Keep working when browser storage is disabled. */ }
 }
@@ -90,6 +100,9 @@ function restoreSettings() {
     const savedGroups = Array.isArray(settings.reviewGroups) ? settings.reviewGroups
       : settings["review-part"] && settings["review-part"] !== "all" ? [settings["review-part"]] : null;
     if (savedGroups) reviewChecks.forEach(input => { input.checked = savedGroups.includes(input.value) || input.value === "Lesson 1 — Directions" && savedGroups.includes("Lesson 1 — Grammar"); });
+    familyChecks.forEach(input => { input.checked = Array.isArray(settings.familyTopics)
+      ? familyParent.checked && settings.familyTopics.includes(input.value) : familyParent.checked; });
+    syncFamilyParent();
     [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].forEach(select => {
       if ([...select.options].some(option => option.value === settings[select.id])) {
         select.value = settings[select.id];
@@ -205,7 +218,7 @@ function directionFields(card) {
     return {prompt: card.spelling, answer: card.romaji, label: "Japanese → Romaji", instruction: "Type this word’s reading in romaji"};
   }
   if (card.kind === "sentence") {
-    return {prompt: card.prompt || card.meaning, answer: card.romaji, label: card.group || lessonSelect.selectedOptions[0]?.textContent || "Sentence practice",
+    return {prompt: card.prompt || card.meaning, answer: card.romaji, label: [card.group || lessonSelect.selectedOptions[0]?.textContent || "Sentence practice", card.topic].filter(Boolean).join(" · "),
       instruction: card.original ? "Write the answer in romaji" : "Translate into romaji (separate words and particles with spaces)"};
   }
   if (direction === "katakana-romaji") {
@@ -485,7 +498,7 @@ function finishLesson() {
     if (stat.group) {
       const group = document.createElement("span");
       group.className = "chart-reading";
-      group.textContent = stat.group;
+      group.textContent = [stat.group, stat.topic].filter(Boolean).join(" · ");
       label.append(group);
     }
     label.append(answer, meaning);
@@ -534,6 +547,7 @@ async function saveRunHistory() {
         attempts,
         words: Object.values(wordStats),
         groups: practicedGroups,
+        topics: practicedTopics,
     };
     if (staticSite) {
       entry.timestamp = new Date().toISOString();
@@ -605,6 +619,7 @@ function renderHistory() {
     const setName = run.word_set === "missed" ? "cards I got wrong" : run.word_set === "crucial" ? "crucial words" : "all words";
     meta.textContent = `${run.correct}/${run.attempts} · ${setName} · ${run.direction} · ${run.loops} ${run.loops === 1 ? "loop" : "loops"}`;
     if (run.groups?.length) meta.textContent += ` · ${run.groups.join("; ")}`;
+    if (run.topics?.length) meta.textContent += ` · Sections: ${run.topics.join(", ")}`;
     details.append(meta);
     const score = document.createElement("span");
     score.className = "run-score";
@@ -649,7 +664,8 @@ async function startLesson() {
     if (["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value)) {
       const selected = selectedReviewGroups();
       if (!selected.length) throw new Error("Select at least one review lesson.");
-      sourceCards = sourceCards.filter(card => selected.includes(card.group));
+      sourceCards = sourceCards.filter(card => selected.includes(card.group)
+        && (card.group !== "Lesson 2 — Family letter" || selectedFamilyTopics().includes(card.topic)));
     }
     const wordSet = modeSelect.value === "most-wrong" ? "crucial" : wordSetSelect.value;
     if (["crucial", "missed"].includes(wordSet)) {
@@ -697,9 +713,11 @@ async function startLesson() {
     if (pendingFullAnswer && !pendingFullAnswer.requires.every(answer => orderedCards.some(card => card.romaji === answer))) {
       pendingFullAnswer = null;
     }
+    practicedTopics = [...new Set(orderedCards.map(card => card.topic).filter(Boolean))];
     practicedGroups = [...new Set(orderedCards.map(card => card.group).filter(Boolean))].sort();
     wordStats = Object.fromEntries(orderedCards.map(card => [card.romaji, {
       group: card.group || "",
+      topic: card.topic || "",
       romaji: card.romaji,
       meaning: card.meaning,
       attempts: 0,
@@ -1097,10 +1115,22 @@ loadLessons();
 document.querySelector("#writing-right").addEventListener("click", () => checkAnswer(true));
 document.querySelector("#writing-wrong").addEventListener("click", () => checkAnswer(false));
 
-reviewChecks.forEach(input => input.addEventListener("change", saveSettings));
+reviewChecks.forEach(input => input.addEventListener("change", () => {
+  if (input === familyParent) {
+    familyChecks.forEach(child => { child.checked = input.checked; });
+    syncFamilyParent();
+  }
+  saveSettings();
+}));
+familyChecks.forEach(input => input.addEventListener("change", () => {
+  syncFamilyParent();
+  saveSettings();
+}));
 for (const [id, checked] of [["review-all", true], ["review-none", false]]) {
   document.querySelector(`#${id}`).addEventListener("click", () => {
     reviewChecks.forEach(input => { input.checked = checked; });
+    familyChecks.forEach(input => { input.checked = checked; });
+    syncFamilyParent();
     saveSettings();
   });
 }

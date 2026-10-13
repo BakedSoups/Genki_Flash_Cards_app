@@ -93,6 +93,8 @@ def load_cards(filename: str) -> list[dict[str, str]]:
                     card["verbs"] = json.loads(row[8])
                 if card.get("kind") == "sentence" and len(row) >= 10:
                     card["prompt"] = row[9].strip()
+                if card.get("kind") == "sentence" and len(row) >= 11:
+                    card["topic"] = row[10].strip()
                 if card.get("kind") == "reading-word" and len(row) >= 5:
                     card["spelling"] = row[4].strip()
                 cards.append(card)
@@ -142,7 +144,11 @@ def save_history_entry(value: object) -> dict[str, object]:
     groups = value.get("groups", [])
     if not isinstance(groups, list) or any(not isinstance(group, str) for group in groups):
         raise ValueError("Review groups must be a list of strings")
+    topics = value.get("topics", [])
+    if not isinstance(topics, list) or any(not isinstance(topic, str) for topic in topics):
+        raise ValueError("Review topics must be a list of strings")
     entry = {
+        "topics": [topic[:100] for topic in topics[:8]],
         "groups": [group[:100] for group in groups[:5]],
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "lesson": lesson,

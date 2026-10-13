@@ -172,6 +172,8 @@
       ""
     ],
     "grammar_note": "Ogenki desu ka asks how someone is doing.",
+    "prompt": "",
+    "topic": "Greeting",
     "guide": {
       "forms": "Konnichiwa is a greeting; genki is a na-adjective. Desu makes the question polite.",
       "particles": "O- is a polite prefix in ogenki; ka marks the question.",
@@ -199,6 +201,8 @@
       ""
     ],
     "grammar_note": "No links Tokyo to its weather; dou desu ka asks what it is like.",
+    "prompt": "",
+    "topic": "Weather",
     "guide": {
       "forms": "Dou desu ka asks how something is. There is no action verb here.",
       "particles": "No links Tokyo and its weather; wa marks the weather as topic; ka makes the question.",
@@ -226,6 +230,8 @@
       ""
     ],
     "grammar_note": "Yoi means good or nice. San Furanshisuko is written as two romaji words here.",
+    "prompt": "",
+    "topic": "Weather",
     "guide": {
       "forms": "Yoi is the standard form related to ii (good), an i-adjective.",
       "particles": "No links the city and weather; wa marks the topic.",
@@ -257,6 +263,8 @@
       ""
     ],
     "grammar_note": "To joins family members; hitori counts one person. Imasu is the polite form of iru, used for people.",
+    "prompt": "",
+    "topic": "Family members",
     "guide": {
       "forms": "iru (ru-verb) → imasu: people exist / I have family members. Hitori means one person.",
       "particles": "Ni wa presents your situation; to lists family; ga marks who exists. Hitori is intended to count the younger sister here.",
@@ -285,6 +293,8 @@
       ""
     ],
     "grammar_note": "Sumu → sunde + imasu means live / reside. Ni marks where they live.",
+    "prompt": "",
+    "topic": "Where they live",
     "guide": {
       "forms": "sumu (u-verb) → sunde + iru → sunde imasu: live / reside.",
       "particles": "To joins father and mother; wa marks them as topic; ni marks residence.",
@@ -313,6 +323,8 @@
       ""
     ],
     "grammar_note": "Demo means but. Sumu → sunde imasu describes where someone lives.",
+    "prompt": "",
+    "topic": "Where they live",
     "guide": {
       "forms": "sumu → sunde imasu. Demo introduces a contrast.",
       "particles": "Wa marks the younger sister; ni marks where she lives.",
@@ -337,6 +349,8 @@
       ""
     ],
     "grammar_note": "Rokujussai means sixty years old. Keep the doubled ss.",
+    "prompt": "",
+    "topic": "Ages",
     "guide": {
       "forms": "Rokujussai is an age expression, not a verb. Desu is the polite copula.",
       "particles": "Wa marks father as the topic.",
@@ -361,6 +375,8 @@
       ""
     ],
     "grammar_note": "Gojussai means fifty years old.",
+    "prompt": "",
+    "topic": "Ages",
     "guide": {
       "forms": "Gojussai is an age expression; desu is the polite ending.",
       "particles": "Wa marks mother as the topic.",
@@ -385,6 +401,8 @@
       ""
     ],
     "grammar_note": "Juuhassai means eighteen years old; hassai uses doubled ss.",
+    "prompt": "",
+    "topic": "Ages",
     "guide": {
       "forms": "Juuhassai means eighteen years old; desu links it to the topic.",
       "particles": "Wa marks the younger sister.",
@@ -413,6 +431,8 @@
       ""
     ],
     "grammar_note": "Suru → shite + imasu describes an occupation. Kensetsu no shigoto means construction work.",
+    "prompt": "",
+    "topic": "Jobs and school",
     "guide": {
       "forms": "suru → shite + iru → shite imasu: doing work / working in an occupation.",
       "particles": "Wa marks father; no describes the kind of work; o marks shigoto as the object of suru.",
@@ -441,6 +461,8 @@
       ""
     ],
     "grammar_note": "Jimu means office / administrative work here. Shite imasu comes from suru, to do.",
+    "prompt": "",
+    "topic": "Jobs and school",
     "guide": {
       "forms": "suru → shite imasu. Jimu here means office administration, not the gym (jimu in katakana).",
       "particles": "Wa marks mother; no connects office work to shigoto; o marks the object.",
@@ -465,6 +487,8 @@
       ""
     ],
     "grammar_note": "Daigakusei means college student.",
+    "prompt": "",
+    "topic": "Jobs and school",
     "guide": {
       "forms": "Daigakusei is a noun. Desu is the polite copula; plain form is da.",
       "particles": "Wa marks the younger sister as topic.",
@@ -490,6 +514,8 @@
       ""
     ],
     "grammar_note": "To means with; miru → mimasu means watch (polite).",
+    "prompt": "",
+    "topic": "Activities together",
     "guide": {
       "forms": "miru (ru-verb) → mimasu: drop ru and add masu.",
       "particles": "To means with father; o marks TV as what you watch. The subject I is understood.",
@@ -515,6 +541,8 @@
       ""
     ],
     "grammar_note": "Iku → ikimasu means go (polite). Haikingu ni iku means go hiking.",
+    "prompt": "",
+    "topic": "Activities together",
     "guide": {
       "forms": "iku (u-verb) → ikimasu. Haikingu ni iku is go hiking.",
       "particles": "To marks mother as companion; ni marks the activity you go to do.",
@@ -540,6 +568,8 @@
       ""
     ],
     "grammar_note": "Suru → shimasu means do (polite). Geemu o suru means play games.",
+    "prompt": "",
+    "topic": "Activities together",
     "guide": {
       "forms": "suru (irregular) → shimasu: do / play.",
       "particles": "The first to follows imouto (with my sister); o marks games as the object.",
@@ -572,6 +602,8 @@
       ""
     ],
     "grammar_note": "Oai suru is a polite expression for meeting. No makes meeting you all into a noun phrase. Tanoshimi ni shite imasu means look forward to.",
+    "prompt": "",
+    "topic": "Closing",
     "guide": {
       "forms": "au → oai suru is a humble expression for meeting. Suru stays nonpast before no; shite imasu comes from suru + iru.",
       "particles": "Ni marks whom you meet; no turns meeting into a noun phrase; o marks what you look forward to; ni belongs to tanoshimi ni suru.",
@@ -595,6 +627,8 @@
       ""
     ],
     "grammar_note": "A polite closing requesting goodwill; the English translation depends on context.",
+    "prompt": "",
+    "topic": "Closing",
     "guide": {
       "forms": "Onegai suru → onegai shimasu: a set polite request / closing, not a literal universal “thank you.”",
       "particles": "No standalone particles occur in this expression. Yoroshiku modifies the request.",
@@ -617,6 +651,8 @@
       ""
     ],
     "grammar_note": "Yori means from in a letter signature.",
+    "prompt": "",
+    "topic": "Closing",
     "guide": {
       "forms": "A signature fragment, not a verb sentence; there is no dictionary verb to conjugate.",
       "particles": "Yori means from and follows the sender’s name.",

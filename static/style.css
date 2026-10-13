@@ -161,3 +161,6 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 #review-parts label { display: flex; align-items: center; gap: 10px; min-height: 48px; margin: 0; font-weight: 500; }
 #review-parts input { width: 22px; height: 22px; min-height: 22px; flex-shrink: 0; accent-color: #28714a; }
 .review-selection-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
+
+#family-topics { margin: 0 0 12px 24px; padding: 8px 12px; border: 0; border-left: 2px solid #dededb; min-width: 0; }
+#family-topics legend { font-size: .85rem; color: #666; }
