@@ -1,0 +1,1162 @@
+[
+  {
+    "romaji": "massugu",
+    "kana": "まっすぐ",
+    "japanese": "まっすぐ",
+    "english": "straight ahead",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "iku",
+    "kana": "いく",
+    "japanese": "いく",
+    "english": "to go",
+    "group": "Lessons 1, 2, 3",
+    "context": ""
+  },
+  {
+    "romaji": "itte",
+    "kana": "いって",
+    "japanese": "いって",
+    "english": "go (te-form of iku)",
+    "group": "Lessons 1, 3",
+    "context": ""
+  },
+  {
+    "romaji": "futatsume",
+    "kana": "ふたつめ",
+    "japanese": "ふたつめ",
+    "english": "second (in order)",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "kado",
+    "kana": "かど",
+    "japanese": "かど",
+    "english": "corner",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "hidari",
+    "kana": "ひだり",
+    "japanese": "ひだり",
+    "english": "left",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "magaru",
+    "kana": "まがる",
+    "japanese": "まがる",
+    "english": "to turn",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "magatte",
+    "kana": "まがって",
+    "japanese": "まがって",
+    "english": "turn (te-form of magaru)",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "kudasai",
+    "kana": "ください",
+    "japanese": "ください",
+    "english": "please (a request)",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "honya",
+    "kana": "ほんや",
+    "japanese": "ほんや",
+    "english": "bookstore",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "michi",
+    "kana": "みち",
+    "japanese": "みち",
+    "english": "street; road",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "hidarigawa",
+    "kana": "ひだりがわ",
+    "japanese": "ひだりがわ",
+    "english": "left side",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "aru",
+    "kana": "ある",
+    "japanese": "ある",
+    "english": "to exist (things)",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "arimasu",
+    "kana": "あります",
+    "japanese": "あります",
+    "english": "exists; is located (polite, things)",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "konnichiwa",
+    "kana": "こんにちは",
+    "japanese": "こんにちは",
+    "english": "hello; good afternoon",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "ogenki",
+    "kana": "おげんき",
+    "japanese": "おげんき",
+    "english": "well; in good health (polite)",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "tenki",
+    "kana": "てんき",
+    "japanese": "てんき",
+    "english": "weather",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "dou",
+    "kana": "どう",
+    "japanese": "どう",
+    "english": "how",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "yoi",
+    "kana": "よい",
+    "japanese": "よい",
+    "english": "good",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "watashi",
+    "kana": "わたし",
+    "japanese": "わたし",
+    "english": "I; me",
+    "group": "Lessons 2, 3, 4",
+    "context": ""
+  },
+  {
+    "romaji": "chichi",
+    "kana": "ちち",
+    "japanese": "ちち",
+    "english": "my father",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "haha",
+    "kana": "はは",
+    "japanese": "はは",
+    "english": "my mother",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "imouto",
+    "kana": "いもうと",
+    "japanese": "いもうと",
+    "english": "younger sister",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "hitori",
+    "kana": "ひとり",
+    "japanese": "ひとり",
+    "english": "one person",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "iru",
+    "kana": "いる",
+    "japanese": "いる",
+    "english": "to exist (people or animals)",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "imasu",
+    "kana": "います",
+    "japanese": "います",
+    "english": "exists; is present (polite, living beings)",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "sumu",
+    "kana": "すむ",
+    "japanese": "すむ",
+    "english": "to live; to reside",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "sunde imasu",
+    "kana": "すんでいます",
+    "japanese": "すんでいます",
+    "english": "live; am living (a continuing state)",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "demo",
+    "kana": "でも",
+    "japanese": "でも",
+    "english": "but; however",
+    "group": "Lessons 2, 3",
+    "context": ""
+  },
+  {
+    "romaji": "rokujussai",
+    "kana": "ろくじゅっさい",
+    "japanese": "ろくじゅっさい",
+    "english": "60 years old",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "gojussai",
+    "kana": "ごじゅっさい",
+    "japanese": "ごじゅっさい",
+    "english": "50 years old",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "juuhassai",
+    "kana": "じゅうはっさい",
+    "japanese": "じゅうはっさい",
+    "english": "18 years old",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "kensetsu",
+    "kana": "けんせつ",
+    "japanese": "けんせつ",
+    "english": "construction",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "shigoto",
+    "kana": "しごと",
+    "japanese": "しごと",
+    "english": "work; job",
+    "group": "Lessons 2, 3",
+    "context": ""
+  },
+  {
+    "romaji": "jimu",
+    "kana": "じむ",
+    "japanese": "じむ",
+    "english": "office work; administration",
+    "group": "Lessons 2",
+    "context": "In the family letter: haha wa jimu no shigoto o shite imasu."
+  },
+  {
+    "romaji": "daigakusei",
+    "kana": "だいがくせい",
+    "japanese": "だいがくせい",
+    "english": "college student",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "terebi",
+    "kana": "テレビ",
+    "japanese": "テレビ",
+    "english": "television",
+    "group": "Lessons 2, 3",
+    "context": ""
+  },
+  {
+    "romaji": "miru",
+    "kana": "みる",
+    "japanese": "みる",
+    "english": "to watch; to see",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "mimasu",
+    "kana": "みます",
+    "japanese": "みます",
+    "english": "watch; see (polite)",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "haikingu",
+    "kana": "ハイキング",
+    "japanese": "ハイキング",
+    "english": "hiking",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "ikimasu",
+    "kana": "いきます",
+    "japanese": "いきます",
+    "english": "go (polite)",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "geemu",
+    "kana": "ゲーム",
+    "japanese": "ゲーム",
+    "english": "game",
+    "group": "Lessons 2, 3",
+    "context": ""
+  },
+  {
+    "romaji": "suru",
+    "kana": "する",
+    "japanese": "する",
+    "english": "to do",
+    "group": "Lessons 2, 3, 4",
+    "context": ""
+  },
+  {
+    "romaji": "shimasu",
+    "kana": "します",
+    "japanese": "します",
+    "english": "do; will do (polite)",
+    "group": "Lessons 2, 4",
+    "context": ""
+  },
+  {
+    "romaji": "shite imasu",
+    "kana": "しています",
+    "japanese": "しています",
+    "english": "am doing; do regularly",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "sore dewa",
+    "kana": "それでは",
+    "japanese": "それでは",
+    "english": "well then",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "minasan",
+    "kana": "みなさん",
+    "japanese": "みなさん",
+    "english": "everyone (polite)",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "oai suru",
+    "kana": "おあいする",
+    "japanese": "おあいする",
+    "english": "to meet (humble)",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "tanoshimi ni shite imasu",
+    "kana": "たのしみにしています",
+    "japanese": "たのしみにしています",
+    "english": "look forward to",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "yoroshiku onegai shimasu",
+    "kana": "よろしくおねがいします",
+    "japanese": "よろしくおねがいします",
+    "english": "please treat me kindly; thank you in advance",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "yori",
+    "kana": "より",
+    "japanese": "より",
+    "english": "from (letter signature)",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "taitei",
+    "kana": "たいてい",
+    "japanese": "たいてい",
+    "english": "usually",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "asa",
+    "kana": "あさ",
+    "japanese": "あさ",
+    "english": "morning",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "hachiji",
+    "kana": "はちじ",
+    "japanese": "はちじ",
+    "english": "eight o’clock",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "goro",
+    "kana": "ごろ",
+    "japanese": "ごろ",
+    "english": "around (an approximate time)",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "okiru",
+    "kana": "おきる",
+    "japanese": "おきる",
+    "english": "to wake up; to get up",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "sorekara",
+    "kana": "それから",
+    "japanese": "それから",
+    "english": "then; after that",
+    "group": "Lessons 3, 4",
+    "context": ""
+  },
+  {
+    "romaji": "tsumetai",
+    "kana": "つめたい",
+    "japanese": "つめたい",
+    "english": "cold (to the touch)",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "shawaa",
+    "kana": "シャワー",
+    "japanese": "シャワー",
+    "english": "shower",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "abiru",
+    "kana": "あびる",
+    "japanese": "あびる",
+    "english": "to take (a shower)",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "abite",
+    "kana": "あびて",
+    "japanese": "あびて",
+    "english": "take a shower and… (te-form of abiru)",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "asagohan",
+    "kana": "あさごはん",
+    "japanese": "あさごはん",
+    "english": "breakfast",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "taberu",
+    "kana": "たべる",
+    "japanese": "たべる",
+    "english": "to eat",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "tabete",
+    "kana": "たべて",
+    "japanese": "たべて",
+    "english": "eat and… (te-form of taberu)",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "basu",
+    "kana": "バス",
+    "japanese": "バス",
+    "english": "bus",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "gogo",
+    "kana": "ごご",
+    "japanese": "ごご",
+    "english": "afternoon; p.m.",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "konpyuutaa",
+    "kana": "コンピューター",
+    "japanese": "コンピューター",
+    "english": "computer",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "muzukashii",
+    "kana": "むずかしい",
+    "japanese": "むずかしい",
+    "english": "difficult",
+    "group": "Lessons 3, 4",
+    "context": ""
+  },
+  {
+    "romaji": "mondai",
+    "kana": "もんだい",
+    "japanese": "もんだい",
+    "english": "problem; question",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "toku",
+    "kana": "とく",
+    "japanese": "とく",
+    "english": "to solve",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "isogashii",
+    "kana": "いそがしい",
+    "japanese": "いそがしい",
+    "english": "busy",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "isogashikute",
+    "kana": "いそがしくて",
+    "japanese": "いそがしくて",
+    "english": "busy and… (linking form of isogashii)",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "taihen",
+    "kana": "たいへん",
+    "japanese": "たいへん",
+    "english": "tough; demanding",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "tomodachi",
+    "kana": "ともだち",
+    "japanese": "ともだち",
+    "english": "friend",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "koohii",
+    "kana": "コーヒー",
+    "japanese": "コーヒー",
+    "english": "coffee",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "nomu",
+    "kana": "のむ",
+    "japanese": "のむ",
+    "english": "to drink",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "nomi ni iku",
+    "kana": "のみにいく",
+    "japanese": "のみにいく",
+    "english": "to go to drink",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "kyuukei suru",
+    "kana": "きゅうけいする",
+    "japanese": "きゅうけいする",
+    "english": "to take a break",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "tsumetakute",
+    "kana": "つめたくて",
+    "japanese": "つめたくて",
+    "english": "cold and… (linking form of tsumetai)",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "oishii",
+    "kana": "おいしい",
+    "japanese": "おいしい",
+    "english": "delicious",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "goji",
+    "kana": "ごじ",
+    "japanese": "ごじ",
+    "english": "five o’clock",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "made ni",
+    "kana": "までに",
+    "japanese": "までに",
+    "english": "by (a deadline)",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "ie",
+    "kana": "いえ",
+    "japanese": "いえ",
+    "english": "home; house",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "kaeru",
+    "kana": "かえる",
+    "japanese": "かえる",
+    "english": "to return home",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "soshite",
+    "kana": "そして",
+    "japanese": "そして",
+    "english": "and then; and",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "atatakai",
+    "kana": "あたたかい",
+    "japanese": "あたたかい",
+    "english": "warm",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "bangohan",
+    "kana": "ばんごはん",
+    "japanese": "ばんごはん",
+    "english": "dinner",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "tanoshii",
+    "kana": "たのしい",
+    "japanese": "たのしい",
+    "english": "fun; enjoyable",
+    "group": "Lessons 3, 4",
+    "context": ""
+  },
+  {
+    "romaji": "terebi geemu",
+    "kana": "テレビゲーム",
+    "japanese": "テレビゲーム",
+    "english": "video game",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "watashitachi",
+    "kana": "わたしたち",
+    "japanese": "わたしたち",
+    "english": "we; us",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "amari",
+    "kana": "あまり",
+    "japanese": "あまり",
+    "english": "not very; not much (with a negative)",
+    "group": "Lessons 3, 4",
+    "context": ""
+  },
+  {
+    "romaji": "jouzu",
+    "kana": "じょうず",
+    "japanese": "じょうず",
+    "english": "skillful; good at",
+    "group": "Lessons 3, 4",
+    "context": ""
+  },
+  {
+    "romaji": "janai",
+    "kana": "じゃない",
+    "japanese": "じゃない",
+    "english": "is not; am not (plain negative)",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "shuumatsu",
+    "kana": "しゅうまつ",
+    "japanese": "しゅうまつ",
+    "english": "weekend",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "jimu",
+    "kana": "ジム",
+    "japanese": "ジム",
+    "english": "gym",
+    "group": "Lessons 3",
+    "context": "In the weekend routine: shuumatsu wa jimu ni iku."
+  },
+  {
+    "romaji": "asobu",
+    "kana": "あそぶ",
+    "japanese": "あそぶ",
+    "english": "to play; to hang out",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "kuruma",
+    "kana": "くるま",
+    "japanese": "くるま",
+    "english": "car",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "unten suru",
+    "kana": "うんてんする",
+    "japanese": "うんてんする",
+    "english": "to drive",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "unten",
+    "kana": "うんてん",
+    "japanese": "うんてん",
+    "english": "driving",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "suki",
+    "kana": "すき",
+    "japanese": "すき",
+    "english": "liked; fond of",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "itsumo",
+    "kana": "いつも",
+    "japanese": "いつも",
+    "english": "always",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "tanoshikute",
+    "kana": "たのしくて",
+    "japanese": "たのしくて",
+    "english": "fun and… (linking form of tanoshii)",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "omoshiroi",
+    "kana": "おもしろい",
+    "japanese": "おもしろい",
+    "english": "interesting; entertaining",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "omou",
+    "kana": "おもう",
+    "japanese": "おもう",
+    "english": "to think",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "omoimasu",
+    "kana": "おもいます",
+    "japanese": "おもいます",
+    "english": "think (polite)",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "shashin",
+    "kana": "しゃしん",
+    "japanese": "しゃしん",
+    "english": "photo; photograph",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "toru",
+    "kana": "とる",
+    "japanese": "とる",
+    "english": "to take (a photo)",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "kirai",
+    "kana": "きらい",
+    "japanese": "きらい",
+    "english": "disliked; not fond of",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "kara",
+    "kana": "から",
+    "japanese": "から",
+    "english": "because (after a reason)",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "ryouri",
+    "kana": "りょうり",
+    "japanese": "りょうり",
+    "english": "cooking; cuisine",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "supootsu",
+    "kana": "スポーツ",
+    "japanese": "スポーツ",
+    "english": "sports",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "heta",
+    "kana": "へた",
+    "japanese": "へた",
+    "english": "unskillful; poor at",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "renshuu",
+    "kana": "れんしゅう",
+    "japanese": "れんしゅう",
+    "english": "practice",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "shinai",
+    "kana": "しない",
+    "japanese": "しない",
+    "english": "do not do (negative of suru)",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "motto",
+    "kana": "もっと",
+    "japanese": "もっと",
+    "english": "more",
+    "group": "Lessons 4",
+    "context": ""
+  },
+  {
+    "romaji": "kuroi",
+    "kana": "くろい",
+    "japanese": "くろい",
+    "english": "black",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "shatsu",
+    "kana": "シャツ",
+    "japanese": "シャツ",
+    "english": "shirt",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "kiru",
+    "kana": "きる",
+    "japanese": "きる",
+    "english": "to put on; to wear (upper body)",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "kite imasu",
+    "kana": "きています",
+    "japanese": "きています",
+    "english": "am wearing (upper body)",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "zubon",
+    "kana": "ズボン",
+    "japanese": "ズボン",
+    "english": "pants; trousers",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "haku",
+    "kana": "はく",
+    "japanese": "はく",
+    "english": "to put on; to wear (lower body or feet)",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "haite imasu",
+    "kana": "はいています",
+    "japanese": "はいています",
+    "english": "am wearing (lower body or feet)",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "shiroi",
+    "kana": "しろい",
+    "japanese": "しろい",
+    "english": "white",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "kutsu",
+    "kana": "くつ",
+    "japanese": "くつ",
+    "english": "shoes",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "kami",
+    "kana": "かみ",
+    "japanese": "かみ",
+    "english": "hair",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "mijikai",
+    "kana": "みじかい",
+    "japanese": "みじかい",
+    "english": "short (length)",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "mijikakute",
+    "kana": "みじかくて",
+    "japanese": "みじかくて",
+    "english": "short and… (linking form of mijikai)",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "se",
+    "kana": "せ",
+    "japanese": "せ",
+    "english": "height; stature",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "takai",
+    "kana": "たかい",
+    "japanese": "たかい",
+    "english": "tall; high",
+    "group": "Lessons 5",
+    "context": ""
+  },
+  {
+    "romaji": "wa",
+    "kana": "は",
+    "japanese": "は",
+    "english": "topic marker (as a particle)",
+    "group": "Lessons 1, 2, 3, 4",
+    "context": ""
+  },
+  {
+    "romaji": "ga",
+    "kana": "が",
+    "japanese": "が",
+    "english": "subject marker; marks what is liked or done well",
+    "group": "Lessons 2, 3, 4, 5",
+    "context": ""
+  },
+  {
+    "romaji": "o",
+    "kana": "を",
+    "japanese": "を",
+    "english": "object marker; marks the turning point in kado o magaru",
+    "group": "Lessons 1, 2, 3, 4, 5",
+    "context": ""
+  },
+  {
+    "romaji": "ni",
+    "kana": "に",
+    "japanese": "に",
+    "english": "marks destination, location, time or purpose (depending on the sentence)",
+    "group": "Lessons 1, 2, 3",
+    "context": ""
+  },
+  {
+    "romaji": "de",
+    "kana": "で",
+    "japanese": "で",
+    "english": "marks where an action happens or the means used",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "to",
+    "kana": "と",
+    "japanese": "と",
+    "english": "with; and (joining nouns); quotation marker",
+    "group": "Lessons 2, 3, 4",
+    "context": ""
+  },
+  {
+    "romaji": "no",
+    "kana": "の",
+    "japanese": "の",
+    "english": "links nouns; turns a verb phrase into a noun",
+    "group": "Lessons 1, 2, 4",
+    "context": ""
+  },
+  {
+    "romaji": "ka",
+    "kana": "か",
+    "japanese": "か",
+    "english": "question marker",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "yo",
+    "kana": "よ",
+    "japanese": "よ",
+    "english": "sentence ending that gives or emphasizes information",
+    "group": "Lessons 1",
+    "context": ""
+  },
+  {
+    "romaji": "desu",
+    "kana": "です",
+    "japanese": "です",
+    "english": "polite ending with a noun or adjective",
+    "group": "Lessons 2, 4, 5",
+    "context": ""
+  },
+  {
+    "romaji": "da",
+    "kana": "だ",
+    "japanese": "だ",
+    "english": "plain copula (used with nouns and na-adjectives)",
+    "group": "Lessons 3",
+    "context": ""
+  },
+  {
+    "romaji": "Toukyou",
+    "kana": "とうきょう",
+    "japanese": "とうきょう",
+    "english": "Tokyo",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "San Furanshisuko",
+    "kana": "サンフランシスコ",
+    "japanese": "サンフランシスコ",
+    "english": "San Francisco",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "Ookurando",
+    "kana": "オークランド",
+    "japanese": "オークランド",
+    "english": "Oakland",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "San Diego",
+    "kana": "サンディエゴ",
+    "japanese": "サンディエゴ",
+    "english": "San Diego",
+    "group": "Lessons 2",
+    "context": ""
+  },
+  {
+    "romaji": "Arekkusu",
+    "kana": "アレックス",
+    "japanese": "アレックス",
+    "english": "Alex",
+    "group": "Lessons 2",
+    "context": ""
+  }
+]

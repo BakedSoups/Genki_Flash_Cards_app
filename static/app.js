@@ -31,6 +31,9 @@ const startButton = document.querySelector("#start-button");
 const restartButton = document.querySelector("#restart-button");
 const answerForm = document.querySelector("#answer-form");
 const answerInput = document.querySelector("#answer");
+const meaningChoices = document.querySelector("#meaning-choices");
+let choicePool = [];
+const cardKey = card => card.id || card.romaji;
 const readingAnswers = document.querySelector("#reading-answers");
 const hintButton = document.querySelector("#hint-button");
 const retryButton = document.querySelector("#retry-button");
@@ -129,13 +132,15 @@ function saveLessonSelection(lesson) {
 }
 
 function selectLessonDirection() {
+  const isVocabulary = lessonSelect.value === "midterm-vocabulary.json";
   const isReview = ["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value);
   reviewParts.hidden = !isReview;
   const previousDirection = directionSelect.value;
   directionSelect.replaceChildren(...directionOptions.filter(option =>
-    !["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value)
+    (isVocabulary ? ["english-romaji", "meaning-choice"].includes(option.value) : option.value !== "meaning-choice") &&
+    (!["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value))
   ));
-  directionSelect.value = previousDirection;
+  directionSelect.value = [...directionSelect.options].some(option => option.value === previousDirection) ? previousDirection : "english-romaji";
   directionSelect.disabled = ["learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "midterm-directions.csv", "lesson8-review.json", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
   if (["lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
@@ -203,6 +208,13 @@ function usesReadingFields(card) {
 }
 
 function directionFields(card) {
+  if (card.kind === "midterm-vocabulary") {
+    return direction === "meaning-choice"
+      ? {prompt: card.romaji, answer: card.meaning, label: `${card.group} · Vocabulary meanings`,
+         instruction: "What does this word or phrase mean? Choose one answer."}
+      : {prompt: card.meaning, answer: card.romaji, label: `${card.group} · Vocabulary`,
+         instruction: "Type this word or phrase in romaji"};
+  }
   if (direction === "kanji-writing") {
     return {prompt: `${card.kana.split("|").join(" · ")} (${card.meaning})`, answer: card.romaji,
       label: "Write kanji", instruction: "Draw the kanji, then compare it with the answer"};
@@ -331,7 +343,7 @@ function crucialWordsForLesson(lesson, limit = 10) {
     const missed = Object.hasOwn(word, "wrong")
       ? Math.max(0, Number(word.wrong) || 0)
       : Math.max(0, Number(word.attempts) - Number(word.correct));
-    misses[word.romaji] = (misses[word.romaji] || 0) + missed;
+    misses[cardKey(word)] = (misses[cardKey(word)] || 0) + missed;
   }));
   return Object.entries(misses)
     .filter(([, missed]) => missed > 0)
@@ -366,8 +378,8 @@ function renderCard() {
   promptWord.textContent = fields.prompt;
   document.querySelector(".card").classList.toggle("sentence-card", card.kind === "sentence");
   const original = document.querySelector("#sentence-original");
-  original.hidden = !card.original;
-  original.textContent = card.original || "";
+  original.hidden = !(card.original || card.context);
+  original.textContent = card.original || card.context || "";
   const answerLanguage = ["kana-english", "kanji-english"].includes(direction)
     ? "English"
     : ["english-romaji", "kana-romaji", "katakana-romaji", "kanji-word-romaji", "kanji-romaji"].includes(direction) ? "Romaji" : "Hiragana";
@@ -377,6 +389,7 @@ function renderCard() {
   correction.textContent = "";
   result.className = "result";
   answerInput.value = "";
+  const isChoice = direction === "meaning-choice" && !isIntroduction;
   const isWriting = direction === "kanji-writing" && !isIntroduction;
   document.querySelector("#handwriting").hidden = !isWriting;
   document.querySelector(".card").classList.toggle("writing-card", isWriting);
@@ -384,8 +397,8 @@ function renderCard() {
   document.querySelector("#kanji-reference").textContent = "?";
   document.querySelector("#writing-grade").hidden = true;
   checkButton.hidden = false;
-  answerInput.hidden = isIntroduction || isKanjiReadings || isWriting;
-  answerInput.disabled = isIntroduction || isKanjiReadings || isWriting;
+  answerInput.hidden = isIntroduction || isKanjiReadings || isWriting || isChoice;
+  answerInput.disabled = isIntroduction || isKanjiReadings || isWriting || isChoice;
   readingAnswers.hidden = isIntroduction || !isKanjiReadings;
   readingAnswers.replaceChildren(...(isKanjiReadings ? Array.from({ length: 3 }, (_, readingIndex) => {
     const input = document.createElement("input");
@@ -397,7 +410,25 @@ function renderCard() {
     input.setAttribute("spellcheck", "false");
     return input;
   }) : []));
-  hintButton.hidden = isIntroduction || !hintsEnabled || isWriting;
+  meaningChoices.hidden = !isChoice;
+  meaningChoices.replaceChildren();
+  if (isChoice) {
+    const distractors = shuffleCards([...new Set(choicePool.map(item => item.meaning))]
+      .filter(meaning => meaning !== card.meaning)).slice(0, 3);
+    for (const meaning of shuffleCards([card.meaning, ...distractors])) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = meaning;
+      button.addEventListener("click", () => {
+        if (waitingForContinue || advancing) return;
+        answerInput.value = meaning;
+        checkAnswer();
+      });
+      meaningChoices.append(button);
+    }
+    checkButton.hidden = true;
+  }
+  hintButton.hidden = isIntroduction || !hintsEnabled || isWriting || isChoice;
   retryButton.hidden = true;
   hintButton.disabled = false;
   hintLevel = 0;
@@ -416,7 +447,8 @@ function renderCard() {
     correction.textContent = "Study these readings. You will review them shortly.";
     checkButton.focus();
   } else {
-    if (!isWriting) (isKanjiReadings ? readingAnswers.querySelector("input") : answerInput).focus();
+    if (isChoice) meaningChoices.querySelector("button").focus();
+    else if (!isWriting) (isKanjiReadings ? readingAnswers.querySelector("input") : answerInput).focus();
   }
 }
 
@@ -489,7 +521,7 @@ function finishLesson() {
 
     const label = document.createElement("span");
     label.className = "chart-label";
-    const card = sourceCards.find(card => card.romaji === stat.romaji);
+    const card = sourceCards.find(card => cardKey(card) === cardKey(stat));
     const answer = document.createElement("strong");
     answer.textContent = stat.romaji;
     const meaning = document.createElement("span");
@@ -588,9 +620,9 @@ function renderHistory() {
       ? Math.max(0, Number(word.right) || 0)
       : Math.max(0, Number(word.attempts) || Number(word.correct) || 0);
     const wrong = Object.hasOwn(word, "wrong") ? Math.max(0, Number(word.wrong) || 0) : 0;
-    if (!totals[word.romaji]) totals[word.romaji] = { romaji: word.romaji, meaning: word.meaning, right: 0, wrong: 0 };
-    totals[word.romaji].right += right;
-    totals[word.romaji].wrong += wrong;
+    if (!totals[cardKey(word)]) totals[cardKey(word)] = { romaji: word.romaji, meaning: word.meaning, right: 0, wrong: 0 };
+    totals[cardKey(word)].right += right;
+    totals[cardKey(word)].wrong += wrong;
   }));
   const ranked = Object.values(totals).sort((a, b) => {
     const aRate = a.right / Math.max(1, a.right + a.wrong);
@@ -661,6 +693,7 @@ async function startLesson() {
     const response = await fetch(lessonUrl(lessonSelect.value));
     if (!response.ok) throw new Error((await response.json()).error || "Could not load lesson");
     sourceCards = await response.json();
+    choicePool = sourceCards.slice();
     if (["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value)) {
       const selected = selectedReviewGroups();
       if (!selected.length) throw new Error("Select at least one review lesson.");
@@ -670,7 +703,7 @@ async function startLesson() {
     const wordSet = modeSelect.value === "most-wrong" ? "crucial" : wordSetSelect.value;
     if (["crucial", "missed"].includes(wordSet)) {
       const crucialWords = new Set(crucialWordsForLesson(lessonSelect.value, wordSet === "missed" ? Infinity : 10));
-      sourceCards = sourceCards.filter(card => crucialWords.has(card.romaji));
+      sourceCards = sourceCards.filter(card => crucialWords.has(cardKey(card)));
       if (!sourceCards.length) {
         throw new Error("No missed words yet. Complete a regular run first to save the cards you got wrong.");
       }
@@ -715,7 +748,8 @@ async function startLesson() {
     }
     practicedTopics = [...new Set(orderedCards.map(card => card.topic).filter(Boolean))];
     practicedGroups = [...new Set(orderedCards.map(card => card.group).filter(Boolean))].sort();
-    wordStats = Object.fromEntries(orderedCards.map(card => [card.romaji, {
+    wordStats = Object.fromEntries(orderedCards.map(card => [cardKey(card), {
+      ...(card.id ? {id: card.id} : {}),
       group: card.group || "",
       topic: card.topic || "",
       romaji: card.romaji,
@@ -795,20 +829,20 @@ function checkAnswer(writingGrade = null) {
       ? expectedReadings.includes(normalize(answerInput.value))
     : normalize(answerInput.value) === normalize(fields.answer);
   attempts += 1;
-  wordStats[card.romaji].attempts += 1;
+  wordStats[cardKey(card)].attempts += 1;
   if (correct) {
-    wordStats[card.romaji].right += 1;
+    wordStats[cardKey(card)].right += 1;
     if (hintUsedForCurrent) {
       hintedAnswers += 1;
-      wordStats[card.romaji].hinted += 1;
+      wordStats[cardKey(card)].hinted += 1;
     } else {
       correctAnswers += 1;
-      wordStats[card.romaji].correct += 1;
+      wordStats[cardKey(card)].correct += 1;
       if (card.answer_segment) masteredSegments.add(card.romaji);
       if (studyMode === "removal") card.correctCount += 1;
     }
   } else {
-    wordStats[card.romaji].wrong += 1;
+    wordStats[cardKey(card)].wrong += 1;
   }
 
   advancing = true;
@@ -935,6 +969,14 @@ function checkAnswer(writingGrade = null) {
     kanjiLine.textContent = `Kanji: ${card.romaji}`;
     correction.append(kanjiLine);
   }
+  if (direction === "meaning-choice") {
+    meaningChoices.querySelectorAll("button").forEach(button => {
+      button.disabled = true;
+      if (button.textContent === card.meaning) button.classList.add("choice-correct");
+      else if (button.textContent === answerInput.value) button.classList.add("choice-wrong");
+    });
+    checkButton.hidden = false;
+  }
   answerInput.disabled = true;
   readingAnswers.querySelectorAll("input").forEach(input => { input.disabled = true; });
   hintButton.hidden = true;
@@ -950,7 +992,7 @@ function checkAnswer(writingGrade = null) {
 function advanceCard(correct, card) {
   // Sentence fixed loops honor the selected number of attempts, including mistakes.
   const needsSuccessfulRecall = card.answer_segment || card.requires?.length;
-  if ((card.kind === "sentence" || direction === "kanji-writing") && studyMode === "fixed"
+  if ((card.kind === "sentence" || direction === "kanji-writing" || direction === "meaning-choice") && studyMode === "fixed"
       && (!needsSuccessfulRecall || (correct && !hintUsedForCurrent))) {
     cards.shift();
     index = 0;

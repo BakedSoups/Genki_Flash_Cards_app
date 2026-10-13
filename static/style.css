@@ -164,3 +164,11 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 
 #family-topics { margin: 0 0 12px 24px; padding: 8px 12px; border: 0; border-left: 2px solid #dededb; min-width: 0; }
 #family-topics legend { font-size: .85rem; color: #666; }
+
+.meaning-choices { width: 100%; display: grid; gap: 12px; }
+.meaning-choices button { min-height: 52px; padding: 14px; white-space: normal; text-align: left; background: #f3f3f1; color: #242424; border: 2px solid #cececa; }
+.meaning-choices button:focus-visible { outline: 3px solid #26754e; outline-offset: 3px; }
+.meaning-choices button:disabled { opacity: 1; }
+.meaning-choices .choice-correct { background: #dcfce7; border-color: #26754e; }
+.meaning-choices .choice-wrong { background: #fee2e2; border-color: #b42318; }
+.card form:has(.meaning-choices:not([hidden])) { flex-wrap: wrap; }

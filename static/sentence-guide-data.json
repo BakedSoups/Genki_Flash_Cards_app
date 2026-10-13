@@ -1222,13 +1222,13 @@
     "group": "Lesson 5 — Clothing and appearance"
   },
   {
-    "romaji": "Chairoi kutsu o haite imasu.",
-    "meaning": "I’m wearing brown shoes.",
-    "kana": "ちゃいろいくつをはいています",
+    "romaji": "Shiroi kutsu o haite imasu.",
+    "meaning": "I’m wearing white shoes.",
+    "kana": "しろいくつをはいています",
     "kind": "sentence",
     "original": "",
     "kana_tokens": [
-      "ちゃいろい",
+      "しろい",
       "くつ",
       "を",
       "はいて",
@@ -1237,12 +1237,12 @@
     "token_meanings": [
       ""
     ],
-    "grammar_note": "Haku → haite imasu is used for shoes as well as pants. Chairoi means brown and is an i-adjective.",
+    "grammar_note": "Haku → haite imasu is used for shoes as well as pants. Shiroi means white and is an i-adjective.",
     "guide": {
-      "forms": "Haku → haite imasu is used for shoes as well as pants. Chairoi means brown and is an i-adjective.",
+      "forms": "Haku → haite imasu is used for shoes as well as pants. Shiroi means white and is an i-adjective.",
       "particles": "O marks shoes as the item worn. The subject I is understood.",
-      "past": "Haite imasu → haite imashita = I was wearing brown shoes.",
-      "swap": "Chairoi → kuroi: Kuroi kutsu o haite imasu. = I am wearing black shoes."
+      "past": "Haite imasu → haite imashita = I was wearing white shoes.",
+      "swap": "Shiroi → kuroi: Kuroi kutsu o haite imasu. = I am wearing black shoes."
     },
     "group": "Lesson 5 — Clothing and appearance"
   },

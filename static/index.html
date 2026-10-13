@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#f3f3f1">
     <title>Kotoba Cards</title>
-    <link rel="stylesheet" href="/static/style.css?v=15">
+    <link rel="stylesheet" href="/static/style.css?v=16">
   </head>
   <body>
     <main>
@@ -64,6 +64,7 @@
             <option value="katakana-romaji">Katakana → Romaji</option>
             <option value="kana-romaji">Hiragana → Romaji</option>
             <option value="english-kana">English → Hiragana</option>
+            <option value="meaning-choice">Romaji → English (multiple choice)</option>
             <option value="english-romaji" selected>English → Romaji</option>
           </select>
 
@@ -137,6 +138,7 @@
               <p class="setup-help">Draw first, then compare the shapes. You grade your own handwriting.</p>
               <div id="writing-grade" class="writing-actions" hidden><button id="writing-wrong" type="button">Needs practice</button><button id="writing-right" type="button">Got it</button></div>
             </div>
+            <div id="meaning-choices" class="meaning-choices" role="group" aria-label="Choose the English meaning" hidden></div>
             <div id="reading-answers" class="reading-answers" hidden></div>
             <button id="hint-button" type="button" hidden>Hint</button>
             <button id="check" type="submit">Check answer</button>
@@ -164,6 +166,6 @@
     <script src="/static/sentence-practice.js?v=3"></script>
     <script src="/static/handwriting.js?v=1"></script>
     <script src="/static/sentence-guide.js?v=2"></script>
-    <script src="/static/app.js?v=76"></script>
+    <script src="/static/app.js?v=77"></script>
   </body>
 </html>

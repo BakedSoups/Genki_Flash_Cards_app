@@ -353,11 +353,11 @@
     "past": "Haite imasu → haite imashita = I was wearing black pants.",
     "swap": "Kuroi → aoi: Aoi zubon o haite imasu. = I am wearing blue pants."
   },
-  "Chairoi kutsu o haite imasu.": {
-    "forms": "Haku → haite imasu is used for shoes as well as pants. Chairoi means brown and is an i-adjective.",
+  "Shiroi kutsu o haite imasu.": {
+    "forms": "Haku → haite imasu is used for shoes as well as pants. Shiroi means white and is an i-adjective.",
     "particles": "O marks shoes as the item worn. The subject I is understood.",
-    "past": "Haite imasu → haite imashita = I was wearing brown shoes.",
-    "swap": "Chairoi → kuroi: Kuroi kutsu o haite imasu. = I am wearing black shoes."
+    "past": "Haite imasu → haite imashita = I was wearing white shoes.",
+    "swap": "Shiroi → kuroi: Kuroi kutsu o haite imasu. = I am wearing black shoes."
   },
   "Kami ga mijikakute, se ga takai desu.": {
     "forms": "Mijikai → mijikakute links “hair is short” to the next description. Se ga takai literally means height is high. Both are i-adjectives.",
