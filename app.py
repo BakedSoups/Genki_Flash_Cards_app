@@ -96,6 +96,23 @@ def load_cards(filename: str) -> list[dict[str, str]]:
                 if card.get("kind") == "reading-word" and len(row) >= 5:
                     card["spelling"] = row[4].strip()
                 cards.append(card)
+    if filename == "midterm-directions.csv":
+        full = {
+            "romaji": "Massugu itte, futatsume no kado o hidari ni magatte kudasai. Honya wa michi no hidarigawa ni arimasu yo.",
+            "meaning": "Go straight, turn left at the second corner. The bookstore is on the left side of the street.",
+            "kana": "まっすぐ行って、二つ目の角を左に曲がってください。本屋は道の左側にありますよ。",
+            "kind": "sentence",
+            "original": "すみません、本屋はどこですか？\nSumimasen, honya wa doko desu ka?",
+            "prompt": "Excuse me, where is the bookstore? Give the whole answer.",
+            "kana_tokens": [token for card in cards for token in card["kana_tokens"]],
+            "token_meanings": [token for card in cards for token in card["token_meanings"]],
+            "grammar_note": "Put all three parts together: go straight, turn left at the second corner, then explain where the bookstore is.",
+            "requires": [card["romaji"] for card in cards],
+        }
+        for card in cards:
+            card["answer_segment"] = True
+        cards.append(full)
+
     guide_path = ROOT / "sentence-guides.json"
     if guide_path.is_file():
         guides = json.loads(guide_path.read_text(encoding="utf-8"))

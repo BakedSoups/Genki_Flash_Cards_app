@@ -14,6 +14,8 @@ const reviewParts = document.querySelector("#review-parts");
 const reviewChecks = [...reviewParts.querySelectorAll("input")];
 const selectedReviewGroups = () => reviewChecks.filter(input => input.checked).map(input => input.value);
 let practicedGroups = [];
+let pendingFullAnswer = null;
+let masteredSegments = new Set();
 const hintsSelect = document.querySelector("#hints");
 const showKatakanaSelect = document.querySelector("#show-katakana");
 const startButton = document.querySelector("#start-button");
@@ -326,6 +328,11 @@ function crucialWordsForLesson(lesson, limit = 10) {
 }
 
 function renderCard() {
+  if (pendingFullAnswer && pendingFullAnswer.requires.every(answer => masteredSegments.has(answer))) {
+    const full = { ...pendingFullAnswer, correctCount: 0 };
+    cards.splice(index, 0, studyMode === "introduction" ? { type: "quiz", card: full } : full);
+    pendingFullAnswer = null;
+  }
   const item = cards[index];
   if (!item) return finishLesson();
   const isIntroduction = studyMode === "introduction" && item.type === "intro";
@@ -338,7 +345,7 @@ function renderCard() {
   } else if (studyMode === "fixed") {
     progress.textContent = `${cards.length} cards remaining`;
   } else {
-    const mastered = sourceCards.length - cards.length;
+    const mastered = sourceCards.length - cards.length - (pendingFullAnswer ? 1 : 0);
     progress.textContent = `${cards.length} remaining · ${mastered} removed`;
   }
   questionLabel.textContent = fields.label;
@@ -685,6 +692,11 @@ async function startLesson() {
       sourceCards = orderedCards.map(card => ({ ...card }));
     }
     if (shuffleSelect.value === "yes" || ["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value) && selectedReviewGroups().length > 1) shuffleCards(orderedCards);
+    masteredSegments = new Set();
+    pendingFullAnswer = orderedCards.find(card => card.requires?.length) || null;
+    if (pendingFullAnswer && !pendingFullAnswer.requires.every(answer => orderedCards.some(card => card.romaji === answer))) {
+      pendingFullAnswer = null;
+    }
     practicedGroups = [...new Set(orderedCards.map(card => card.group).filter(Boolean))].sort();
     wordStats = Object.fromEntries(orderedCards.map(card => [card.romaji, {
       group: card.group || "",
@@ -696,6 +708,7 @@ async function startLesson() {
       wrong: 0,
       hinted: 0,
     }]));
+    orderedCards = orderedCards.filter(card => card !== pendingFullAnswer);
     cards = studyMode === "introduction"
       ? introductionSequence(orderedCards)
       : studyMode === "fixed"
@@ -773,6 +786,7 @@ function checkAnswer(writingGrade = null) {
     } else {
       correctAnswers += 1;
       wordStats[card.romaji].correct += 1;
+      if (card.answer_segment) masteredSegments.add(card.romaji);
       if (studyMode === "removal") card.correctCount += 1;
     }
   } else {
@@ -917,7 +931,9 @@ function checkAnswer(writingGrade = null) {
 
 function advanceCard(correct, card) {
   // Sentence fixed loops honor the selected number of attempts, including mistakes.
-  if ((card.kind === "sentence" || direction === "kanji-writing") && studyMode === "fixed") {
+  const needsSuccessfulRecall = card.answer_segment || card.requires?.length;
+  if ((card.kind === "sentence" || direction === "kanji-writing") && studyMode === "fixed"
+      && (!needsSuccessfulRecall || (correct && !hintUsedForCurrent))) {
     cards.shift();
     index = 0;
     advancing = false;

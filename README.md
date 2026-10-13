@@ -158,3 +158,7 @@ is excluded. Rebuild after editing lesson CSV files.
 The same Lesson 1–5 checkboxes are available under **Midterm Review Part 2**.
 Lesson 1 contains only the bookstore directions; the original grammar deck remains
 available separately as **Lesson 8 Sentences**.
+
+Lesson 1 unlocks the full bookstore-directions answer once all three segments
+are recalled correctly without hints in the current run. The whole answer is
+then practiced as one card and included in the score and history.

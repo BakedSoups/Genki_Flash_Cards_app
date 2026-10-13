@@ -382,5 +382,11 @@
     "particles": "Wa marks bookstore as topic; no links street to its left side; ni marks where it is; yo adds information for the listener.",
     "past": "Arimasu → arimashita: Honya wa michi no hidarigawa ni arimashita. = The bookstore was on the left side of the street.",
     "swap": "Honya → ginkou and hidarigawa → migigawa: Ginkou wa michi no migigawa ni arimasu yo. = The bank is on the right side of the street."
+  },
+  "Massugu itte, futatsume no kado o hidari ni magatte kudasai. Honya wa michi no hidarigawa ni arimasu yo.": {
+    "forms": "Iku → itte connects the first instruction; magaru → magatte kudasai makes a polite request; aru → arimasu describes the bookstore location.",
+    "particles": "No links second to corner and street to left side. O marks the turning point; ni marks the turning direction and bookstore location. Wa marks the bookstore as topic; yo provides information.",
+    "past": "Instructions are requests, not past statements. To report the trip: Massugu itte, futatsume no kado o hidari ni magatta. Honya wa michi no hidarigawa ni arimashita. = I went straight and turned left; the bookstore was on the left.",
+    "swap": "For a bank on the right, swap honya → ginkou, hidari → migi, and hidarigawa → migigawa. Keep the particles and sentence pattern."
   }
 }
