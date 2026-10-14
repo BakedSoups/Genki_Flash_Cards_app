@@ -401,6 +401,12 @@ function renderCard() {
   const original = document.querySelector("#sentence-original");
   original.hidden = !(card.original || card.context);
   original.textContent = card.original || card.context || "";
+  const oralQuestion = lessonSelect.value === "midterm-oral.csv" && Boolean(card.original);
+  document.querySelector(".card").classList.toggle("oral-question", oralQuestion);
+  if (oralQuestion) {
+    original.textContent = card.prompt;
+    promptWord.textContent = card.original;
+  }
   const answerLanguage = ["kana-english", "kanji-english"].includes(direction)
     ? "English"
     : ["english-romaji", "kana-romaji", "katakana-romaji", "kanji-word-romaji", "kanji-romaji"].includes(direction) ? "Romaji" : "Hiragana";
