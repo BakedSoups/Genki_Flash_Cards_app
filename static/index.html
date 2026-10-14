@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#f3f3f1">
     <title>Kotoba Cards</title>
-    <link rel="stylesheet" href="/static/style.css?v=16">
+    <link rel="stylesheet" href="/static/style.css?v=17">
   </head>
   <body>
     <main>
@@ -20,6 +20,15 @@
         <div class="setup-card">
           <label for="lesson">Lesson</label>
           <select id="lesson" aria-label="Choose a lesson"></select>
+
+          <fieldset id="oral-parts" hidden>
+            <legend>Choose oral test parts</legend>
+            <label><input type="checkbox" value="1" checked> Part 1 — Introduction and family (12)</label>
+            <label><input type="checkbox" value="2" checked> Part 2 — Japanese study (2)</label>
+            <label><input type="checkbox" value="3" checked> Part 3 — Restaurant and teacher questions (13)</label>
+            <div class="review-selection-actions"><button id="oral-all" type="button">Select all</button><button id="oral-none" type="button">Clear all</button></div>
+            <p class="setup-help">Practice selected parts in order, or choose Shuffle: Yes for random practice.</p>
+          </fieldset>
 
           <fieldset id="review-parts" hidden>
             <legend>Choose review lessons</legend>
@@ -168,6 +177,6 @@
     <script src="/static/sentence-practice.js?v=3"></script>
     <script src="/static/handwriting.js?v=1"></script>
     <script src="/static/sentence-guide.js?v=2"></script>
-    <script src="/static/app.js?v=79"></script>
+    <script src="/static/app.js?v=80"></script>
   </body>
 </html>

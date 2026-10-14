@@ -172,3 +172,7 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 .meaning-choices .choice-correct { background: #dcfce7; border-color: #26754e; }
 .meaning-choices .choice-wrong { background: #fee2e2; border-color: #b42318; }
 .card form:has(.meaning-choices:not([hidden])) { flex-wrap: wrap; }
+
+#oral-parts { display: grid; gap: 12px; border: 1px solid #cececa; border-radius: 12px; padding: 16px; }
+#oral-parts label { display: flex; align-items: center; gap: 10px; margin: 0; }
+#oral-parts input { width: 20px; min-height: 20px; flex-shrink: 0; }

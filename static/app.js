@@ -10,6 +10,10 @@ const directionOptions = [...directionSelect.options];
 const wordSetSelect = document.querySelector("#word-set");
 const loopsSelect = document.querySelector("#loops");
 const shuffleSelect = document.querySelector("#shuffle");
+const oralParts = document.querySelector("#oral-parts");
+const oralChecks = [...oralParts.querySelectorAll("input")];
+const selectedOralParts = () => oralChecks.filter(input => input.checked).map(input => input.value);
+const oralPartNumber = card => card.topic?.startsWith("Part 3") ? "3" : card.topic?.startsWith("Part 2") ? "2" : "1";
 const reviewParts = document.querySelector("#review-parts");
 const reviewChecks = [...reviewParts.querySelectorAll(":scope > label input")];
 const selectedReviewGroups = () => reviewChecks.filter(input => input.checked).map(input => input.value);
@@ -91,6 +95,7 @@ function saveSettings() {
     const settings = Object.fromEntries(
       [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].map(select => [select.id, select.value])
     );
+    settings.oralParts = selectedOralParts();
     settings.reviewGroups = selectedReviewGroups();
     settings.familyTopics = selectedFamilyTopics();
     window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
@@ -101,6 +106,7 @@ function restoreSettings() {
   try {
     window.localStorage.removeItem("kotoba-cards:active-session");
     const settings = JSON.parse(window.localStorage.getItem(SETTINGS_KEY)) || {};
+    if (Array.isArray(settings.oralParts)) oralChecks.forEach(input => { input.checked = settings.oralParts.includes(input.value); });
     const savedGroups = Array.isArray(settings.reviewGroups) ? settings.reviewGroups
       : settings["review-part"] && settings["review-part"] !== "all" ? [settings["review-part"]] : null;
     if (savedGroups) reviewChecks.forEach(input => { input.checked = savedGroups.includes(input.value) || input.value === "Lesson 1 — Directions" && savedGroups.includes("Lesson 1 — Grammar"); });
@@ -149,6 +155,7 @@ function selectLessonDirection() {
   const isVocabulary = lessonSelect.value === "midterm-vocabulary.json";
   const isReview = ["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value);
   reviewParts.hidden = !isReview;
+  oralParts.hidden = lessonSelect.value !== "midterm-oral.csv";
   const previousDirection = directionSelect.value;
   directionSelect.replaceChildren(...directionOptions.filter(option =>
     (isVocabulary ? ["english-romaji", "meaning-choice"].includes(option.value) : option.value !== "meaning-choice") &&
@@ -708,6 +715,13 @@ async function startLesson() {
     if (!response.ok) throw new Error((await response.json()).error || "Could not load lesson");
     sourceCards = await response.json();
     choicePool = sourceCards.slice();
+    if (lessonSelect.value === "midterm-oral.csv") {
+      const selected = selectedOralParts();
+      if (!selected.length) throw new Error("Select at least one oral test part.");
+      const names = {"1": "Part 1 — Introduction and family", "2": "Part 2 — Japanese study", "3": "Part 3 — Restaurant"};
+      sourceCards = sourceCards.filter(card => selected.includes(oralPartNumber(card)))
+        .map(card => ({...card, group: names[oralPartNumber(card)]}));
+    }
     if (["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value)) {
       const selected = selectedReviewGroups();
       if (!selected.length) throw new Error("Select at least one review lesson.");
@@ -1202,6 +1216,14 @@ for (const [id, checked] of [["review-all", true], ["review-none", false]]) {
     reviewChecks.forEach(input => { input.checked = checked; });
     familyChecks.forEach(input => { input.checked = checked; });
     syncFamilyParent();
+    saveSettings();
+  });
+}
+
+oralChecks.forEach(input => input.addEventListener("change", saveSettings));
+for (const [id, checked] of [["oral-all", true], ["oral-none", false]]) {
+  document.querySelector(`#${id}`).addEventListener("click", () => {
+    oralChecks.forEach(input => { input.checked = checked; });
     saveSettings();
   });
 }
