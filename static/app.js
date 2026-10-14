@@ -33,6 +33,7 @@ const answerForm = document.querySelector("#answer-form");
 const answerInput = document.querySelector("#answer");
 const meaningChoices = document.querySelector("#meaning-choices");
 let choicePool = [];
+let sequentialOral = false;
 const cardKey = card => card.id || card.romaji;
 const readingAnswers = document.querySelector("#reading-answers");
 const hintButton = document.querySelector("#hint-button");
@@ -112,6 +113,7 @@ function restoreSettings() {
       }
     });
   } catch { /* Use defaults when saved settings are unavailable. */ }
+  restoreShuffle();
   modeSelect.dispatchEvent(new Event("change"));
 }
 
@@ -131,7 +133,19 @@ function saveLessonSelection(lesson) {
   }
 }
 
+function restoreShuffle() {
+  const oral = lessonSelect.value === "midterm-oral.csv";
+  let saved = null;
+  try {
+    saved = localStorage.getItem(`kotoba-cards:shuffle:${lessonSelect.value}`);
+    if (!saved && !oral) saved = JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}").shuffle;
+  } catch { /* Use the lesson default. */ }
+  shuffleSelect.value = ["yes", "no"].includes(saved) ? saved : oral ? "no" : "yes";
+  document.querySelector("#oral-order-help").hidden = !oral;
+}
+
 function selectLessonDirection() {
+  restoreShuffle();
   const isVocabulary = lessonSelect.value === "midterm-vocabulary.json";
   const isReview = ["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value);
   reviewParts.hidden = !isReview;
@@ -711,6 +725,7 @@ async function startLesson() {
     targetLoops = Number(loopsSelect.value);
     studyMode = modeSelect.value === "most-wrong" ? "removal" : modeSelect.value;
     direction = directionSelect.value;
+    sequentialOral = lessonSelect.value === "midterm-oral.csv" && shuffleSelect.value === "no";
     if (direction === "kanji-writing") {
       sourceCards = sourceCards.filter(card => card.kind === "kanji");
       if (!sourceCards.length) throw new Error("Choose a single-kanji lesson for handwriting practice.");
@@ -1001,6 +1016,14 @@ function advanceCard(correct, card) {
     renderCard();
     return;
   }
+  if (sequentialOral && (studyMode !== "introduction" || cards[index]?.type !== "intro")
+      && (!correct || hintUsedForCurrent)) {
+    // Recall this answer before proceeding to the next interview question.
+    advancing = false;
+    waitingForContinue = false;
+    renderCard();
+    return;
+  }
   if (!correct) {
     // With hints, show one different card before retrying a missed word.
     // Without hints, put the missed word at a random point in the remaining deck.
@@ -1146,6 +1169,12 @@ document.addEventListener("keydown", event => {
     event.preventDefault();
     showHint();
   }
+});
+
+shuffleSelect.addEventListener("change", () => {
+  try {
+    localStorage.setItem(`kotoba-cards:shuffle:${lessonSelect.value}`, shuffleSelect.value);
+  } catch { /* Practice still works without storage. */ }
 });
 
 [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].forEach(select => {
