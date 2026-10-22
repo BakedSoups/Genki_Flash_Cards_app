@@ -38,6 +38,9 @@ const answerInput = document.querySelector("#answer");
 const meaningChoices = document.querySelector("#meaning-choices");
 let choicePool = [];
 let sequentialOral = false;
+let cramRemaining = [];
+let cramBatch = 0;
+let cramMastered = 0;
 const cardKey = card => card.id || card.romaji;
 const readingAnswers = document.querySelector("#reading-answers");
 const hintButton = document.querySelector("#hint-button");
@@ -229,6 +232,8 @@ function usesReadingFields(card) {
 }
 
 function directionFields(card) {
+  if (studyMode === "cram") return {prompt: card.meaning, answer: card.romaji,
+    label: "Quiz cram · English → Romaji", instruction: "Type the word in romaji"};
   if (card.kind === "midterm-vocabulary") {
     return direction === "meaning-choice"
       ? {prompt: card.romaji, answer: card.meaning, label: `${card.group} · Vocabulary meanings`,
@@ -373,7 +378,14 @@ function crucialWordsForLesson(lesson, limit = 10) {
     .map(([romaji]) => romaji);
 }
 
+function nextCramBatch() {
+  cards = cramRemaining.splice(0, 5).map(card => ({...card, cramStage: 0, recallStreak: 0}));
+  if (cards.length) cramBatch += 1;
+  index = 0;
+}
+
 function renderCard() {
+  if (studyMode === "cram" && !cards.length && cramRemaining.length) nextCramBatch();
   if (pendingFullAnswer && pendingFullAnswer.requires.every(answer => masteredSegments.has(answer))) {
     const full = { ...pendingFullAnswer, correctCount: 0 };
     cards.splice(index, 0, studyMode === "introduction" ? { type: "quiz", card: full } : full);
@@ -382,11 +394,13 @@ function renderCard() {
   const item = cards[index];
   if (!item) return finishLesson();
   const isIntroduction = studyMode === "introduction" && item.type === "intro";
-  hintsEnabled = !isIntroduction && (hintsMode === "on" || hintsMode === "half");
+  hintsEnabled = !isIntroduction && (studyMode === "cram" || hintsMode === "on" || hintsMode === "half");
   const card = studyMode === "introduction" ? item.card : item;
   const fields = directionFields(card);
   const isKanjiReadings = usesReadingFields(card);
-  if (studyMode === "introduction") {
+  if (studyMode === "cram") {
+    progress.textContent = `Batch ${cramBatch} of ${Math.ceil(sourceCards.length / 5)} · ${cramMastered}/${sourceCards.length} learned · ${card.cramStage === 0 ? "Full hint" : card.cramStage === 1 ? "First letters" : `No hint: ${card.recallStreak}/2 recalls`}`;
+  } else if (studyMode === "introduction") {
     progress.textContent = `${index + 1} of ${cards.length} · ${isIntroduction ? "new word" : "review"}`;
   } else if (studyMode === "fixed") {
     progress.textContent = `${cards.length} cards remaining`;
@@ -465,6 +479,11 @@ function renderCard() {
   checkButton.textContent = isIntroduction ? "Continue" : isWriting ? "Compare" : "Check answer";
   waitingForContinue = isIntroduction;
 
+  if (studyMode === "cram" && card.cramStage < 2) {
+    correction.textContent = card.cramStage === 0 ? `Study and type: ${fields.answer}` : `First letters: ${hintFor(fields.answer)}`;
+    result.className = "result hint-visible";
+    hintUsedForCurrent = true;
+  }
   if (isIntroduction) {
     questionLabel.textContent = "New word";
     promptLabel.textContent = card.meaning;
@@ -540,6 +559,7 @@ function finishLesson() {
     scorePercent.textContent = `${Number((100 * sentenceCorrectTokens / sentenceTotalTokens).toFixed(1))}%`;
     scoreDetails.textContent = `Token accuracy: ${sentenceCorrectTokens}/${sentenceTotalTokens} · ${scoreDetails.textContent}`;
   }
+  if (studyMode === "cram") scoreDetails.textContent = `${cramMastered} words learned with two unaided recalls each · ${correctAnswers} unaided correct / ${attempts} total attempts · ${hintedAnswers} correct with hints`;
   wordChart.replaceChildren(...Object.values(wordStats).map(stat => {
     const guesses = stat.right + stat.wrong;
     const rate = guesses ? Math.round((stat.right / guesses) * 100) : 0;
@@ -744,7 +764,7 @@ async function startLesson() {
     }
     targetLoops = Number(loopsSelect.value);
     studyMode = modeSelect.value === "most-wrong" ? "removal" : modeSelect.value;
-    direction = directionSelect.value;
+    direction = studyMode === "cram" ? "english-romaji" : directionSelect.value;
     sequentialOral = lessonSelect.value === "midterm-oral.csv" && shuffleSelect.value === "no";
     if (direction === "kanji-writing") {
       sourceCards = sourceCards.filter(card => card.kind === "kanji");
@@ -763,7 +783,14 @@ async function startLesson() {
       sourceCards = sourceCards.filter(card => card.kind === "katakana");
       if (!sourceCards.length) throw new Error("Choose Learn Katakana to practice katakana characters.");
     }
-    hintsMode = hintsSelect.value;
+    if (studyMode === "cram") {
+      if (sourceCards.some(card => ["sentence", "kanji", "kanji-word"].includes(card.kind))) {
+        throw new Error("Quiz cram is for vocabulary. Choose a vocabulary lesson, such as Lesson 10 Vocabulary.");
+      }
+      direction = "english-romaji";
+      targetLoops = 2;
+    }
+    hintsMode = studyMode === "cram" ? "on" : hintsSelect.value;
     hintsEnabled = false;
     if (studyMode === "introduction") targetLoops = 1;
     if ((direction.startsWith("kana") || direction === "english-kana") && sourceCards.some(card => !card.kana)) {
@@ -801,6 +828,13 @@ async function startLesson() {
       : studyMode === "fixed"
         ? Array.from({ length: targetLoops }, () => orderedCards.map(card => ({ ...card }))).flat()
         : orderedCards.map(card => ({ ...card, correctCount: 0 }));
+    cramRemaining = [];
+    cramBatch = 0;
+    cramMastered = 0;
+    if (studyMode === "cram") {
+      cramRemaining = orderedCards;
+      nextCramBatch();
+    }
     index = 0;
     sentenceCorrectTokens = 0;
     sentenceTotalTokens = 0;
@@ -1025,6 +1059,19 @@ function checkAnswer(writingGrade = null) {
 }
 
 function advanceCard(correct, card) {
+  if (studyMode === "cram") {
+    cards.shift();
+    if (correct && card.cramStage < 2) card.cramStage += 1;
+    else if (correct && !hintUsedForCurrent) card.recallStreak += 1;
+    else card.recallStreak = 0;
+    if (card.recallStreak >= 2) cramMastered += 1;
+    else cards.push(card);
+    index = 0;
+    advancing = false;
+    waitingForContinue = false;
+    renderCard();
+    return;
+  }
   // Sentence fixed loops honor the selected number of attempts, including mistakes.
   const needsSuccessfulRecall = card.answer_segment || card.requires?.length;
   if ((card.kind === "sentence" || direction === "kanji-writing" || direction === "meaning-choice") && studyMode === "fixed"
@@ -1164,8 +1211,11 @@ directionSelect.addEventListener("change", () => {
 modeSelect.addEventListener("change", () => {
   wordSetSelect.disabled = modeSelect.value === "most-wrong";
   if (modeSelect.value === "most-wrong") wordSetSelect.value = "crucial";
-  loopsSelect.disabled = modeSelect.value === "introduction";
-  modeHelp.textContent = modeSelect.value === "most-wrong"
+  loopsSelect.disabled = ["introduction", "cram"].includes(modeSelect.value);
+  hintsSelect.disabled = modeSelect.value === "cram";
+  modeHelp.textContent = modeSelect.value === "cram"
+    ? "Vocabulary only: type romaji in batches of 5. Full hint → first letters → two correct answers without hints. Retries follow up to 4 other words (fewer at the end of a batch). Everything happens this session."
+    : modeSelect.value === "most-wrong"
     ? "Practice up to 10 cards with the most wrong answers in this lesson’s completed runs. Cards leave after the selected number of correct loops."
     : modeSelect.value === "introduction"
     ? "See each new word first, then review the previous word after the next introduction."
