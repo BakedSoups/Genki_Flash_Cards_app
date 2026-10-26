@@ -896,7 +896,9 @@ function checkAnswer(writingGrade = null) {
       && suppliedReadings.sort().every((reading, readingIndex) => reading === expectedReadings[readingIndex])
     : direction === "kanji-romaji" || (card.kind === "kanji" && ["kanji-english", "english-kana", "english-romaji"].includes(direction))
       ? expectedReadings.includes(normalize(answerInput.value))
-    : normalize(answerInput.value) === normalize(fields.answer);
+    : [fields.answer, ...(["english-romaji", "kana-romaji"].includes(direction) ? card.romaji_answers || []
+        : direction === "english-kana" ? card.kana_answers || [] : [])]
+      .some(answer => normalize(answerInput.value) === normalize(answer));
   attempts += 1;
   wordStats[cardKey(card)].attempts += 1;
   if (correct) {

@@ -1,0 +1,236 @@
+[
+  {
+    "japanese": "あたたかい",
+    "kana": "あたたかい",
+    "romaji": "atatakai",
+    "english": "warm",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "すずしい",
+    "kana": "すずしい",
+    "romaji": "suzushii",
+    "english": "cool (weather)",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "つめたい",
+    "kana": "つめたい",
+    "romaji": "tsumetai",
+    "english": "cold (things or people)",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "おそい",
+    "kana": "おそい",
+    "romaji": "osoi",
+    "english": "slow; late",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "ねむい",
+    "kana": "ねむい",
+    "romaji": "nemui",
+    "english": "sleepy",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "かんたん（な）",
+    "kana": "かんたん（な）",
+    "romaji": "kantan (na)",
+    "english": "easy; simple",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "kantan",
+      "kantan na"
+    ],
+    "kana_answers": [
+      "かんたん",
+      "かんたんな"
+    ]
+  },
+  {
+    "japanese": "かかる",
+    "kana": "かかる",
+    "romaji": "kakaru",
+    "english": "to take (time or money)",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "とまる",
+    "kana": "とまる",
+    "romaji": "tomaru",
+    "english": "to stay (at a hotel)",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "なる",
+    "kana": "なる",
+    "romaji": "naru",
+    "english": "to become",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "きめる",
+    "kana": "きめる",
+    "romaji": "kimeru",
+    "english": "to decide",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "ごろごろする",
+    "kana": "ごろごろする",
+    "romaji": "gorogoro suru",
+    "english": "to chill out at home; to stay home and do nothing",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "りょこうする",
+    "kana": "りょこうする",
+    "romaji": "ryokou suru",
+    "english": "to travel",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "れんしゅうする",
+    "kana": "れんしゅうする",
+    "romaji": "renshuu suru",
+    "english": "to practice",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "いちばん",
+    "kana": "いちばん",
+    "romaji": "ichiban",
+    "english": "best",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "どっち／どちら",
+    "kana": "どっち／どちら",
+    "romaji": "docchi / dochira",
+    "english": "which",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "docchi",
+      "dochira"
+    ],
+    "kana_answers": [
+      "どっち",
+      "どちら"
+    ]
+  },
+  {
+    "japanese": "はやく",
+    "kana": "はやく",
+    "romaji": "hayaku",
+    "english": "early; fast",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "あるいて",
+    "kana": "あるいて",
+    "romaji": "aruite",
+    "english": "on foot",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "～で",
+    "kana": "～で",
+    "romaji": "~de",
+    "english": "by (transportation); with (a tool)",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "de"
+    ],
+    "kana_answers": [
+      "で"
+    ]
+  },
+  {
+    "japanese": "どうやって",
+    "kana": "どうやって",
+    "romaji": "dou yatte",
+    "english": "how; by what means",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "どのぐらい",
+    "kana": "どのぐらい",
+    "romaji": "dono gurai",
+    "english": "how much; how long",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "～しゅうかん",
+    "kana": "～しゅうかん",
+    "romaji": "~shuukan",
+    "english": "for ... weeks",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "shuukan"
+    ],
+    "kana_answers": [
+      "しゅうかん"
+    ]
+  },
+  {
+    "japanese": "～かげつ",
+    "kana": "～かげつ",
+    "romaji": "~kagetsu",
+    "english": "for ... months",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "kagetsu"
+    ],
+    "kana_answers": [
+      "かげつ"
+    ]
+  },
+  {
+    "japanese": "～ねん",
+    "kana": "～ねん",
+    "romaji": "~nen",
+    "english": "... years",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "nen"
+    ],
+    "kana_answers": [
+      "ねん"
+    ]
+  },
+  {
+    "japanese": "このごろ",
+    "kana": "このごろ",
+    "romaji": "kono goro",
+    "english": "these days",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "～ご",
+    "kana": "～ご",
+    "romaji": "~go",
+    "english": "in ... time; after ...",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "go"
+    ],
+    "kana_answers": [
+      "ご"
+    ]
+  },
+  {
+    "japanese": "～か～",
+    "kana": "～か～",
+    "romaji": "~ka~",
+    "english": "or",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "ka"
+    ],
+    "kana_answers": [
+      "か"
+    ]
+  }
+]
