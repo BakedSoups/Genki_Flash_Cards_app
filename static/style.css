@@ -214,15 +214,6 @@ rt { font-size: .6em; font-weight: 400; color: #60605d; }
 .sentence-kana:has(ruby) { align-items: stretch; gap: 10px 6px; }
 .sentence-kana > span:has(ruby) { padding-top: 12px; }
 
-.sentence-kana > span:has(.token-form-note) { max-width: min(100%, 290px); }
-.sentence-kana .token-form-note {
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px solid currentColor;
-  text-align: left;
-  line-height: 1.55;
-}
-
 .quiz-vocab-link { display: block; margin: 4px 0 12px; color: #246541; font-size: .9rem; line-height: 1.5; text-underline-offset: 3px; }
 
 /* Keep the setup compact, with each label above its dropdown. */

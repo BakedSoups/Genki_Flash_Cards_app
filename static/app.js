@@ -1037,12 +1037,6 @@ function checkAnswer(writingGrade = null) {
           segment.append(reading, meaning);
           segment.setAttribute("aria-label", `${status}: ${segment.textContent}`);
         }
-        if (card.token_notes?.[token.expectedIndex]) {
-          const explanation = document.createElement("small");
-          explanation.className = "token-form-note";
-          explanation.textContent = card.token_notes[token.expectedIndex];
-          segment.append(explanation);
-        }
         kanaLine.append(segment);
       }
     } else {
