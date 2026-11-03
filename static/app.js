@@ -1225,7 +1225,7 @@ async function loadLessons() {
     lessonSelect.replaceChildren(...lessons.map(lesson => {
       const option = document.createElement("option");
       option.value = lesson.file;
-      option.textContent = lesson.name;
+      option.textContent = lesson.name.replaceAll(" — ", ": ");
       return option;
     }));
     const savedLesson = new URLSearchParams(window.location.search).get("lesson") || savedLessonSelection();
