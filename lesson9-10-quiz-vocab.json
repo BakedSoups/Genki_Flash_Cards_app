@@ -1,0 +1,266 @@
+[
+  {
+    "romaji": "kinou",
+    "japanese": "きのう",
+    "kana": "きのう",
+    "english": "yesterday"
+  },
+  {
+    "romaji": "daigaku",
+    "japanese": "大学",
+    "kana": "だいがく",
+    "english": "university"
+  },
+  {
+    "romaji": "kuru",
+    "japanese": "来る",
+    "kana": "くる",
+    "english": "to come"
+  },
+  {
+    "romaji": "kita",
+    "japanese": "来た",
+    "kana": "きた",
+    "english": "came (casual)"
+  },
+  {
+    "romaji": "konakatta",
+    "japanese": "来なかった",
+    "kana": "こなかった",
+    "english": "did not come (casual)"
+  },
+  {
+    "romaji": "kodomo",
+    "japanese": "子ども",
+    "kana": "こども",
+    "english": "child; children"
+  },
+  {
+    "romaji": "toki",
+    "japanese": "時",
+    "kana": "とき",
+    "english": "time; when"
+  },
+  {
+    "romaji": "benkyou",
+    "japanese": "勉強",
+    "kana": "べんきょう",
+    "english": "study; studying"
+  },
+  {
+    "romaji": "kirai",
+    "japanese": "嫌い",
+    "kana": "きらい",
+    "english": "dislike (na-adjective)"
+  },
+  {
+    "romaji": "senshuu",
+    "japanese": "先週",
+    "kana": "せんしゅう",
+    "english": "last week"
+  },
+  {
+    "romaji": "undou suru",
+    "japanese": "運動する",
+    "kana": "うんどうする",
+    "english": "to exercise"
+  },
+  {
+    "romaji": "undou shita",
+    "japanese": "運動した",
+    "kana": "うんどうした",
+    "english": "exercised (casual)"
+  },
+  {
+    "romaji": "omou",
+    "japanese": "思う",
+    "kana": "おもう",
+    "english": "to think"
+  },
+  {
+    "romaji": "Roshia",
+    "japanese": "ロシア",
+    "kana": "ロシア",
+    "english": "Russia"
+  },
+  {
+    "romaji": "Kanada",
+    "japanese": "カナダ",
+    "kana": "カナダ",
+    "english": "Canada"
+  },
+  {
+    "romaji": "ookii",
+    "japanese": "大きい",
+    "kana": "おおきい",
+    "english": "large; big"
+  },
+  {
+    "romaji": "kono",
+    "japanese": "この",
+    "kana": "この",
+    "english": "this (before a noun)"
+  },
+  {
+    "romaji": "tokei",
+    "japanese": "時計",
+    "kana": "とけい",
+    "english": "clock; watch"
+  },
+  {
+    "romaji": "takai",
+    "japanese": "高い",
+    "kana": "たかい",
+    "english": "expensive; high"
+  },
+  {
+    "romaji": "yasui",
+    "japanese": "安い",
+    "kana": "やすい",
+    "english": "cheap; inexpensive"
+  },
+  {
+    "romaji": "kudasai",
+    "japanese": "ください",
+    "kana": "ください",
+    "english": "please give me"
+  },
+  {
+    "romaji": "kekkon suru",
+    "japanese": "結婚する",
+    "kana": "けっこんする",
+    "english": "to get married"
+  },
+  {
+    "romaji": "tsumori",
+    "japanese": "つもり",
+    "kana": "つもり",
+    "english": "intention; plan"
+  },
+  {
+    "romaji": "suki",
+    "japanese": "好き",
+    "kana": "すき",
+    "english": "like; fond of (na-adjective)"
+  },
+  {
+    "romaji": "sensei",
+    "japanese": "先生",
+    "kana": "せんせい",
+    "english": "teacher"
+  },
+  {
+    "romaji": "naru",
+    "japanese": "なる",
+    "kana": "なる",
+    "english": "to become"
+  },
+  {
+    "romaji": "kisetsu",
+    "japanese": "季節",
+    "kana": "きせつ",
+    "english": "season"
+  },
+  {
+    "romaji": "naka",
+    "japanese": "中",
+    "kana": "なか",
+    "english": "inside; within"
+  },
+  {
+    "romaji": "nani",
+    "japanese": "何",
+    "kana": "なに",
+    "english": "what"
+  },
+  {
+    "romaji": "ichiban",
+    "japanese": "一番",
+    "kana": "いちばん",
+    "english": "most; best"
+  },
+  {
+    "romaji": "aki",
+    "japanese": "秋",
+    "kana": "あき",
+    "english": "fall; autumn"
+  },
+  {
+    "romaji": "basu",
+    "japanese": "バス",
+    "kana": "バス",
+    "english": "bus"
+  },
+  {
+    "romaji": "iku",
+    "japanese": "行く",
+    "kana": "いく",
+    "english": "to go"
+  },
+  {
+    "romaji": "sanjuppun",
+    "japanese": "三十分",
+    "kana": "さんじゅっぷん",
+    "english": "30 minutes"
+  },
+  {
+    "romaji": "gurai",
+    "japanese": "ぐらい",
+    "kana": "ぐらい",
+    "english": "about; approximately"
+  },
+  {
+    "romaji": "kakaru",
+    "japanese": "かかる",
+    "kana": "かかる",
+    "english": "to take (time or money)"
+  },
+  {
+    "romaji": "ie",
+    "japanese": "家",
+    "kana": "いえ",
+    "english": "home; house"
+  },
+  {
+    "romaji": "gakkou",
+    "japanese": "学校",
+    "kana": "がっこう",
+    "english": "school"
+  },
+  {
+    "romaji": "dou yatte",
+    "japanese": "どうやって",
+    "kana": "どうやって",
+    "english": "how; by what means"
+  },
+  {
+    "romaji": "dono gurai",
+    "japanese": "どのぐらい",
+    "kana": "どのぐらい",
+    "english": "how long; how much"
+  },
+  {
+    "romaji": "mou",
+    "japanese": "もう",
+    "kana": "もう",
+    "english": "already"
+  },
+  {
+    "romaji": "tango",
+    "japanese": "単語",
+    "kana": "たんご",
+    "english": "vocabulary word"
+  },
+  {
+    "romaji": "oboeru",
+    "japanese": "覚える",
+    "kana": "おぼえる",
+    "english": "to memorize"
+  },
+  {
+    "romaji": "oboeta",
+    "japanese": "覚えた",
+    "kana": "おぼえた",
+    "english": "memorized (casual)"
+  }
+]

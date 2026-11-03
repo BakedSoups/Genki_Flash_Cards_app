@@ -16,10 +16,10 @@
       "destination particle",
       "came: casual past of 来る (くる)"
     ],
-    "grammar_note": "来る (くる) is irregular: 来た (きた) → 来なかった (こなかった). Raise your intonation to make a casual question; omit ですか.",
+    "grammar_note": "来る (kuru, come) → 来た (kita, came); 来る → 来ない (konai, not come) → 来なかった (konakatta, did not come). This verb is irregular. Raise your intonation for a casual question. 行きました (ikimashita) means “went” and is polite; this question asks for casual “came.”",
     "prompt": "Make a casual question: Did you come to university yesterday?",
     "original": "",
-    "topic": "Casual past forms",
+    "topic": "Part 1: Informal questions and negative answers",
     "furigana": {
       "大学": "だいがく",
       "来た": "きた",
@@ -34,7 +34,14 @@
       "好き": "すき",
       "秋": "あき",
       "何": "なに"
-    }
+    },
+    "token_notes": [
+      "",
+      "",
+      "Ni marks the destination with a movement verb: daigaku ni kita = came to university.",
+      "kuru (come) → kita (came). Kuru is irregular, so learn this past form as a pair. Kimashita is the polite past. Ikimashita comes from iku (go): it means “went,” not “came.”"
+    ],
+    "hint": "Use the irregular casual past of kuru (come). Ni marks the destination; finish with a rising question tone."
   },
   {
     "kind": "sentence",
@@ -52,7 +59,7 @@
     "grammar_note": "来る (くる) → 来ない (こない) → 来なかった (こなかった). ううん is casual “no.”",
     "prompt": "Answer negatively in casual Japanese: No, I didn’t come.",
     "original": "きのう、大学に来た？",
-    "topic": "Casual past forms",
+    "topic": "Part 1: Informal questions and negative answers",
     "furigana": {
       "大学": "だいがく",
       "来た": "きた",
@@ -67,7 +74,12 @@
       "好き": "すき",
       "秋": "あき",
       "何": "なに"
-    }
+    },
+    "token_notes": [
+      "Uun is casual “no.” Keep the long uu sound; un is casual “yes.”",
+      "kuru → konai (not come) → konakatta (did not come). For the past negative, change the final i of nai to katta."
+    ],
+    "hint": "Begin with casual “no.” Use the past negative of kuru, built from konai."
   },
   {
     "kind": "sentence",
@@ -93,7 +105,7 @@
     "grammar_note": "Short casual version: 勉強嫌いだった？ Full version: 勉強するのが嫌いだった？ する = do; の turns 勉強する into “studying”; が marks what is disliked. 嫌い is a な-adjective despite ending in い.",
     "prompt": "Make a short casual question: Did you dislike studying when you were a child?",
     "original": "",
-    "topic": "Casual past forms",
+    "topic": "Part 1: Informal questions and negative answers",
     "furigana": {
       "大学": "だいがく",
       "来た": "きた",
@@ -108,7 +120,16 @@
       "好き": "すき",
       "秋": "あき",
       "何": "なに"
-    }
+    },
+    "token_notes": [
+      "",
+      "kodomo + no + toki = the time of childhood, or “when you were a child.” No links the two nouns.",
+      "Toki means time. Kodomo no toki turns “the time of childhood” into “when you were a child.”",
+      "Benkyou is a noun meaning study. In this short casual question, benkyou kirai datta replaces the fuller benkyou suru no ga kirai datta.",
+      "Kirai is a na-adjective, even though it ends in i. Its past ending is datta, rather than the katta ending used for i-adjectives.",
+      "da (is) → datta (was). This is the casual past ending for nouns and na-adjectives, such as kirai."
+    ],
+    "hint": "Use kodomo no toki for “when you were a child.” In the short version, put the casual past of da after kirai."
   },
   {
     "kind": "sentence",
@@ -128,7 +149,7 @@
     "grammar_note": "嫌いだ → 嫌いじゃない → 嫌いだった → 嫌いじゃなかった. Use じゃなかった for the past negative of nouns and な-adjectives.",
     "prompt": "Answer negatively in casual Japanese: No, I didn’t dislike it.",
     "original": "子どもの時、勉強嫌いだった？",
-    "topic": "Casual past forms",
+    "topic": "Part 1: Informal questions and negative answers",
     "furigana": {
       "大学": "だいがく",
       "来た": "きた",
@@ -143,7 +164,221 @@
       "好き": "すき",
       "秋": "あき",
       "何": "なに"
-    }
+    },
+    "token_notes": [
+      "Uun is casual “no.” Keep the long uu sound; un is casual “yes.”",
+      "Kirai is a na-adjective, even though it ends in i. Its past ending is datta, rather than the katta ending used for i-adjectives.",
+      "janai (is not) → janakatta (was not). Change the final i of nai to katta. With kirai, this means “did not dislike.”"
+    ],
+    "hint": "Begin with casual “no.” Kirai is a na-adjective, so use the past negative of da."
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Ken wa senshuu undou shita to omou",
+    "meaning": "I think Ken exercised last week.",
+    "kana": "ケンは先週運動したと思う。",
+    "kana_tokens": [
+      "ケン",
+      "は",
+      "先週",
+      "運動",
+      "した",
+      "と",
+      "思う"
+    ],
+    "token_meanings": [
+      "Ken",
+      "topic particle",
+      "last week",
+      "exercise",
+      "did: casual past of する",
+      "marks the thought being quoted",
+      "think (casual)"
+    ],
+    "grammar_note": "先週 = last week. 運動する → 運動した (exercised). Put the plain past clause before と思う: “I think …”. 思う is the casual form; 思います is polite.",
+    "prompt": "Translate into Japanese: I think Ken exercised last week.",
+    "original": "",
+    "topic": "Part 2: Translate the following",
+    "furigana": {
+      "先週": "せんしゅう",
+      "運動": "うんどう",
+      "思う": "おもう"
+    },
+    "token_notes": [
+      "",
+      "Written は but pronounced wa here. It sets the topic: the person or thing the sentence is about.",
+      "Sen (previous) + shuu (week) → senshuu, last week. Senshuumatsu means last weekend, which is a different time expression.",
+      "Undou is a noun meaning exercise. Add suru to make a verb: undou suru → undou shita.",
+      "suru (do) → shita (did). Suru is irregular. Undou shita means “exercised.” The plain past is required before to omou here.",
+      "To marks the content of a thought here: undou shita + to + omou. The clause before to uses a plain form.",
+      "omou = think. A plain-form statement + to omou means “I think that …”. Shita keeps the exercise in the past; omou describes what you think now."
+    ],
+    "hint": "Put Ken first as the topic. Use last week + exercise in the plain past, then the pattern for “I think.”"
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Roshia wa Kanada yori ookii desu",
+    "meaning": "Russia is larger than Canada.",
+    "kana": "ロシアはカナダより大きいです。",
+    "kana_tokens": [
+      "ロシア",
+      "は",
+      "カナダ",
+      "より",
+      "大きい",
+      "です"
+    ],
+    "token_meanings": [
+      "Russia",
+      "topic particle",
+      "Canada",
+      "than: comparison standard",
+      "large / big",
+      "polite ending"
+    ],
+    "grammar_note": "A は B より + adjective = A is more … than B. より marks Canada as the comparison standard. 大きい is an い-adjective.",
+    "prompt": "Translate into Japanese: Russia is larger than Canada.",
+    "original": "",
+    "topic": "Part 2: Translate the following",
+    "furigana": {
+      "大きい": "おおきい"
+    },
+    "token_notes": [
+      "",
+      "Written は but pronounced wa here. It sets the topic: the person or thing the sentence is about.",
+      "",
+      "A wa B yori + adjective compares A with B. Yori follows the comparison standard: Kanada yori = than Canada.",
+      "Ookii is an i-adjective. Keep its i before desu. It means “larger” here because yori sets up a comparison.",
+      "Desu adds politeness. With an i-adjective such as takai, keep the final i: takai desu."
+    ],
+    "hint": "Comparison pattern: A wa B yori + adjective + desu. Put the comparison standard before yori."
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Kono tokei wa takai desu yasui no o kudasai",
+    "meaning": "This clock is expensive. Please give me a cheap one.",
+    "kana": "この時計は高いです。安いのをください。",
+    "kana_tokens": [
+      "この",
+      "時計",
+      "は",
+      "高い",
+      "です",
+      "安い",
+      "の",
+      "を",
+      "ください"
+    ],
+    "token_meanings": [
+      "this (before a noun)",
+      "clock / watch",
+      "topic particle",
+      "expensive",
+      "polite ending",
+      "cheap / inexpensive",
+      "one: replaces 時計",
+      "object particle",
+      "please give me"
+    ],
+    "grammar_note": "この must come before a noun: この時計. 高い = expensive; 安い = cheap. Adjective + の replaces a noun: 安いの = a cheap one. を marks what you request; ください means please give me.",
+    "prompt": "Translate into Japanese: This clock is expensive. Please give me a cheap one.",
+    "original": "",
+    "topic": "Part 2: Translate the following",
+    "furigana": {
+      "時計": "とけい",
+      "高い": "たかい",
+      "安い": "やすい"
+    },
+    "token_notes": [
+      "Kono means “this” before a noun: kono tokei = this clock. To say “this” by itself, use kore.",
+      "",
+      "Written は but pronounced wa here. It sets the topic: the person or thing the sentence is about.",
+      "Takai means expensive here. As an i-adjective, it keeps its final i before desu.",
+      "Desu adds politeness. With an i-adjective such as takai, keep the final i: takai desu.",
+      "Yasui (cheap) + no (one) → yasui no (a cheap one). The adjective keeps its i.",
+      "Here no stands for the omitted noun tokei: yasui tokei → yasui no. It means “one,” rather than possession.",
+      "O marks the thing being requested: yasui no o kudasai = please give me a cheap one.",
+      "Kudasai is a polite request. Noun + o kudasai means “please give me [noun].” It follows yasui no here, meaning “a cheap one.”"
+    ],
+    "hint": "First describe this clock as expensive. Then replace “clock” with no after the adjective meaning cheap, and make a polite request."
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Kekkon suru tsumori desu",
+    "meaning": "I intend to get married.",
+    "kana": "結婚するつもりです。",
+    "kana_tokens": [
+      "結婚",
+      "する",
+      "つもり",
+      "です"
+    ],
+    "token_meanings": [
+      "marriage",
+      "do: 結婚する = get married",
+      "intention / plan",
+      "polite ending"
+    ],
+    "grammar_note": "Dictionary form + つもりです expresses an intention or plan. 結婚する = to get married. Keep する in dictionary form before つもり.",
+    "prompt": "Translate into Japanese: I intend to get married.",
+    "original": "",
+    "topic": "Part 2: Translate the following",
+    "furigana": {
+      "結婚": "けっこん"
+    },
+    "token_notes": [
+      "",
+      "Kekkon (marriage) + suru (do) → kekkon suru (get married). Use dictionary-form suru before tsumori.",
+      "Dictionary form + tsumori desu expresses your intention: kekkon suru tsumori desu = I intend to get married.",
+      "Desu adds politeness. With an i-adjective such as takai, keep the final i: takai desu."
+    ],
+    "hint": "Put the dictionary form of “get married” before tsumori desu to express intention."
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Kodomo ga suki desu kara sensei ni narimasu",
+    "meaning": "I will become a teacher because I like children.",
+    "kana": "子どもが好きですから、先生になります。",
+    "kana_tokens": [
+      "子ども",
+      "が",
+      "好き",
+      "です",
+      "から",
+      "先生",
+      "に",
+      "なります"
+    ],
+    "token_meanings": [
+      "children",
+      "marks what is liked",
+      "like (な-adjective)",
+      "polite copula",
+      "because",
+      "teacher",
+      "marks the resulting role",
+      "will become"
+    ],
+    "grammar_note": "Reason + から + result. 子どもが好きです = I like children. 先生になる = become a teacher; に marks the resulting role. なります is polite nonpast, here expressing the future.",
+    "prompt": "Translate into Japanese: I will become a teacher because I like children.",
+    "original": "",
+    "topic": "Part 2: Translate the following",
+    "furigana": {
+      "子ども": "こども",
+      "好き": "すき",
+      "先生": "せんせい"
+    },
+    "token_notes": [
+      "",
+      "Ga marks what you like with suki: kodomo ga suki = I like children.",
+      "Suki is a na-adjective. Ga marks what you like: kodomo ga suki desu = I like children.",
+      "Suki is a na-adjective: suki desu is polite “like.” Suki da is the plain statement; before kara, suki da kara is also possible in casual speech.",
+      "A reason comes before kara: kodomo ga suki desu kara = because I like children. The result follows.",
+      "",
+      "Ni marks the resulting role with naru: sensei ni narimasu = I will become a teacher.",
+      "naru (become) → nari + masu → narimasu. For this u-verb, ru changes to ri before masu. The nonpast form expresses a future change here."
+    ],
+    "hint": "Give the reason first using kara. Then use teacher + ni + the polite form of naru."
   },
   {
     "kind": "sentence",
@@ -173,7 +408,7 @@
     "grammar_note": "季節の中で sets the group: among the seasons. 何が asks what; 一番 means most. 好き is a な-adjective. This is a casual question.",
     "prompt": "Make a casual question: Which season do you like best?",
     "original": "",
-    "topic": "Which do you like best? — Fall",
+    "topic": "Part 3: Make a question: favorite season (fall)",
     "furigana": {
       "大学": "だいがく",
       "来た": "きた",
@@ -188,7 +423,18 @@
       "好き": "すき",
       "秋": "あき",
       "何": "なに"
-    }
+    },
+    "token_notes": [
+      "",
+      "kisetsu + no + naka = among the seasons. No links the group to naka (within).",
+      "Naka means inside or within. Kisetsu no naka de sets the group you are choosing from: the seasons.",
+      "De marks the comparison group after naka: kisetsu no naka de = among the seasons. Here it does not mean “by bus.”",
+      "Nani asks “what.” With ga ichiban suki, it asks which item you like best.",
+      "Ga marks what is liked: aki ga = fall; nani ga asks which thing you like best.",
+      "Ichiban means “number one”; before suki, it means “like best.”",
+      "Suki is a na-adjective meaning “fond of.” Ga marks what you like. In this short casual sentence, the final da is omitted."
+    ],
+    "hint": "Set the group with seasons + no naka de. Ask what + ga + most + like in casual speech."
   },
   {
     "kind": "sentence",
@@ -210,7 +456,7 @@
     "grammar_note": "秋 (あき) = fall / autumn. 秋が一番好き is a natural short casual answer. A final だ is optional here.",
     "prompt": "Answer in casual Japanese: I like fall best.",
     "original": "季節の中で、何が一番好き？",
-    "topic": "Which do you like best? — Fall",
+    "topic": "Part 3: Make a question: favorite season (fall)",
     "furigana": {
       "大学": "だいがく",
       "来た": "きた",
@@ -225,6 +471,85 @@
       "好き": "すき",
       "秋": "あき",
       "何": "なに"
-    }
+    },
+    "token_notes": [
+      "",
+      "Ga marks what is liked: aki ga = fall; nani ga asks which thing you like best.",
+      "Ichiban means “number one”; before suki, it means “like best.”",
+      "Suki is a na-adjective meaning “fond of.” Ga marks what you like. In this short casual sentence, the final da is omitted."
+    ],
+    "hint": "Begin with fall, then mark what you like with ga. Follow with most + like."
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Basu de ikimasu sanjuppun gurai kakarimasu",
+    "meaning": "I go by bus. It takes about 30 minutes.",
+    "kana": "バスで行きます。三十分ぐらいかかります。",
+    "kana_tokens": [
+      "バス",
+      "で",
+      "行きます",
+      "三十分",
+      "ぐらい",
+      "かかります"
+    ],
+    "token_meanings": [
+      "bus",
+      "by: transportation particle",
+      "go (polite)",
+      "30 minutes",
+      "about / approximately",
+      "takes (time)"
+    ],
+    "grammar_note": "バスで = by bus; で marks the means of transportation. 三十分 (さんじゅっぷん) = 30 minutes. Duration + ぐらい + かかります = it takes about that long. Answer both questions; do not translate or repeat them.",
+    "prompt": "Answer both questions in Japanese: say you go by bus and it takes about 30 minutes. Type only the answers in romaji.",
+    "original": "あなたはどうやって家から学校まで行きますか？どのぐらいかかりますか？",
+    "topic": "Part 4: Answer the questions in Japanese",
+    "furigana": {
+      "家": "いえ",
+      "学校": "がっこう",
+      "行きます": "いきます",
+      "三十分": "さんじゅっぷん"
+    },
+    "token_notes": [
+      "",
+      "De marks the means of travel: basu de = by bus. The destination would use ni or e.",
+      "iku (go) → iki + masu → ikimasu. For this u-verb, ku changes to ki before masu.",
+      "sanjuu (30) + fun (minutes) → sanjuppun. The minute counter changes to ppun here; keep the doubled p.",
+      "Put gurai after a quantity to make it approximate: sanjuppun gurai = about 30 minutes.",
+      "kakaru (take time) → kakari + masu → kakarimasu. For this u-verb, ru changes to ri before masu."
+    ],
+    "hint": "Use de for your means of transport. Then give the duration + gurai + the polite form of kakaru."
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Un mou oboeta",
+    "meaning": "Yes, I have already memorized it.",
+    "kana": "うん、もう覚えた。",
+    "kana_tokens": [
+      "うん",
+      "もう",
+      "覚えた"
+    ],
+    "token_meanings": [
+      "yes (casual)",
+      "already",
+      "memorized: casual past of 覚える"
+    ],
+    "grammar_note": "もう + past tense expresses that something is already done. 覚える → 覚えた. うん is casual “yes.” Answer affirmatively; do not repeat the question.",
+    "prompt": "Answer yes in casual Japanese: Yes, I have already memorized it. Type only the answer in romaji.",
+    "original": "もう十課の単語を覚えた？",
+    "topic": "Part 4: Answer the questions in Japanese",
+    "furigana": {
+      "十課": "じゅっか",
+      "単語": "たんご",
+      "覚えた": "おぼえた"
+    },
+    "token_notes": [
+      "Un is casual “yes.” Uun, with a longer vowel, means “no.”",
+      "Mou means “already.” With the past form oboeta, it says the memorizing is already complete.",
+      "oboeru (memorize) → oboe + ta → oboeta. This is a ru-verb: remove ru and add ta for the casual past."
+    ],
+    "hint": "Begin with casual “yes.” Use mou, then the casual past of oboeru: remove ru and add ta."
   }
 ]

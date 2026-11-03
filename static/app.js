@@ -38,6 +38,12 @@ const oralParts = document.querySelector("#oral-parts");
 const oralChecks = [...oralParts.querySelectorAll("input")];
 const selectedOralParts = () => oralChecks.filter(input => input.checked).map(input => input.value);
 const oralPartNumber = card => card.topic?.startsWith("Part 3") ? "3" : card.topic?.startsWith("Part 2") ? "2" : "1";
+const grammarParts = document.querySelector("#grammar-parts");
+const grammarChecks = [...grammarParts.querySelectorAll("input")];
+const selectedGrammarParts = () => grammarChecks.filter(input => input.checked).map(input => input.value);
+function filterGrammarParts(cards, selected) {
+  return cards.filter(card => selected.includes(card.topic?.match(/^Part (\d+)\b/)?.[1]));
+}
 const reviewParts = document.querySelector("#review-parts");
 const reviewChecks = [...reviewParts.querySelectorAll(":scope > label input")];
 const selectedReviewGroups = () => reviewChecks.filter(input => input.checked).map(input => input.value);
@@ -122,6 +128,7 @@ function saveSettings() {
     const settings = Object.fromEntries(
       [modeSelect, wordSetSelect, loopsSelect, shuffleSelect, hintsSelect, showKatakanaSelect].map(select => [select.id, select.value])
     );
+    settings.grammarParts = selectedGrammarParts();
     settings.oralParts = selectedOralParts();
     settings.reviewGroups = selectedReviewGroups();
     settings.familyTopics = selectedFamilyTopics();
@@ -133,6 +140,7 @@ function restoreSettings() {
   try {
     window.localStorage.removeItem("kotoba-cards:active-session");
     const settings = JSON.parse(window.localStorage.getItem(SETTINGS_KEY)) || {};
+    if (Array.isArray(settings.grammarParts)) grammarChecks.forEach(input => { input.checked = settings.grammarParts.includes(input.value); });
     if (Array.isArray(settings.oralParts)) oralChecks.forEach(input => { input.checked = settings.oralParts.includes(input.value); });
     const savedGroups = Array.isArray(settings.reviewGroups) ? settings.reviewGroups
       : settings["review-part"] && settings["review-part"] !== "all" ? [settings["review-part"]] : null;
@@ -178,9 +186,10 @@ function restoreShuffle() {
 }
 
 function selectLessonDirection() {
+  grammarParts.hidden = lessonSelect.value !== "lesson9-10-grammar.json";
   document.querySelector("#furigana-setting").hidden = lessonSelect.value !== "lesson9-10-grammar.json";
   restoreShuffle();
-  const isVocabulary = lessonSelect.value === "midterm-vocabulary.json";
+  const isVocabulary = ["midterm-vocabulary.json", "lesson9-10-quiz-vocab.json"].includes(lessonSelect.value);
   const isReview = ["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value);
   reviewParts.hidden = !isReview;
   oralParts.hidden = lessonSelect.value !== "midterm-oral.csv";
@@ -554,6 +563,24 @@ function showHint() {
   const item = cards[index];
   const card = studyMode === "introduction" ? item.card : item;
   const answer = directionFields(card).answer;
+  if (card.hint) {
+    hintLevel = Math.min(4, hintLevel + 1);
+    hintUsedForCurrent = true;
+    if (hintLevel === 1) correction.textContent = `Grammar clue: ${card.hint}`;
+    else if (hintLevel === 2) correction.textContent = `First letters: ${hintFor(answer)}`;
+    else if (hintLevel === 3) correction.textContent = `Partial answer: ${partialHintFor(answer)}`;
+    else {
+      correction.textContent = `Full answer: ${answer}`;
+      const japanese = document.createElement("span");
+      renderWithReadings(japanese, card.kana, card);
+      correction.append(japanese);
+    }
+    fullHintUsedForCurrent = hintLevel === 4;
+    result.className = "result hint-visible";
+    hintButton.disabled = fullHintUsedForCurrent;
+    answerInput.focus();
+    return;
+  }
   hintLevel = Math.min(3, hintLevel + 1);
   hintUsedForCurrent = true;
   if (hintLevel === 1) {
@@ -766,6 +793,11 @@ async function startLesson() {
     if (!response.ok) throw new Error((await response.json()).error || "Could not load lesson");
     sourceCards = await response.json();
     choicePool = sourceCards.slice();
+    if (lessonSelect.value === "lesson9-10-grammar.json") {
+      const selected = selectedGrammarParts();
+      if (!selected.length) throw new Error("Select at least one grammar quiz section.");
+      sourceCards = filterGrammarParts(sourceCards, selected);
+    }
     if (lessonSelect.value === "midterm-oral.csv") {
       const selected = selectedOralParts();
       if (!selected.length) throw new Error("Select at least one oral test part.");
@@ -1004,6 +1036,12 @@ function checkAnswer(writingGrade = null) {
           meaning.textContent = card.token_meanings[token.expectedIndex];
           segment.append(reading, meaning);
           segment.setAttribute("aria-label", `${status}: ${segment.textContent}`);
+        }
+        if (card.token_notes?.[token.expectedIndex]) {
+          const explanation = document.createElement("small");
+          explanation.className = "token-form-note";
+          explanation.textContent = card.token_notes[token.expectedIndex];
+          segment.append(explanation);
         }
         kanaLine.append(segment);
       }
@@ -1307,6 +1345,15 @@ oralChecks.forEach(input => input.addEventListener("change", saveSettings));
 for (const [id, checked] of [["oral-all", true], ["oral-none", false]]) {
   document.querySelector(`#${id}`).addEventListener("click", () => {
     oralChecks.forEach(input => { input.checked = checked; });
+    saveSettings();
+  });
+}
+
+
+grammarChecks.forEach(input => input.addEventListener("change", saveSettings));
+for (const [id, checked] of [["grammar-all", true], ["grammar-none", false]]) {
+  document.querySelector(`#${id}`).addEventListener("click", () => {
+    grammarChecks.forEach(input => { input.checked = checked; });
     saveSettings();
   });
 }

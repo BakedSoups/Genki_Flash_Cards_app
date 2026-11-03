@@ -156,10 +156,10 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 .guide-japanese { font-size: 1.2rem; }
 .guide-romaji { color: #555; }
 
-#review-parts { min-width: 0; margin: 12px 0; border: 1px solid #dededb; border-radius: 12px; padding: 14px; }
-#review-parts legend { font-weight: 700; }
-#review-parts label { display: flex; align-items: center; gap: 10px; min-height: 48px; margin: 0; font-weight: 500; }
-#review-parts input { width: 22px; height: 22px; min-height: 22px; flex-shrink: 0; accent-color: #28714a; }
+#review-parts, #grammar-parts { min-width: 0; margin: 12px 0; border: 1px solid #dededb; border-radius: 12px; padding: 14px; }
+#review-parts legend, #grammar-parts legend { font-weight: 700; }
+#review-parts label, #grammar-parts label { display: flex; align-items: center; gap: 10px; min-height: 48px; margin: 0; font-weight: 500; }
+#review-parts input, #grammar-parts input { width: 22px; height: 22px; min-height: 22px; flex-shrink: 0; accent-color: #28714a; }
 .review-selection-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
 
 #family-topics { margin: 0 0 12px 24px; padding: 8px 12px; border: 0; border-left: 2px solid #dededb; min-width: 0; }
@@ -178,3 +178,49 @@ select { border: 1px solid #c9c9c5; border-radius: 10px; padding: 9px 30px 9px 1
 #oral-parts input { width: 20px; min-height: 20px; flex-shrink: 0; }
 
 .oral-question #prompt-word { white-space: pre-line; }
+
+/* Grammar sections follow the same compact controls as the review picker. */
+#grammar-parts { padding: 12px; background: #f7f7f5; }
+#grammar-parts legend { padding: 0 6px; font-size: .88rem; }
+#grammar-parts label {
+  padding: 10px 8px;
+  border-radius: 8px;
+  font-size: .9rem;
+  line-height: 1.5;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+#grammar-parts label:hover { background: #ecece8; }
+#grammar-parts label:has(input:checked) { background: #e8f1eb; }
+#grammar-parts label + label { margin-top: 4px; }
+#grammar-parts .review-selection-actions { gap: 8px; margin: 12px 0; }
+#grammar-parts .review-selection-actions button {
+  flex: 1;
+  border: 1px solid #c9c9c5;
+  padding: 9px 12px;
+  background: #fff;
+  color: #444;
+  font-size: .85rem;
+  font-weight: 600;
+}
+#grammar-parts .review-selection-actions button:hover { background: #efefec; }
+#grammar-parts .setup-help { margin: 0; line-height: 1.5; color: #60605d; }
+#furigana-setting { display: grid; gap: 10px; margin-top: 12px; }
+#furigana-setting label { margin: 0; }
+#furigana-setting select { font-weight: 400; }
+#sentence-original:has(ruby) { line-height: 2.4; }
+ruby { ruby-position: over; ruby-align: center; }
+rt { font-size: .6em; font-weight: 400; color: #60605d; }
+.sentence-kana:has(ruby) { align-items: stretch; gap: 10px 6px; }
+.sentence-kana > span:has(ruby) { padding-top: 12px; }
+
+.sentence-kana > span:has(.token-form-note) { max-width: min(100%, 290px); }
+.sentence-kana .token-form-note {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid currentColor;
+  text-align: left;
+  line-height: 1.55;
+}
+
+.quiz-vocab-link { display: block; margin: 4px 0 12px; color: #246541; font-size: .9rem; line-height: 1.5; text-underline-offset: 3px; }
