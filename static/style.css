@@ -225,67 +225,19 @@ rt { font-size: .6em; font-weight: 400; color: #60605d; }
 
 .quiz-vocab-link { display: block; margin: 4px 0 12px; color: #246541; font-size: .9rem; line-height: 1.5; text-underline-offset: 3px; }
 
-/* A calm, focused entry into a study session. */
-.cards-app { background: #f6f5f0; color: #283c33; }
-.cards-app main:has(#home-screen:not([hidden])) { width: min(1120px, 92vw); padding-top: 30px; }
-.cards-app header { align-items: center; padding-bottom: 22px; border-bottom: 1px solid #dde1d7; }
-.cards-app .brand { display: flex; align-items: center; gap: 6px; color: #283c33; font-size: 1.15rem; letter-spacing: -.04em; }
-.cards-app .brand > span:not(.brand-mark) { color: #738074; }
-.cards-app .brand-mark { display: inline-grid; place-items: center; width: 35px; height: 35px; margin-right: 6px; border-radius: 11px; background: #345b47; color: #fff; font-size: 1.35rem; font-weight: 500; }
-.cards-app .home-screen { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 28px; margin-top: 0; align-items: start; }
-.home-intro { position: relative; grid-column: 1 / -1; padding: 45px 0 34px; overflow: hidden; }
-.eyebrow { color: #53705c; text-transform: uppercase; font-size: .68rem; font-weight: 750; letter-spacing: .15em; }
-.home-intro h1 { position: relative; z-index: 1; margin: 15px 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.06; font-weight: 400; letter-spacing: -.055em; }
-.home-intro h1 em { color: #638065; font-weight: 400; }
-.home-intro p { position: relative; z-index: 1; max-width: 390px; margin: 16px 0 0; color: #6b746a; font-size: .93rem; line-height: 1.7; }
-.intro-japanese { position: absolute; right: 24px; top: 45px; color: #dfe6d8; font-family: 'Yu Mincho', serif; font-size: clamp(5rem, 13vw, 10rem); letter-spacing: -.1em; transform: rotate(-8deg); user-select: none; }
-.cards-app .home-screen .setup-card { grid-template-columns: 1fr 1fr; gap: 12px 18px; padding: 28px; border: 1px solid #e0e3da; border-radius: 20px; box-shadow: 0 8px 28px #283c3306; }
-.home-screen .setup-card > * { grid-column: 1 / -1; min-width: 0; }
-.home-screen .setup-card > .setup-field { grid-column: auto; display: grid; align-content: start; gap: 9px; margin-top: 7px; }
-.setup-heading { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; margin-bottom: 3px; border-bottom: 1px solid #edf0e8; gap: 12px; }
-.setup-heading h2 { margin: 8px 0 0; font-size: 1.35rem; font-weight: 650; letter-spacing: -.045em; }
-.step-badge { display: grid; place-items: center; width: 38px; height: 38px; flex-shrink: 0; border: 1px solid #dfe6d8; border-radius: 50%; color: #7b8c77; font-size: .8rem; }
-.home-screen .setup-card label { color: #435347; margin-top: 0; font-size: .75rem; }
-.home-screen select { color: #35463b; border-color: #dce2d6; border-radius: 9px; background-color: #fbfcf9; font-size: .84rem; padding-block: 12px; cursor: pointer; }
+/* Keep the setup compact, with each label above its dropdown. */
+.home-screen > .setup-card {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 20px;
+}
+.home-screen > .setup-card > * { grid-column: 1 / -1; min-width: 0; }
+.home-screen > .setup-card > .setup-field { grid-column: auto; }
+.home-screen > .setup-card > .setup-field-wide { grid-column: 1 / -1; }
+.setup-field { display: grid; align-content: start; gap: 8px; min-width: 0; }
+.home-screen .setup-field label { margin: 0; }
+.home-screen select { font-size: .9rem; cursor: pointer; }
 .home-screen select:disabled { opacity: .6; cursor: default; }
-.session-options { margin: 9px 0 3px; border-top: 1px solid #e7eade; border-bottom: 1px solid #e7eade; }
-.session-options summary { padding: 17px 0; cursor: pointer; font-size: .83rem; font-weight: 650; }
-.session-options summary > span { display: block; margin: 6px 0 0 17px; color: #788172; font-size: .73rem; font-weight: 400; }
-.options-content { display: grid; gap: 9px; padding-bottom: 18px; }
-.home-screen .options-content label:not(:first-child) { margin-top: 8px; }
-.home-screen .setup-help { line-height: 1.6; font-size: .77rem; color: #697365; }
-.cards-app #start-button { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: #345b47; border-radius: 10px; font-size: .9rem; transition: background .15s, transform .15s; }
-.cards-app #start-button:hover { background: #264634; transform: translateY(-1px); }
-.cards-app #start-button:disabled { opacity: .5; cursor: default; transform: none; }
-#start-button > span { font-size: 1.2rem; font-weight: 400; }
-.start-note { text-align: center; color: #7a8276; font-size: .72rem; margin: 0; }
-.cards-app .history-card { padding: 28px; background: #edf0e6; border: 1px solid #e0e5d8; border-radius: 20px; }
-.history-heading { display: flex; justify-content: space-between; align-items: center; color: #6b8064; }
-.history-heading .side-label { color: #62765a; font-size: .65rem; letter-spacing: .14em; }
-.cards-app .history-card h2 { margin: 18px 0 12px; font-size: 1.65rem; line-height: 1.25; letter-spacing: -.035em; color: #354b3a; overflow-wrap: anywhere; }
-.cards-app .history-summary { color: #5f7058; font-size: .83rem; padding-bottom: 20px; border-bottom: 1px solid #dce2d2; }
-.cards-app .history-card h3 { color: #64745d; font-size: .65rem; letter-spacing: .1em; margin-top: 24px; }
-.cards-app .empty-history { color: #697660; font-size: .8rem; line-height: 1.6; }
-.cards-app .missed-word { background: #fff9; color: #455d43; line-height: 1.5; overflow-wrap: anywhere; }
-.cards-app .run-row { border-color: #dce2d2; font-size: .82rem; }
-.cards-app .run-meta { overflow-wrap: anywhere; line-height: 1.5; }
-.guide-link { display: grid; gap: 9px; padding-top: 24px; margin-top: 28px; border-top: 1px solid #d5ddcb; color: #3f583e; text-decoration: none; }
-.guide-link strong { display: flex; justify-content: space-between; font-size: .95rem; font-weight: 600; }
-.guide-link > span:last-child { color: #6c7963; font-size: .77rem; }
-.guide-link:hover strong { text-decoration: underline; text-underline-offset: 4px; }
-@media (max-width: 760px) {
-  .cards-app .home-screen { grid-template-columns: 1fr; gap: 20px; }
-  .home-intro { padding: 32px 0 12px; }
-  .intro-japanese { right: 8px; top: 35px; opacity: .65; }
-  .home-intro p { max-width: 300px; }
-}
-@media (max-width: 560px) {
-  .cards-app main:has(#home-screen:not([hidden])) { width: 100%; padding: max(20px, env(safe-area-inset-top)) 18px 24px; }
-  .cards-app .home-screen .setup-card, .cards-app .history-card { padding: 22px; }
-  .cards-app .home-screen .setup-card { grid-template-columns: 1fr; }
-  .intro-japanese { right: -6px; top: 66px; font-size: 5rem; opacity: .45; }
-  .home-intro p { font-size: .86rem; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .cards-app #start-button { transition: none; }
+.home-screen > .setup-card > .setup-help { margin: -6px 0 0; line-height: 1.5; }
+@media (max-width: 480px) {
+  .home-screen > .setup-card { grid-template-columns: 1fr; gap: 16px; }
 }
