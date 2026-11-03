@@ -114,6 +114,7 @@ let wordStats = {};
 let advancing = false;
 let waitingForContinue = false;
 let pendingCorrect = false;
+let redoOutcome = null;
 let advanceTimer = null;
 let history = [];
 let historySaved = false;
@@ -944,7 +945,7 @@ function checkAnswer(writingGrade = null) {
   if (direction !== "kanji-writing" && (isKanjiReadings ? !suppliedReadings.length : !answerInput.value.trim())) return;
   const expectedReadings = (fields.answers || []).map(normalize).sort();
   const sentenceResult = card.kind === "sentence" ? compare(answerInput.value, fields.answer) : null;
-  if (sentenceResult) {
+  if (sentenceResult && !redoOutcome) {
     sentenceCorrectTokens += sentenceResult.correct;
     sentenceTotalTokens += sentenceResult.total;
   }
@@ -956,21 +957,23 @@ function checkAnswer(writingGrade = null) {
     : [fields.answer, ...(["english-romaji", "kana-romaji"].includes(direction) ? card.romaji_answers || []
         : direction === "english-kana" ? card.kana_answers || [] : [])]
       .some(answer => normalize(answerInput.value) === normalize(answer));
-  attempts += 1;
-  wordStats[cardKey(card)].attempts += 1;
-  if (correct) {
-    wordStats[cardKey(card)].right += 1;
-    if (hintUsedForCurrent) {
-      hintedAnswers += 1;
-      wordStats[cardKey(card)].hinted += 1;
+  if (!redoOutcome) {
+    attempts += 1;
+    wordStats[cardKey(card)].attempts += 1;
+    if (correct) {
+      wordStats[cardKey(card)].right += 1;
+      if (hintUsedForCurrent) {
+        hintedAnswers += 1;
+        wordStats[cardKey(card)].hinted += 1;
+      } else {
+        correctAnswers += 1;
+        wordStats[cardKey(card)].correct += 1;
+        if (card.answer_segment) masteredSegments.add(card.romaji);
+        if (studyMode === "removal") card.correctCount += 1;
+      }
     } else {
-      correctAnswers += 1;
-      wordStats[cardKey(card)].correct += 1;
-      if (card.answer_segment) masteredSegments.add(card.romaji);
-      if (studyMode === "removal") card.correctCount += 1;
+      wordStats[cardKey(card)].wrong += 1;
     }
-  } else {
-    wordStats[cardKey(card)].wrong += 1;
   }
 
   advancing = true;
@@ -978,6 +981,7 @@ function checkAnswer(writingGrade = null) {
   resultStatus.textContent = correct
     ? hintUsedForCurrent ? "Correct with hint" : "Correct!"
     : "Not quite";
+  if (redoOutcome) resultStatus.textContent += " · Unscored redo";
   correction.replaceChildren();
   const answerLine = document.createElement("span");
   answerLine.textContent = isKanjiReadings
@@ -1112,12 +1116,17 @@ function checkAnswer(writingGrade = null) {
   pendingCorrect = correct;
   waitingForContinue = true;
   checkButton.textContent = card.kind === "sentence" ? "Next" : "Continue";
-  retryButton.hidden = card.kind !== "sentence" || !hintsEnabled;
+  retryButton.hidden = false;
   checkButton.disabled = false;
   checkButton.focus();
 }
 
 function advanceCard(correct, card) {
+  if (redoOutcome) {
+    correct = redoOutcome.correct;
+    hintUsedForCurrent = redoOutcome.hinted;
+    redoOutcome = null;
+  }
   if (studyMode === "cram") {
     cards.shift();
     if (correct && card.cramStage < 2) card.cramStage += 1;
@@ -1207,6 +1216,7 @@ function goHome() {
   advancing = false;
   waitingForContinue = false;
   cards = [];
+  redoOutcome = null;
   message.textContent = "";
   showScreen("home");
 }
@@ -1285,12 +1295,11 @@ modeSelect.addEventListener("change", () => {
 hintButton.addEventListener("click", showHint);
 retryButton.addEventListener("click", () => {
   if (!waitingForContinue || retryButton.hidden) return;
+  redoOutcome ??= { correct: pendingCorrect, hinted: hintUsedForCurrent };
   advancing = false;
   waitingForContinue = false;
-  pendingCorrect = false;
   renderCard();
-  // The correct answer was just revealed; count this immediate retry as assisted.
-  hintUsedForCurrent = true;
+  message.textContent = "Unscored redo — this practice does not affect scores or progress.";
 });
 document.addEventListener("keydown", event => {
   if (event.ctrlKey && !event.altKey && !event.shiftKey && event.key.toLocaleLowerCase() === "h"
