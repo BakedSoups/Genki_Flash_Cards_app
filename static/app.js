@@ -1,3 +1,27 @@
+function renderWithReadings(element, value, card) {
+  element.textContent = "";
+  const readings = card.furigana;
+  if (!readings || document.querySelector("#show-furigana").value !== "yes") {
+    element.textContent = value;
+    return;
+  }
+  const words = Object.keys(readings).sort((a, b) => b.length - a.length);
+  for (let i = 0; i < value.length;) {
+    const word = words.find(word => value.startsWith(word, i));
+    if (word) {
+      const ruby = document.createElement("ruby");
+      ruby.append(document.createTextNode(word));
+      const rt = document.createElement("rt");
+      rt.textContent = readings[word];
+      ruby.append(rt);
+      element.append(ruby);
+      i += word.length;
+    } else {
+      element.append(document.createTextNode(value[i++]));
+    }
+  }
+}
+
 const homeScreen = document.querySelector("#home-screen");
 const studyScreen = document.querySelector("#study-screen");
 const scoreScreen = document.querySelector("#score-screen");
@@ -154,6 +178,7 @@ function restoreShuffle() {
 }
 
 function selectLessonDirection() {
+  document.querySelector("#furigana-setting").hidden = lessonSelect.value !== "lesson9-10-grammar.json";
   restoreShuffle();
   const isVocabulary = lessonSelect.value === "midterm-vocabulary.json";
   const isReview = ["lesson8-review.json", "midterm-part2.csv"].includes(lessonSelect.value);
@@ -165,10 +190,10 @@ function selectLessonDirection() {
     (!["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value))
   ));
   directionSelect.value = [...directionSelect.options].some(option => option.value === previousDirection) ? previousDirection : "english-romaji";
-  directionSelect.disabled = ["midterm-oral.csv","learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "midterm-directions.csv", "lesson8-review.json", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
+  directionSelect.disabled = ["lesson9-10-grammar.json", "midterm-oral.csv","learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "midterm-directions.csv", "lesson8-review.json", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
   if (["lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
-  } else if (["midterm-oral.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "midterm-directions.csv", "lesson8-review.json"].includes(lessonSelect.value)) {
+  } else if (["lesson9-10-grammar.json", "midterm-oral.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "midterm-directions.csv", "lesson8-review.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
   } else if (lessonSelect.value === "learn-kanji.csv") {
     directionSelect.value = "kanji-romaji";
@@ -414,7 +439,7 @@ function renderCard() {
   document.querySelector(".card").classList.toggle("sentence-card", card.kind === "sentence");
   const original = document.querySelector("#sentence-original");
   original.hidden = !(card.original || card.context);
-  original.textContent = card.original || card.context || "";
+  renderWithReadings(original, card.original || card.context || "", card);
   const oralQuestion = lessonSelect.value === "midterm-oral.csv" && Boolean(card.original);
   document.querySelector(".card").classList.toggle("oral-question", oralQuestion);
   if (oralQuestion) {
@@ -968,7 +993,7 @@ function checkAnswer(writingGrade = null) {
         if (token.expectedIndex === undefined) continue;
         const segment = document.createElement("span");
         segment.className = token.correct ? "token-correct" : "token-incorrect";
-        segment.textContent = card.kana_tokens[token.expectedIndex];
+        renderWithReadings(segment, card.kana_tokens[token.expectedIndex], card);
         const status = token.correct ? "Correct" : token.missing ? "Missing" : "Incorrect";
         segment.title = `${status}: ${tokenize(fields.answer)[token.expectedIndex]}`;
         segment.setAttribute("aria-label", `${status}: ${segment.textContent}`);

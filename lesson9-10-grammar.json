@@ -1,0 +1,230 @@
+[
+  {
+    "kind": "sentence",
+    "romaji": "Kinou daigaku ni kita",
+    "meaning": "Did you come to university yesterday?",
+    "kana": "きのう、大学に来た？",
+    "kana_tokens": [
+      "きのう",
+      "大学",
+      "に",
+      "来た"
+    ],
+    "token_meanings": [
+      "yesterday",
+      "university",
+      "destination particle",
+      "came: casual past of 来る (くる)"
+    ],
+    "grammar_note": "来る (くる) is irregular: 来た (きた) → 来なかった (こなかった). Raise your intonation to make a casual question; omit ですか.",
+    "prompt": "Make a casual question: Did you come to university yesterday?",
+    "original": "",
+    "topic": "Casual past forms",
+    "furigana": {
+      "大学": "だいがく",
+      "来た": "きた",
+      "来なかった": "こなかった",
+      "子ども": "こども",
+      "時": "とき",
+      "勉強": "べんきょう",
+      "嫌い": "きらい",
+      "季節": "きせつ",
+      "中": "なか",
+      "一番": "いちばん",
+      "好き": "すき",
+      "秋": "あき",
+      "何": "なに"
+    }
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Uun konakatta",
+    "meaning": "No, I didn’t come.",
+    "kana": "ううん、来なかった。",
+    "kana_tokens": [
+      "ううん",
+      "来なかった"
+    ],
+    "token_meanings": [
+      "no (casual)",
+      "did not come"
+    ],
+    "grammar_note": "来る (くる) → 来ない (こない) → 来なかった (こなかった). ううん is casual “no.”",
+    "prompt": "Answer negatively in casual Japanese: No, I didn’t come.",
+    "original": "きのう、大学に来た？",
+    "topic": "Casual past forms",
+    "furigana": {
+      "大学": "だいがく",
+      "来た": "きた",
+      "来なかった": "こなかった",
+      "子ども": "こども",
+      "時": "とき",
+      "勉強": "べんきょう",
+      "嫌い": "きらい",
+      "季節": "きせつ",
+      "中": "なか",
+      "一番": "いちばん",
+      "好き": "すき",
+      "秋": "あき",
+      "何": "なに"
+    }
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Kodomo no toki benkyou kirai datta",
+    "meaning": "Did you dislike studying when you were a child?",
+    "kana": "子どもの時、勉強嫌いだった？",
+    "kana_tokens": [
+      "子ども",
+      "の",
+      "時",
+      "勉強",
+      "嫌い",
+      "だった"
+    ],
+    "token_meanings": [
+      "child",
+      "links child to time",
+      "when / time",
+      "studying",
+      "dislike (な-adjective)",
+      "was: casual past of だ"
+    ],
+    "grammar_note": "Short casual version: 勉強嫌いだった？ Full version: 勉強するのが嫌いだった？ する = do; の turns 勉強する into “studying”; が marks what is disliked. 嫌い is a な-adjective despite ending in い.",
+    "prompt": "Make a short casual question: Did you dislike studying when you were a child?",
+    "original": "",
+    "topic": "Casual past forms",
+    "furigana": {
+      "大学": "だいがく",
+      "来た": "きた",
+      "来なかった": "こなかった",
+      "子ども": "こども",
+      "時": "とき",
+      "勉強": "べんきょう",
+      "嫌い": "きらい",
+      "季節": "きせつ",
+      "中": "なか",
+      "一番": "いちばん",
+      "好き": "すき",
+      "秋": "あき",
+      "何": "なに"
+    }
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Uun kirai janakatta",
+    "meaning": "No, I didn’t dislike it.",
+    "kana": "ううん、嫌いじゃなかった。",
+    "kana_tokens": [
+      "ううん",
+      "嫌い",
+      "じゃなかった"
+    ],
+    "token_meanings": [
+      "no (casual)",
+      "dislike (な-adjective)",
+      "was not: casual past negative of だ"
+    ],
+    "grammar_note": "嫌いだ → 嫌いじゃない → 嫌いだった → 嫌いじゃなかった. Use じゃなかった for the past negative of nouns and な-adjectives.",
+    "prompt": "Answer negatively in casual Japanese: No, I didn’t dislike it.",
+    "original": "子どもの時、勉強嫌いだった？",
+    "topic": "Casual past forms",
+    "furigana": {
+      "大学": "だいがく",
+      "来た": "きた",
+      "来なかった": "こなかった",
+      "子ども": "こども",
+      "時": "とき",
+      "勉強": "べんきょう",
+      "嫌い": "きらい",
+      "季節": "きせつ",
+      "中": "なか",
+      "一番": "いちばん",
+      "好き": "すき",
+      "秋": "あき",
+      "何": "なに"
+    }
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Kisetsu no naka de nani ga ichiban suki",
+    "meaning": "Which season do you like best?",
+    "kana": "季節の中で、何が一番好き？",
+    "kana_tokens": [
+      "季節",
+      "の",
+      "中",
+      "で",
+      "何",
+      "が",
+      "一番",
+      "好き"
+    ],
+    "token_meanings": [
+      "seasons",
+      "links seasons to the group",
+      "within / among",
+      "sets the comparison group",
+      "what",
+      "marks what is liked",
+      "most / best",
+      "like (な-adjective)"
+    ],
+    "grammar_note": "季節の中で sets the group: among the seasons. 何が asks what; 一番 means most. 好き is a な-adjective. This is a casual question.",
+    "prompt": "Make a casual question: Which season do you like best?",
+    "original": "",
+    "topic": "Which do you like best? — Fall",
+    "furigana": {
+      "大学": "だいがく",
+      "来た": "きた",
+      "来なかった": "こなかった",
+      "子ども": "こども",
+      "時": "とき",
+      "勉強": "べんきょう",
+      "嫌い": "きらい",
+      "季節": "きせつ",
+      "中": "なか",
+      "一番": "いちばん",
+      "好き": "すき",
+      "秋": "あき",
+      "何": "なに"
+    }
+  },
+  {
+    "kind": "sentence",
+    "romaji": "Aki ga ichiban suki",
+    "meaning": "I like fall best.",
+    "kana": "秋が一番好き。",
+    "kana_tokens": [
+      "秋",
+      "が",
+      "一番",
+      "好き"
+    ],
+    "token_meanings": [
+      "fall / autumn",
+      "marks what is liked",
+      "most / best",
+      "like (な-adjective)"
+    ],
+    "grammar_note": "秋 (あき) = fall / autumn. 秋が一番好き is a natural short casual answer. A final だ is optional here.",
+    "prompt": "Answer in casual Japanese: I like fall best.",
+    "original": "季節の中で、何が一番好き？",
+    "topic": "Which do you like best? — Fall",
+    "furigana": {
+      "大学": "だいがく",
+      "来た": "きた",
+      "来なかった": "こなかった",
+      "子ども": "こども",
+      "時": "とき",
+      "勉強": "べんきょう",
+      "嫌い": "きらい",
+      "季節": "きせつ",
+      "中": "なか",
+      "一番": "いちばん",
+      "好き": "すき",
+      "秋": "あき",
+      "何": "なに"
+    }
+  }
+]
