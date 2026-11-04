@@ -1302,6 +1302,13 @@ retryButton.addEventListener("click", () => {
   message.textContent = "Unscored redo — this practice does not affect scores or progress.";
 });
 document.addEventListener("keydown", event => {
+  if (event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey
+      && event.key.toLowerCase() === "r" && !studyScreen.hidden
+      && waitingForContinue && !retryButton.hidden) {
+    event.preventDefault();
+    retryButton.click();
+    return;
+  }
   if (event.ctrlKey && !event.altKey && !event.shiftKey && event.key.toLocaleLowerCase() === "h"
       && !studyScreen.hidden && hintsEnabled && !hintButton.hidden) {
     event.preventDefault();
