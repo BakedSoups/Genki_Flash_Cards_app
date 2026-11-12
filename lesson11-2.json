@@ -1,0 +1,219 @@
+[
+  {
+    "japanese": "ならう",
+    "kana": "ならう",
+    "romaji": "narau",
+    "english": "to learn",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "のぼる",
+    "kana": "のぼる",
+    "romaji": "noboru",
+    "english": "to climb",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "はしる",
+    "kana": "はしる",
+    "romaji": "hashiru",
+    "english": "to run",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "つかれる",
+    "kana": "つかれる",
+    "romaji": "tsukareru",
+    "english": "to get tired",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "やめる",
+    "kana": "やめる",
+    "romaji": "yameru",
+    "english": "to quit",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "けんかする",
+    "kana": "けんかする",
+    "romaji": "kenka suru",
+    "english": "to have a fight; to quarrel",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "しょうかいする",
+    "kana": "しょうかいする",
+    "romaji": "shoukai suru",
+    "english": "to introduce",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "ダイエットする",
+    "kana": "ダイエットする",
+    "romaji": "daietto suru",
+    "english": "to go on a diet",
+    "script": "Katakana"
+  },
+  {
+    "japanese": "ちこくする",
+    "kana": "ちこくする",
+    "romaji": "chikoku suru",
+    "english": "to be late for an appointment",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "りゅうがくする",
+    "kana": "りゅうがくする",
+    "romaji": "ryuugaku suru",
+    "english": "to study abroad",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "しゅっしん",
+    "kana": "しゅっしん",
+    "romaji": "shusshin",
+    "english": "coming from",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "ひさしぶり",
+    "kana": "ひさしぶり",
+    "romaji": "hisashiburi",
+    "english": "it has been a long time",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "まあまあ",
+    "kana": "まあまあ",
+    "romaji": "maamaa",
+    "english": "okay; so-so",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "もっと",
+    "kana": "もっと",
+    "romaji": "motto",
+    "english": "more",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "あと",
+    "kana": "あと",
+    "romaji": "ato",
+    "english": "after an event",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "そして",
+    "kana": "そして",
+    "romaji": "soshite",
+    "english": "and then",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "～だけ",
+    "kana": "～だけ",
+    "romaji": "~dake",
+    "english": "just; only",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "～てん",
+    "kana": "～てん",
+    "romaji": "~ten",
+    "english": "points",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "さっか",
+    "kana": "さっか",
+    "romaji": "sakka",
+    "english": "writer",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "ジャーナリスト",
+    "kana": "ジャーナリスト",
+    "romaji": "jaanarisuto",
+    "english": "journalist",
+    "script": "Katakana"
+  },
+  {
+    "japanese": "けいさつかん",
+    "kana": "けいさつかん",
+    "romaji": "keisatsukan",
+    "english": "police officer",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "しょうぼうし",
+    "kana": "しょうぼうし",
+    "romaji": "shouboushi",
+    "english": "firefighter",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "きょうし",
+    "kana": "きょうし",
+    "romaji": "kyoushi",
+    "english": "schoolteacher",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "けんきゅうしゃ",
+    "kana": "けんきゅうしゃ",
+    "romaji": "kenkyuusha",
+    "english": "researcher",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "うちゅうひこうし",
+    "kana": "うちゅうひこうし",
+    "romaji": "uchuuhikoushi",
+    "english": "astronaut",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "スポーツせんしゅ",
+    "kana": "スポーツせんしゅ",
+    "romaji": "supootsu senshu",
+    "english": "athlete",
+    "script": "Katakana"
+  },
+  {
+    "japanese": "だいとうりょう",
+    "kana": "だいとうりょう",
+    "romaji": "daitouryou",
+    "english": "president of a country",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "はいゆう",
+    "kana": "はいゆう",
+    "romaji": "haiyuu",
+    "english": "actor; actress",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "かんごし",
+    "kana": "かんごし",
+    "romaji": "kangoshi",
+    "english": "nurse",
+    "script": "Hiragana"
+  },
+  {
+    "japanese": "シェフ",
+    "kana": "シェフ",
+    "romaji": "shefu",
+    "english": "chef",
+    "script": "Katakana"
+  },
+  {
+    "japanese": "まんがか",
+    "kana": "まんがか",
+    "romaji": "mangaka",
+    "english": "cartoonist",
+    "script": "Hiragana"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "romaji": "oosutoraria",
+    "japanese": "オーストラリア",
+    "kana": "オーストラリア",
+    "english": "Australia",
+    "script": "Katakana"
+  },
+  {
+    "romaji": "kyanpu",
+    "japanese": "キャンプ",
+    "kana": "キャンプ",
+    "english": "camp",
+    "script": "Katakana"
+  },
+  {
+    "romaji": "doraibu",
+    "japanese": "ドライブ",
+    "kana": "ドライブ",
+    "english": "drive",
+    "script": "Katakana"
+  },
+  {
+    "romaji": "ruumumeito",
+    "japanese": "ルームメイト",
+    "kana": "ルームメイト",
+    "english": "roommate",
+    "script": "Katakana"
+  },
+  {
+    "romaji": "hosutofamirii",
+    "japanese": "ホストファミリー",
+    "kana": "ホストファミリー",
+    "english": "host family",
+    "script": "Katakana"
+  },
+  {
+    "romaji": "biiru",
+    "japanese": "ビール",
+    "kana": "ビール",
+    "english": "beer",
+    "script": "Katakana"
+  }
+]

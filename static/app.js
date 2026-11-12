@@ -156,6 +156,8 @@ function restoreSettings() {
     });
   } catch { /* Use defaults when saved settings are unavailable. */ }
   restoreShuffle();
+  showKatakanaSelect.disabled = lessonSelect.value === "lesson11-katakana.json";
+  if (showKatakanaSelect.disabled) showKatakanaSelect.value = "no";
   modeSelect.dispatchEvent(new Event("change"));
 }
 
@@ -197,11 +199,11 @@ function selectLessonDirection() {
   const previousDirection = directionSelect.value;
   directionSelect.replaceChildren(...directionOptions.filter(option =>
     (isVocabulary ? ["english-romaji", "meaning-choice"].includes(option.value) : option.value !== "meaning-choice") &&
-    (!["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value))
+    (!["lesson5.csv", "lesson6.csv", "lesson7-kanji.csv", "lesson9-kanji.csv"].includes(lessonSelect.value) || ["kanji-romaji", "kanji-readings", "kanji-english", "english-romaji", "kana-romaji", "kanji-writing"].includes(option.value))
   ));
   directionSelect.value = [...directionSelect.options].some(option => option.value === previousDirection) ? previousDirection : "english-romaji";
-  directionSelect.disabled = ["lesson9-10-grammar.json", "midterm-oral.csv","learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "midterm-directions.csv", "lesson8-review.json", "lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value);
-  if (["lesson8-1-katakana.csv", "lesson9-katakana.json"].includes(lessonSelect.value)) {
+  directionSelect.disabled = ["lesson9-10-grammar.json", "midterm-oral.csv","learn-kanji.csv", "learn-katakana.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "midterm-directions.csv", "lesson8-review.json", "lesson8-1-katakana.csv", "lesson9-katakana.json", "lesson11-katakana.json"].includes(lessonSelect.value);
+  if (["lesson8-1-katakana.csv", "lesson9-katakana.json", "lesson11-katakana.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
   } else if (["lesson9-10-grammar.json", "midterm-oral.csv", "lesson7-sentences.csv", "lesson8-sentences.csv", "midterm-part2.csv", "lesson8-letter.csv", "lesson8-routine.csv", "lesson8-skills.csv", "lesson8-clothing.csv", "midterm-directions.csv", "lesson8-review.json"].includes(lessonSelect.value)) {
     directionSelect.value = "english-romaji";
@@ -209,9 +211,9 @@ function selectLessonDirection() {
     directionSelect.value = "kanji-romaji";
   } else if (lessonSelect.value === "learn-katakana.csv") {
     directionSelect.value = "katakana-romaji";
-  } else if (["lesson4.csv", "lesson5.csv", "lesson6.csv", "lesson7-kanji.csv"].includes(lessonSelect.value)) {
+  } else if (["lesson4.csv", "lesson5.csv", "lesson6.csv", "lesson7-kanji.csv", "lesson9-kanji.csv"].includes(lessonSelect.value)) {
     directionSelect.value = "kanji-readings";
-  } else if (lessonSelect.value === "lesson4-2.csv") {
+  } else if (["lesson4-2.csv", "lesson9-kanji-vocabulary.csv"].includes(lessonSelect.value)) {
     directionSelect.value = "kanji-word-romaji";
   } else if (directionSelect.value.startsWith("kanji-") || directionSelect.value === "katakana-romaji") {
     directionSelect.value = "english-romaji";
@@ -281,8 +283,9 @@ function directionFields(card) {
       label: "Write kanji", instruction: "Draw the kanji, then compare it with the answer"};
   }
   if (card.kind === "katakana" && lessonSelect.value !== "learn-katakana.csv") {
-    const showKatakana = showKatakanaSelect.value !== "no";
-    return {prompt: showKatakanaSelect.value === "only" ? card.kana
+    const katakanaDisplay = lessonSelect.value === "lesson11-katakana.json" ? "no" : showKatakanaSelect.value;
+    const showKatakana = katakanaDisplay !== "no";
+    return {prompt: katakanaDisplay === "only" ? card.kana
       : showKatakana ? `${card.kana} ${card.meaning}` : card.meaning,
       answer: card.romaji, label: showKatakana ? "Katakana → Romaji" : "English → Romaji",
       instruction: "Type this word in romaji"};
