@@ -1,0 +1,212 @@
+[
+  {
+    "romaji": "onaka",
+    "japanese": "おなか",
+    "kana": "おなか",
+    "english": "stomach",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "ashi",
+    "japanese": "あし",
+    "kana": "あし",
+    "english": "leg; foot",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "nodo",
+    "japanese": "のど",
+    "kana": "のど",
+    "english": "throat",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "ha",
+    "japanese": "は",
+    "kana": "は",
+    "english": "tooth",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "infuruenza",
+    "japanese": "インフルエンザ",
+    "kana": "インフルエンザ",
+    "english": "influenza",
+    "script": "Katakana"
+  },
+  {
+    "romaji": "kaze",
+    "japanese": "かぜ",
+    "kana": "かぜ",
+    "english": "cold",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "seki",
+    "japanese": "せき",
+    "kana": "せき",
+    "english": "cough",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "futsukayoi",
+    "japanese": "ふつかよい",
+    "kana": "ふつかよい",
+    "english": "hangover",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "hōmushikku",
+    "japanese": "ホームシック",
+    "kana": "ホームシック",
+    "english": "homesickness",
+    "script": "Katakana"
+  },
+  {
+    "romaji": "arerugī",
+    "japanese": "アレルギー",
+    "kana": "アレルギー",
+    "english": "allergy",
+    "script": "Katakana"
+  },
+  {
+    "romaji": "jūsu",
+    "japanese": "ジュース",
+    "kana": "ジュース",
+    "english": "juice",
+    "script": "Katakana"
+  },
+  {
+    "romaji": "tamago",
+    "japanese": "たまご",
+    "kana": "たまご",
+    "english": "egg",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "fuku",
+    "japanese": "ふく",
+    "kana": "ふく",
+    "english": "clothes",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "mono",
+    "japanese": "もの",
+    "kana": "もの",
+    "english": "thing (concrete object)",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "purezento",
+    "japanese": "プレゼント",
+    "kana": "プレゼント",
+    "english": "present",
+    "script": "Katakana"
+  },
+  {
+    "romaji": "kippu",
+    "japanese": "きっぷ",
+    "kana": "きっぷ",
+    "english": "(train) ticket",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "~dai",
+    "japanese": "〜だい",
+    "kana": "〜だい",
+    "english": "charge; fee",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "yōji",
+    "japanese": "ようじ",
+    "kana": "ようじ",
+    "english": "business to take care of",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "otearai",
+    "japanese": "おてあらい",
+    "kana": "おてあらい",
+    "english": "restroom",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "shiai",
+    "japanese": "しあい",
+    "kana": "しあい",
+    "english": "match; game",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "seiji",
+    "japanese": "せいじ",
+    "kana": "せいじ",
+    "english": "politics",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "seiseki",
+    "japanese": "せいせき",
+    "kana": "せいせき",
+    "english": "grade (on a test, etc.)",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "kanojo",
+    "japanese": "かのじょ",
+    "kana": "かのじょ",
+    "english": "she; girlfriend",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "kare",
+    "japanese": "かれ",
+    "kana": "かれ",
+    "english": "he; boyfriend",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "kareshi",
+    "japanese": "かれし",
+    "kana": "かれし",
+    "english": "boyfriend",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "imi",
+    "japanese": "いみ",
+    "kana": "いみ",
+    "english": "meaning",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "semai",
+    "japanese": "せまい",
+    "kana": "せまい",
+    "english": "narrow; not spacious",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "hiroi",
+    "japanese": "ひろい",
+    "kana": "ひろい",
+    "english": "wide; spacious",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "warui",
+    "japanese": "わるい",
+    "kana": "わるい",
+    "english": "bad",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "itai",
+    "japanese": "いたい",
+    "kana": "いたい",
+    "english": "hurt; painful",
+    "script": "Hiragana"
+  }
+]

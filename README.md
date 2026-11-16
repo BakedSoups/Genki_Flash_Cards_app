@@ -4,6 +4,9 @@ A lightweight Japanese flashcard web app powered by Python.
 
 ## Features
 
+- **Lesson 12 Vocabulary** contains 30 words from the supplied lesson quiz CSV.
+  Quizzes are sorted by lesson number, followed by midterm reviews and character practice.
+
 - **Lesson 8 Review** lets you select Lesson 1 (three bookstore-direction segments), Lesson 2 (an 18-card
   family letter), Lesson 3 (an 11-card daily routine), Lesson 4 (likes and skills), Lesson 5 (clothing and appearance, kana only),
   or all 43 cards mixed together.

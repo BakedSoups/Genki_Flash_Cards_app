@@ -16,13 +16,13 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 LESSON_PATTERN = re.compile(r"lesson(\d+)(?:-(\d+))?\.csv", re.IGNORECASE)
-SPECIAL_LESSONS = {"lesson9-10-quiz-vocab.json": "Lesson 9–10 Grammar Quiz Vocabulary Test", "lesson9-10-grammar.json": "Lesson 9–10 Grammar Quiz", "midterm-oral.csv": "Midterm Oral Test", "midterm-vocabulary.json": "Midterm Vocabulary (Lessons 1–5)", "midterm-directions.csv": "Midterm Lesson 1 — Directions", "lesson8-skills.csv": "Lesson 8 Review — Lesson 4", "lesson8-clothing.csv": "Lesson 8 Review — Lesson 5", "lesson8-routine.csv": "Lesson 8 Review — Lesson 3", "lesson8-review.json": "Lesson 8 Review (Lessons 1–5)", "lesson8-letter.csv": "Lesson 8 Review — Lesson 2", "midterm-part2.csv": "Midterm Review Part 2 (Lessons 1–5)", "lesson7-kanji.csv": "Lesson 7 Kanji", "lesson9-kanji.csv": "Lesson 9 Kanji", "lesson9-kanji-vocabulary.csv": "Lesson 9 Kanji Vocabulary", "lesson9.json": "Lesson 9 Vocabulary", "lesson10.json": "Lesson 10 Vocabulary", "lesson11.json": "Lesson 11 Vocabulary", "lesson11-2.json": "Lesson 11-2 Vocabulary", "lesson11-katakana.json": "Lesson 11 Katakana (English only)", "lesson10-2.json": "Lesson 10-2 Vocabulary", "lesson9-2.json": "Lesson 9-2 Vocabulary", "lesson9-katakana.json": "Lesson 9 Katakana", "lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
+SPECIAL_LESSONS = {"lesson12.json": "Lesson 12 Vocabulary", "lesson9-10-quiz-vocab.json": "Lesson 9–10 Grammar Quiz Vocabulary Test", "lesson9-10-grammar.json": "Lesson 9–10 Grammar Quiz", "midterm-oral.csv": "Midterm Oral Test", "midterm-vocabulary.json": "Midterm Vocabulary (Lessons 1–5)", "midterm-directions.csv": "Midterm Lesson 1 — Directions", "lesson8-skills.csv": "Lesson 8 Review — Lesson 4", "lesson8-clothing.csv": "Lesson 8 Review — Lesson 5", "lesson8-routine.csv": "Lesson 8 Review — Lesson 3", "lesson8-review.json": "Lesson 8 Review (Lessons 1–5)", "lesson8-letter.csv": "Lesson 8 Review — Lesson 2", "midterm-part2.csv": "Midterm Review Part 2 (Lessons 1–5)", "lesson7-kanji.csv": "Lesson 7 Kanji", "lesson9-kanji.csv": "Lesson 9 Kanji", "lesson9-kanji-vocabulary.csv": "Lesson 9 Kanji Vocabulary", "lesson9.json": "Lesson 9 Vocabulary", "lesson10.json": "Lesson 10 Vocabulary", "lesson11.json": "Lesson 11 Vocabulary", "lesson11-2.json": "Lesson 11-2 Vocabulary", "lesson11-katakana.json": "Lesson 11 Katakana (English only)", "lesson10-2.json": "Lesson 10-2 Vocabulary", "lesson9-2.json": "Lesson 9-2 Vocabulary", "lesson9-katakana.json": "Lesson 9 Katakana", "lesson8-1-katakana.csv": "Lesson 8-1 Katakana", "lesson7-sentences.csv": "Lesson 7 Sentences", "lesson8-sentences.csv": "Lesson 8 Sentences", "learn-kanji.csv": "Learn Kanji", "learn-katakana.csv": "Learn Katakana"}
 HISTORY_FILE = ROOT / "history.json"
 HISTORY_LOCK = threading.Lock()
 
 
 def available_lessons() -> list[dict[str, object]]:
-    """Return lesson CSV files in numerical order."""
+    """Return all quizzes in natural lesson order, then reviews and practice."""
     lessons: list[tuple[tuple[int, int], dict[str, object]]] = []
     for path in ROOT.iterdir():
         match = LESSON_PATTERN.fullmatch(path.name)
@@ -42,7 +42,16 @@ def available_lessons() -> list[dict[str, object]]:
         {"number": filename.removeprefix("learn-").removesuffix(".csv"), "name": name, "file": filename}
         for filename, name in SPECIAL_LESSONS.items() if (ROOT / filename).is_file()
     ] + result
-    return result
+    def sort_key(lesson: dict[str, object]) -> tuple:
+        filename = str(lesson["file"])
+        match = re.match(r"lesson(\d+)(?:-(\d+))?", filename, re.IGNORECASE)
+        if match:
+            return (0, int(match.group(1)), int(match.group(2) or 0),
+                    str(lesson["name"]).casefold(), filename)
+        return (1 if filename.startswith("midterm-") else 2, 0, 0,
+                str(lesson["name"]).casefold(), filename)
+
+    return sorted(result, key=sort_key)
 
 
 def load_cards(filename: str) -> list[dict[str, str]]:
