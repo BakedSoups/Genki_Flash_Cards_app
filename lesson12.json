@@ -56,21 +56,24 @@
     "script": "Hiragana"
   },
   {
-    "romaji": "hōmushikku",
+    "romaji": "hoomushikku",
     "japanese": "ホームシック",
     "kana": "ホームシック",
     "english": "homesickness",
-    "script": "Katakana"
+    "script": "Katakana",
+    "romaji_answers": [
+      "houmushikku"
+    ]
   },
   {
-    "romaji": "arerugī",
+    "romaji": "arerugii",
     "japanese": "アレルギー",
     "kana": "アレルギー",
     "english": "allergy",
     "script": "Katakana"
   },
   {
-    "romaji": "jūsu",
+    "romaji": "juusu",
     "japanese": "ジュース",
     "kana": "ジュース",
     "english": "juice",
@@ -119,11 +122,14 @@
     "script": "Hiragana"
   },
   {
-    "romaji": "yōji",
+    "romaji": "yooji",
     "japanese": "ようじ",
     "kana": "ようじ",
     "english": "business to take care of",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "romaji_answers": [
+      "youji"
+    ]
   },
   {
     "romaji": "otearai",
