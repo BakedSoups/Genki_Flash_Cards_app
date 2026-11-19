@@ -21,7 +21,10 @@
     "japanese": "すてき（な）",
     "kana": "すてき（な）",
     "english": "nice",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "suteki = lovely / nice; na links this adjective to a following noun, as in suteki na hito (a lovely person)."
+    ]
   },
   {
     "romaji": "aruku",
@@ -35,35 +38,65 @@
     "japanese": "かぜをひく",
     "kana": "かぜをひく",
     "english": "to catch a cold",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "kaze = a cold",
+      "o (を) marks what is caught",
+      "hiku = pull; in this expression, catch",
+      "Together: catch a cold."
+    ]
   },
   {
     "romaji": "netsu ga aru",
     "japanese": "ねつがある",
     "kana": "ねつがある",
     "english": "to have a fever",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "netsu = fever / heat",
+      "ga marks the subject (fever)",
+      "aru = exist / be present",
+      "Literally: a fever is present → have a fever."
+    ]
   },
   {
     "romaji": "nodo ga kawaku",
     "japanese": "のどがかわく",
     "kana": "のどがかわく",
     "english": "to become thirsty",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "nodo = throat (neck is kubi)",
+      "ga marks the subject (throat)",
+      "kawaku = become dry",
+      "Literally: the throat becomes dry → become thirsty."
+    ]
   },
   {
     "romaji": "~ o harau",
     "japanese": "〜をはらう",
     "kana": "〜をはらう",
     "english": "to pay (an amount or bill)",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "~ stands for the amount or bill",
+      "o (を) marks what you pay",
+      "harau = pay",
+      "Together: pay an amount or bill."
+    ]
   },
   {
     "romaji": "~ o nakusu",
     "japanese": "〜をなくす",
     "kana": "〜をなくす",
     "english": "to lose (something)",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "~ stands for the thing lost",
+      "o (を) marks what you lose",
+      "nakusu = lose",
+      "Together: lose something."
+    ]
   },
   {
     "romaji": "~ ni kyoomi ga aru",
@@ -73,6 +106,14 @@
     "script": "Hiragana",
     "romaji_answers": [
       "~ ni kyoumi ga aru"
+    ],
+    "breakdown": [
+      "~ stands for a topic or activity",
+      "ni = in / toward; marks what interests you",
+      "kyoomi = interest",
+      "ga marks the subject (interest)",
+      "aru = exist / be present",
+      "Literally: interest in something exists → be interested in it."
     ]
   },
   {
@@ -80,14 +121,26 @@
     "japanese": "せきがでる",
     "kana": "せきがでる",
     "english": "to cough",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "seki = cough",
+      "ga marks the subject (cough)",
+      "deru = come out",
+      "Literally: a cough comes out → cough."
+    ]
   },
   {
     "romaji": "~ to wakareru",
     "japanese": "〜とわかれる",
     "kana": "〜とわかれる",
     "english": "to break up with or separate from (a person)",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "~ stands for a person",
+      "to = with; marks the person you part with",
+      "wakareru = separate / part",
+      "Together: break up with or separate from someone."
+    ]
   },
   {
     "romaji": "kinchoo suru",
@@ -97,6 +150,11 @@
     "script": "Hiragana",
     "romaji_answers": [
       "kinchou suru"
+    ],
+    "breakdown": [
+      "kinchoo = tension / nervousness",
+      "suru = do; turns the noun into a verb",
+      "Together: get nervous."
     ]
   },
   {
@@ -104,28 +162,50 @@
     "japanese": "しんぱいする",
     "kana": "しんぱいする",
     "english": "to worry",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "shinpai = worry / concern",
+      "suru = do; turns the noun into a verb",
+      "Together: worry."
+    ]
   },
   {
     "romaji": "odaiji ni",
     "japanese": "おだいじに",
     "kana": "おだいじに",
     "english": "get well soon",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "o = a polite prefix",
+      "daiji = important / precious; here, care",
+      "ni forms part of this fixed expression",
+      "Short for odaiji ni nasatte kudasai (please take care of yourself) → get well soon."
+    ]
   },
   {
     "romaji": "genki ga nai",
     "japanese": "げんきがない",
     "kana": "げんきがない",
     "english": "to look unwell or lack energy",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "genki = energy / health / good spirits",
+      "ga marks the subject (energy)",
+      "nai = not exist / not have (the negative of aru)",
+      "Literally: energy is absent → feel unwell or lack energy."
+    ]
   },
   {
     "romaji": "dekiru dake",
     "japanese": "できるだけ",
     "kana": "できるだけ",
     "english": "as much as possible",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "dekiru = can do / be possible",
+      "dake = only / to the extent",
+      "Together: as much as possible."
+    ]
   },
   {
     "romaji": "tabun",
@@ -142,6 +222,11 @@
     "script": "Hiragana",
     "romaji_answers": [
       "mou sugu"
+    ],
+    "breakdown": [
+      "moo = already / now; here, emphasizes how soon",
+      "sugu = immediately / soon",
+      "Together: very soon."
     ]
   },
   {
@@ -156,14 +241,25 @@
     "japanese": "にさんにち",
     "kana": "にさんにち",
     "english": "for two to three days",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "ni = two",
+      "san = three",
+      "nichi = days",
+      "ni + san gives an approximate range → two or three days."
+    ]
   },
   {
     "romaji": "sore ni",
     "japanese": "それに",
     "kana": "それに",
     "english": "moreover; besides",
-    "script": "Hiragana"
+    "script": "Hiragana",
+    "breakdown": [
+      "sore = that",
+      "ni = to / in addition to",
+      "Together as a linking expression: moreover / besides / on top of that."
+    ]
   },
   {
     "romaji": "onaji",

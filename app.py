@@ -79,6 +79,7 @@ def load_cards(filename: str) -> list[dict[str, str]]:
         return [
             {"romaji": entry["romaji"], "meaning": entry["english"],
              "kana": entry["kana"], "spelling": entry["japanese"],
+             "breakdown": entry.get("breakdown", []),
              "romaji_answers": entry.get("romaji_answers", []), "kana_answers": entry.get("kana_answers", []),
              "kind": "katakana" if all("ァ" <= c <= "ヺ" or c == "ー" for c in entry["japanese"]) else "vocabulary"}
             for entry in entries

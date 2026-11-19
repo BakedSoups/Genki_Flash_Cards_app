@@ -1016,6 +1016,19 @@ function checkAnswer(writingGrade = null) {
     resultStatus.textContent += ` · ${Number((100 * sentenceResult.correct / sentenceResult.total).toFixed(1))}%`;
   }
   correction.append(answerLine);
+  if (card.breakdown?.length) {
+    const breakdown = document.createElement("section");
+    breakdown.className = "verb-breakdown";
+    const heading = document.createElement("h3");
+    heading.textContent = "Phrase breakdown";
+    breakdown.append(heading);
+    for (const part of card.breakdown) {
+      const line = document.createElement("p");
+      line.textContent = part;
+      breakdown.append(line);
+    }
+    correction.append(breakdown);
+  }
   const isKanjiRomaji = isKanjiReadings || ["kanji-romaji", "kanji-word-romaji"].includes(direction);
   if (direction === "katakana-romaji" || isKanjiRomaji) {
     const meaningLine = document.createElement("span");
