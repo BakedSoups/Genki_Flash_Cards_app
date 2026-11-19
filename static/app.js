@@ -235,7 +235,14 @@ function showScreen(screen) {
 }
 
 function normalize(value) {
-  return value.trim().toLocaleLowerCase().replace(/[āīūēō]/g, c => ({ā:"aa", ī:"ii", ū:"uu", ē:"ee", ō:"ou"})[c]).replace(/[\s.,!?;:'"()-]+/g, "");
+  return value.trim().toLocaleLowerCase().replace(/[āīūēō]/g, c => ({ā:"aa", ī:"ii", ū:"uu", ē:"ee", ō:"ou"})[c]).replace(/[\s.,!?;:'"()~〜～-]+/g, "");
+}
+
+function matchesRomajiAnswer(supplied, expected) {
+  if (normalize(supplied) === normalize(expected)) return true;
+  // A placeholder's leading particle may be omitted when recalling the phrase.
+  const phrase = expected.replace(/^\s*[~〜～]\s*(?:o|wo|ni|to|ga|de|e|wa)\s+/i, "");
+  return normalize(phrase) !== "" && normalize(supplied) === normalize(phrase);
 }
 
 function hiraganaToRomaji(value) {
@@ -959,7 +966,9 @@ function checkAnswer(writingGrade = null) {
       ? expectedReadings.includes(normalize(answerInput.value))
     : [fields.answer, ...(["english-romaji", "kana-romaji"].includes(direction) ? card.romaji_answers || []
         : direction === "english-kana" ? card.kana_answers || [] : [])]
-      .some(answer => normalize(answerInput.value) === normalize(answer));
+      .some(answer => ["english-romaji", "kana-romaji"].includes(direction)
+        ? matchesRomajiAnswer(answerInput.value, answer)
+        : normalize(answerInput.value) === normalize(answer));
   if (!redoOutcome) {
     attempts += 1;
     wordStats[cardKey(card)].attempts += 1;

@@ -1,0 +1,175 @@
+[
+  {
+    "romaji": "amai",
+    "japanese": "あまい",
+    "kana": "あまい",
+    "english": "sweet",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "ooi",
+    "japanese": "おおい",
+    "kana": "おおい",
+    "english": "there are many",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "oui"
+    ]
+  },
+  {
+    "romaji": "suteki (na)",
+    "japanese": "すてき（な）",
+    "kana": "すてき（な）",
+    "english": "nice",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "aruku",
+    "japanese": "あるく",
+    "kana": "あるく",
+    "english": "to walk",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "kaze o hiku",
+    "japanese": "かぜをひく",
+    "kana": "かぜをひく",
+    "english": "to catch a cold",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "netsu ga aru",
+    "japanese": "ねつがある",
+    "kana": "ねつがある",
+    "english": "to have a fever",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "nodo ga kawaku",
+    "japanese": "のどがかわく",
+    "kana": "のどがかわく",
+    "english": "to become thirsty",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "~ o harau",
+    "japanese": "〜をはらう",
+    "kana": "〜をはらう",
+    "english": "to pay (an amount or bill)",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "~ o nakusu",
+    "japanese": "〜をなくす",
+    "kana": "〜をなくす",
+    "english": "to lose (something)",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "~ ni kyoomi ga aru",
+    "japanese": "〜にきょうみがある",
+    "kana": "〜にきょうみがある",
+    "english": "to be interested in (a topic)",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "~ ni kyoumi ga aru"
+    ]
+  },
+  {
+    "romaji": "seki ga deru",
+    "japanese": "せきがでる",
+    "kana": "せきがでる",
+    "english": "to cough",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "~ to wakareru",
+    "japanese": "〜とわかれる",
+    "kana": "〜とわかれる",
+    "english": "to break up with or separate from (a person)",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "kinchoo suru",
+    "japanese": "きんちょうする",
+    "kana": "きんちょうする",
+    "english": "to get nervous",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "kinchou suru"
+    ]
+  },
+  {
+    "romaji": "shinpai suru",
+    "japanese": "しんぱいする",
+    "kana": "しんぱいする",
+    "english": "to worry",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "odaiji ni",
+    "japanese": "おだいじに",
+    "kana": "おだいじに",
+    "english": "get well soon",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "genki ga nai",
+    "japanese": "げんきがない",
+    "kana": "げんきがない",
+    "english": "to look unwell or lack energy",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "dekiru dake",
+    "japanese": "できるだけ",
+    "kana": "できるだけ",
+    "english": "as much as possible",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "tabun",
+    "japanese": "たぶん",
+    "kana": "たぶん",
+    "english": "probably; maybe",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "moo sugu",
+    "japanese": "もうすぐ",
+    "kana": "もうすぐ",
+    "english": "very soon; in a few moments or days",
+    "script": "Hiragana",
+    "romaji_answers": [
+      "mou sugu"
+    ]
+  },
+  {
+    "romaji": "hajimete",
+    "japanese": "はじめて",
+    "kana": "はじめて",
+    "english": "for the first time",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "nisannichi",
+    "japanese": "にさんにち",
+    "kana": "にさんにち",
+    "english": "for two to three days",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "sore ni",
+    "japanese": "それに",
+    "kana": "それに",
+    "english": "moreover; besides",
+    "script": "Hiragana"
+  },
+  {
+    "romaji": "onaji",
+    "japanese": "おなじ",
+    "kana": "おなじ",
+    "english": "same",
+    "script": "Hiragana"
+  }
+]

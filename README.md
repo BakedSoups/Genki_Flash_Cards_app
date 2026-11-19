@@ -4,6 +4,9 @@ A lightweight Japanese flashcard web app powered by Python.
 
 ## Features
 
+- **Lesson 12-02 Vocabulary** adds 23 words and expressions from page 275,
+  using keyboard-friendly romaji with doubled vowels.
+
 - **Lesson 12 Vocabulary** contains 30 words from the supplied lesson quiz CSV.
   Quizzes are sorted by lesson number, followed by midterm reviews and character practice.
 
